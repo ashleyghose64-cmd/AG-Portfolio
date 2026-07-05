@@ -21,53 +21,53 @@
                 theme: {
                     extend: {
                         "colors": {
-                            "primary-container": "#121417",
+                            "primary-container": "var(--color-primary-container)",
                             "on-secondary-fixed": "#241a00",
                             "inverse-on-surface": "#233143",
                             "inverse-primary": "#5d5e62",
-                            "on-background": "#d4e4fa",
-                            "secondary": "#e9c349",
+                            "on-background": "var(--color-on-surface)",
+                            "secondary": "var(--color-secondary)",
                             "outline": "#8f9094",
-                            "background": "#051424",
-                            "secondary-fixed-dim": "#e9c349",
+                            "background": "var(--color-background)",
+                            "secondary-fixed-dim": "var(--color-secondary)",
                             "on-tertiary-container": "#4d8a74",
                             "tertiary": "#95d3ba",
                             "primary-fixed-dim": "#c6c6ca",
-                            "surface-dim": "#051424",
+                            "surface-dim": "var(--color-surface)",
                             "on-primary-fixed-variant": "#45474a",
                             "on-primary-fixed": "#1a1c1f",
-                            "surface-tint": "#c6c6ca",
+                            "surface-tint": "var(--color-primary)",
                             "secondary-container": "#af8d11",
-                            "surface-container-lowest": "#010f1f",
+                            "surface-container-lowest": "var(--color-surface-lowest)",
                             "tertiary-container": "#001810",
-                            "primary": "#c6c6ca",
+                            "primary": "var(--color-primary)",
                             "on-secondary": "#3c2f00",
                             "primary-fixed": "#e2e2e6",
                             "on-primary-container": "#7d7e82",
-                            "inverse-surface": "#d4e4fa",
+                            "inverse-surface": "var(--color-on-surface)",
                             "on-tertiary-fixed": "#002117",
                             "on-secondary-container": "#342800",
                             "on-primary": "#2f3034",
                             "error": "#ffb4ab",
-                            "on-surface": "#d4e4fa",
+                            "on-surface": "var(--color-on-surface)",
                             "on-error": "#690005",
                             "surface-bright": "#2c3a4c",
-                            "surface-container-low": "#0d1c2d",
+                            "surface-container-low": "var(--color-surface-low)",
                             "outline-variant": "#45474a",
                             "tertiary-fixed": "#b0f0d6",
-                            "surface-container": "#122131",
-                            "on-surface-variant": "#c6c6ca",
+                            "surface-container": "var(--color-surface-container)",
+                            "on-surface-variant": "var(--color-on-surface-variant)",
                             "on-tertiary": "#003829",
-                            "surface": "#051424",
+                            "surface": "var(--color-surface)",
                             "on-error-container": "#ffdad6",
                             "on-secondary-fixed-variant": "#574500",
                             "on-tertiary-fixed-variant": "#0b513d",
                             "error-container": "#93000a",
                             "surface-variant": "#273647",
                             "surface-container-highest": "#273647",
-                            "secondary-fixed": "#ffe088",
+                            "secondary-fixed": "var(--color-secondary-fixed)",
                             "tertiary-fixed-dim": "#95d3ba",
-                            "surface-container-high": "#1c2b3c"
+                            "surface-container-high": "var(--color-surface-high)"
                         },
                         "borderRadius": {
                             "DEFAULT": "0.125rem",
@@ -109,6 +109,21 @@
         } catch (_e) {}
     </script>
     <style>
+        :root {
+            --color-background: #051424;
+            --color-surface: #051424;
+            --color-surface-lowest: #010f1f;
+            --color-surface-low: #0d1c2d;
+            --color-surface-container: #122131;
+            --color-surface-high: #1c2b3c;
+            --color-primary-container: #121417;
+            --color-secondary: #e9c349;
+            --color-secondary-fixed: #ffe088;
+            --color-primary: #c6c6ca;
+            --color-on-surface: #d4e4fa;
+            --color-on-surface-variant: #c6c6ca;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -118,14 +133,14 @@
             height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #051424;
+            background: var(--color-background);
         }
         ::-webkit-scrollbar-thumb {
-            background: #1c2b3c;
+            background: var(--color-surface-high);
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #e9c349;
+            background: var(--color-secondary);
         }
     </style>
 </head>
@@ -362,6 +377,7 @@
             <div class="w-48 bg-surface-container-low border-r border-white/5 flex flex-col justify-between p-4 font-label-caps text-xs tracking-wider">
                 <div class="space-y-1">
                     <button onclick="switchTab('tab-hero')" id="btn-tab-hero" class="tab-btn w-full text-left py-3 px-4 rounded text-secondary bg-white/5 font-semibold transition-all">HERO SECTION</button>
+                    <button onclick="switchTab('tab-branding')" id="btn-tab-branding" class="tab-btn w-full text-left py-3 px-4 rounded text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all">BRANDING & THEME</button>
                     <button onclick="switchTab('tab-services')" id="btn-tab-services" class="tab-btn w-full text-left py-3 px-4 rounded text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all">SERVICES</button>
                     <button onclick="switchTab('tab-portfolio')" id="btn-tab-portfolio" class="tab-btn w-full text-left py-3 px-4 rounded text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all">PORTFOLIO</button>
                     <button onclick="switchTab('tab-about')" id="btn-tab-about" class="tab-btn w-full text-left py-3 px-4 rounded text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all">ABOUT ME</button>
@@ -408,6 +424,33 @@
                             <div class="mt-4">
                                 <span class="text-[11px] text-on-surface-variant block mb-1">Current Background Preview:</span>
                                 <div id="hero-preview" class="h-32 w-full rounded bg-cover bg-center border border-white/10"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: Branding & Themes Editor -->
+                <div id="tab-branding" class="cms-tab-content hidden space-y-6">
+                    <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">Website Branding & Themes</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block font-label-caps text-xs text-on-surface-variant mb-2">SELECT ELEGANT THEME</label>
+                            <select id="edit-theme-selector" onchange="handleThemeSelectionChange(this.value)" class="w-full bg-surface border border-white/10 rounded px-4 py-3 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
+                                <!-- Injected dynamically in JS -->
+                            </select>
+                            <p class="text-xs text-on-surface-variant mt-2">Selecting a theme will instantly preview the new color scheme on the website background. Click 'Save & Publish' to save changes globally, or 'Discard' to undo.</p>
+                        </div>
+                        
+                        <div>
+                            <label class="block font-label-caps text-xs text-on-surface-variant mb-2">THEME COLOR PALETTE PREVIEW</label>
+                            <div class="p-4 border border-white/5 bg-white/5 rounded flex items-center gap-3">
+                                <div id="theme-swatch-bg" class="w-10 h-10 rounded border border-white/10 animate-fade-in" title="Background Color"></div>
+                                <div id="theme-swatch-low" class="w-10 h-10 rounded border border-white/10 animate-fade-in" title="Card Surface Color"></div>
+                                <div id="theme-swatch-sec" class="w-10 h-10 rounded border border-white/10 animate-fade-in" title="Secondary Theme Highlight"></div>
+                                <div class="text-xs text-on-surface-variant">
+                                    <div class="font-bold text-on-surface" id="theme-swatch-name">Midnight Gold</div>
+                                    <div class="text-[10px]">Active color swatch visualization</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -726,7 +769,134 @@
                 author: "Sarah J.",
                 title: "Creative Director"
             }
-        ]
+        ],
+        theme: "Midnight Gold"
+    };
+
+    // ----------------------------------------------------
+    // THEME PALETTE DATA (10 ELEGANT VARIATIONS)
+    // ----------------------------------------------------
+    const THEMES = {
+        "Midnight Gold": {
+            background: "#051424",
+            surface: "#051424",
+            lowest: "#010f1f",
+            low: "#0d1c2d",
+            primaryContainer: "#121417",
+            secondary: "#e9c349",
+            secondaryFixed: "#ffe088",
+            primary: "#c6c6ca",
+            onSurface: "#d4e4fa",
+            onSurfaceVariant: "#c6c6ca"
+        },
+        "Emerald Luxe": {
+            background: "#031711",
+            surface: "#031711",
+            lowest: "#010f0b",
+            low: "#0a221b",
+            primaryContainer: "#050e0b",
+            secondary: "#50e3c2",
+            secondaryFixed: "#7ef7db",
+            primary: "#b8d7cd",
+            onSurface: "#e1f5f0",
+            onSurfaceVariant: "#a9c8bf"
+        },
+        "Royal Obsidian": {
+            background: "#0b0518",
+            surface: "#0b0518",
+            lowest: "#04010b",
+            low: "#140d25",
+            primaryContainer: "#07020e",
+            secondary: "#bb86fc",
+            secondaryFixed: "#d7b7fd",
+            primary: "#cfc5e3",
+            onSurface: "#f1ebfa",
+            onSurfaceVariant: "#c1b5d6"
+        },
+        "Champagne Noir": {
+            background: "#141210",
+            surface: "#141210",
+            lowest: "#0d0c0a",
+            low: "#1e1b19",
+            primaryContainer: "#0d0c0a",
+            secondary: "#e5cca4",
+            secondaryFixed: "#eedebb",
+            primary: "#d8d2cc",
+            onSurface: "#fcf9f5",
+            onSurfaceVariant: "#cfc7bf"
+        },
+        "Nordic Frost": {
+            background: "#0e1115",
+            surface: "#0e1115",
+            lowest: "#080a0c",
+            low: "#161b22",
+            primaryContainer: "#0b0d10",
+            secondary: "#58a6ff",
+            secondaryFixed: "#8bc2ff",
+            primary: "#c9d1d9",
+            onSurface: "#f0f6fc",
+            onSurfaceVariant: "#8b949e"
+        },
+        "Rosewood Elegance": {
+            background: "#1c0d11",
+            surface: "#1c0d11",
+            lowest: "#0f0709",
+            low: "#271419",
+            primaryContainer: "#0d0507",
+            secondary: "#e0a899",
+            secondaryFixed: "#e8c2b7",
+            primary: "#e5ccd0",
+            onSurface: "#fdf6f7",
+            onSurfaceVariant: "#cfb3b7"
+        },
+        "Monochrome Slate": {
+            background: "#000000",
+            surface: "#000000",
+            lowest: "#080808",
+            low: "#111111",
+            primaryContainer: "#090909",
+            secondary: "#ffffff",
+            secondaryFixed: "#cccccc",
+            primary: "#ffffff",
+            onSurface: "#f5f5f5",
+            onSurfaceVariant: "#aaaaaa"
+        },
+        "Desert Dunes": {
+            background: "#18110b",
+            surface: "#18110b",
+            lowest: "#0f0b07",
+            low: "#231c15",
+            primaryContainer: "#0d0905",
+            secondary: "#f4a261",
+            secondaryFixed: "#f7be8f",
+            primary: "#e7dec9",
+            onSurface: "#fefcf7",
+            onSurfaceVariant: "#d8cbb5"
+        },
+        "Plum Satin": {
+            background: "#15081a",
+            surface: "#15081a",
+            lowest: "#0d0411",
+            low: "#211027",
+            primaryContainer: "#0c0310",
+            secondary: "#e9c46a",
+            secondaryFixed: "#eed79b",
+            primary: "#decce5",
+            onSurface: "#fbf6fd",
+            onSurfaceVariant: "#cbb3d6"
+        },
+        "Oceanic Abyss": {
+            background: "#020d1a",
+            surface: "#020d1a",
+            lowest: "#01070e",
+            low: "#06172d",
+            primaryContainer: "#01060d",
+            secondary: "#00f0ff",
+            secondaryFixed: "#70f7ff",
+            primary: "#cce3fd",
+            onSurface: "#f0f7ff",
+            onSurfaceVariant: "#99c5fd"
+        }
     };
 
     // Global variables
@@ -735,6 +905,7 @@
     let currentCategoryFilter = "All";
     let db = null;
     let isCloudEnabled = false;
+    let selectedPreviewTheme = "";
 
     // Check if Firebase is properly configured by the user
     function isFirebaseConfigured() {
@@ -815,14 +986,53 @@
                     localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
                 }
                 console.log("Synced with cloud database.");
-            } catch (err) {
-                console.warn("Cloud read failed. Using cached LocalStorage content.", err);
-            }
+        // Ensure theme is set
+        if (!siteData.theme) {
+            siteData.theme = "Midnight Gold";
         }
+        
+        // Apply active theme colors instantly
+        previewTheme(siteData.theme);
 
         // Render live views
         renderWebsite();
     }
+
+    function previewTheme(themeName) {
+        const theme = THEMES[themeName];
+        if (!theme) return;
+        
+        const root = document.documentElement;
+        root.style.setProperty('--color-background', theme.background);
+        root.style.setProperty('--color-surface', theme.surface);
+        root.style.setProperty('--color-surface-lowest', theme.lowest);
+        root.style.setProperty('--color-surface-low', theme.low);
+        root.style.setProperty('--color-primary-container', theme.primaryContainer);
+        root.style.setProperty('--color-secondary', theme.secondary);
+        root.style.setProperty('--color-secondary-fixed', theme.secondaryFixed);
+        root.style.setProperty('--color-primary', theme.primary);
+        root.style.setProperty('--color-on-surface', theme.onSurface);
+        root.style.setProperty('--color-on-surface-variant', theme.onSurfaceVariant);
+
+        selectedPreviewTheme = themeName;
+    }
+
+    window.previewTheme = previewTheme;
+
+    function handleThemeSelectionChange(themeName) {
+        previewTheme(themeName);
+        
+        // Update dashboard swatches
+        const theme = THEMES[themeName];
+        if (theme) {
+            document.getElementById("theme-swatch-bg").style.backgroundColor = theme.background;
+            document.getElementById("theme-swatch-low").style.backgroundColor = theme.low;
+            document.getElementById("theme-swatch-sec").style.backgroundColor = theme.secondary;
+            document.getElementById("theme-swatch-name").textContent = themeName;
+        }
+    }
+
+    window.handleThemeSelectionChange = handleThemeSelectionChange;
 
     async function saveDatabase() {
         // Write to local cache
@@ -1262,6 +1472,9 @@
 
     function closeAdminPanel() {
         document.getElementById("admin-panel").classList.add("hidden");
+        if (siteData.theme) {
+            previewTheme(siteData.theme);
+        }
     }
 
     window.closeAdminPanel = closeAdminPanel;
@@ -1330,6 +1543,23 @@
 
         renderCMSTestimonials();
         renderCMSLeads();
+
+        // Populate Theme Selector dropdown
+        const themeSelector = document.getElementById("edit-theme-selector");
+        if (themeSelector) {
+            themeSelector.innerHTML = "";
+            Object.keys(THEMES).forEach(themeName => {
+                const opt = document.createElement("option");
+                opt.value = themeName;
+                opt.textContent = themeName;
+                if (themeName === siteData.theme) {
+                    opt.selected = true;
+                }
+                themeSelector.appendChild(opt);
+            });
+            // Initial Swatch update
+            handleThemeSelectionChange(siteData.theme);
+        }
     }
 
     function addAboutParagraphField(text = "") {
@@ -1767,6 +1997,11 @@
         });
         siteData.about.paragraphs = paras;
 
+        // Save selected theme
+        if (selectedPreviewTheme) {
+            siteData.theme = selectedPreviewTheme;
+        }
+
         await saveDatabase();
         renderWebsite();
         closeAdminPanel();
@@ -1795,6 +2030,7 @@
         if (confirm("CRITICAL WARNING: This will permanently wipe out all current site layout changes, custom pictures, categories, testimonials, and resets everything to default. Leads will NOT be deleted. Do you want to proceed?")) {
             siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
             await saveDatabase();
+            previewTheme(siteData.theme);
             renderWebsite();
             populateCMSInputs();
             closeAdminPanel();
