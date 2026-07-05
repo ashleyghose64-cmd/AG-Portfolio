@@ -986,6 +986,11 @@
                     localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
                 }
                 console.log("Synced with cloud database.");
+            } catch (err) {
+                console.warn("Cloud read failed. Using cached LocalStorage content.", err);
+            }
+        }
+
         // Ensure theme is set
         if (!siteData.theme) {
             siteData.theme = "Midnight Gold";
