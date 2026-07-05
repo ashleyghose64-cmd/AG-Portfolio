@@ -145,6 +145,28 @@
     </style>
 </head>
 <body class="antialiased font-body-lg text-body-lg bg-surface text-on-surface">
+<script>
+    window.addEventListener('error', function(e) {
+        const errDiv = document.createElement('div');
+        errDiv.style.position = 'fixed';
+        errDiv.style.top = '10px';
+        errDiv.style.left = '10px';
+        errDiv.style.right = '10px';
+        errDiv.style.backgroundColor = '#7f1d1d';
+        errDiv.style.color = '#fecaca';
+        errDiv.style.border = '1px solid #ef4444';
+        errDiv.style.padding = '20px';
+        errDiv.style.borderRadius = '8px';
+        errDiv.style.zIndex = '10000';
+        errDiv.style.fontFamily = 'monospace';
+        errDiv.style.fontSize = '14px';
+        errDiv.innerHTML = '<h3 style="font-weight:bold;margin-bottom:8px">Javascript Error Caught:</h3>' +
+                           '<p style="margin-bottom:8px"><strong>Message:</strong> ' + e.message + '</p>' +
+                           '<p style="margin-bottom:8px"><strong>File:</strong> ' + e.filename + '</p>' +
+                           '<p><strong>Line:</strong> ' + e.lineno + ':' + e.colno + '</p>';
+        document.body.appendChild(errDiv);
+    });
+</script>
 
 <!-- Admin Mode Active Sticky Banner -->
 <div id="admin-banner" class="hidden fixed top-0 left-0 w-full z-[60] bg-secondary text-primary-container px-4 py-2 flex justify-between items-center text-xs font-label-caps tracking-wider shadow-lg">
@@ -916,6 +938,36 @@
                FIREBASE_CONFIG.apiKey !== "YOUR_API_KEY";
     }
 
+    function validateAndRepairSiteData() {
+        if (!siteData || typeof siteData !== "object") {
+            siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
+            return;
+        }
+        
+        // Ensure all top-level keys exist and have proper shapes
+        if (!siteData.hero || typeof siteData.hero !== "object" || !siteData.hero.title) {
+            siteData.hero = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.hero));
+        }
+        if (!siteData.services || !Array.isArray(siteData.services) || siteData.services.length === 0) {
+            siteData.services = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.services));
+        }
+        if (!siteData.about || typeof siteData.about !== "object" || !siteData.about.paragraphs) {
+            siteData.about = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.about));
+        }
+        if (!siteData.portfolio_categories || !Array.isArray(siteData.portfolio_categories)) {
+            siteData.portfolio_categories = [...DEFAULT_SITE_DATA.portfolio_categories];
+        }
+        if (!siteData.portfolio_items || !Array.isArray(siteData.portfolio_items)) {
+            siteData.portfolio_items = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.portfolio_items));
+        }
+        if (!siteData.testimonials || !Array.isArray(siteData.testimonials)) {
+            siteData.testimonials = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.testimonials));
+        }
+        if (!siteData.theme) {
+            siteData.theme = DEFAULT_SITE_DATA.theme;
+        }
+    }
+
     // ----------------------------------------------------
     // INITIALIZATION & DATA LOADING
     // ----------------------------------------------------
@@ -991,10 +1043,8 @@
             }
         }
 
-        // Ensure theme is set
-        if (!siteData.theme) {
-            siteData.theme = "Midnight Gold";
-        }
+        // Validate and repair site data (protects against blank pages due to partial database structures)
+        validateAndRepairSiteData();
         
         // Apply active theme colors instantly
         previewTheme(siteData.theme);
