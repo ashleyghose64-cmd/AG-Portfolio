@@ -9,10 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;500&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet"/>
     
-    <!-- Google Firebase SDK (Compat Version for Static HTML) -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
         try {
@@ -110,24 +106,23 @@
     </script>
     <style>
         :root {
-            --color-background: #051424;
-            --color-surface: #051424;
-            --color-surface-lowest: #010f1f;
-            --color-surface-low: #0d1c2d;
-            --color-surface-container: #122131;
-            --color-surface-high: #1c2b3c;
-            --color-primary-container: #121417;
-            --color-secondary: #e9c349;
-            --color-secondary-fixed: #ffe088;
-            --color-primary: #c6c6ca;
-            --color-on-surface: #d4e4fa;
-            --color-on-surface-variant: #c6c6ca;
+            --color-background: #000000;
+            --color-surface: #000000;
+            --color-surface-lowest: #080808;
+            --color-surface-low: #111111;
+            --color-surface-container: #151515;
+            --color-surface-high: #222222;
+            --color-primary-container: #090909;
+            --color-secondary: #ffffff;
+            --color-secondary-fixed: #cccccc;
+            --color-primary: #ffffff;
+            --color-on-surface: #f5f5f5;
+            --color-on-surface-variant: #aaaaaa;
         }
 
         html {
             scroll-behavior: smooth;
         }
-        /* Custom scrollbar for modern aesthetics */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
@@ -168,7 +163,6 @@
     });
 </script>
 
-<!-- Admin Mode Active Sticky Banner -->
 <div id="admin-banner" class="hidden fixed top-0 left-0 w-full z-[60] bg-secondary text-primary-container px-4 py-2 flex justify-between items-center text-xs font-label-caps tracking-wider shadow-lg">
     <div class="flex items-center gap-2">
         <span class="material-symbols-outlined text-sm animate-pulse">admin_panel_settings</span>
@@ -180,14 +174,11 @@
     </div>
 </div>
 
-<!-- TopNavBar -->
 <nav id="navbar" class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-white/10 transition-all duration-200">
     <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-container-max mx-auto">
         <a class="flex items-center gap-2" href="#">
-            <img alt="DocuReady Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida/AP1WRLthSMzyHADQ8xPutzDQVt0TwQvQrHrOw4m9JYUeXjkzFuuYTFWqhPVzKOTl6eHJK6wzSVJkNDJEQXa-N_W4tCtTGixaa_9l1-RbLxXqbxB8th3NK0zm-VR2-sxbYFLoC30eceVGOnpRktvV_8CPITuNsD8DqOXej8Mfsy1h6yCaU8gIR-9owETVojmT__NEj3-Mz4QZ0I8z43CsB4ffp1FRC0hSlrbS7majYJIOWXaLLHtimLqKB9kMZaY2"/>
             <span class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">DocuReady</span>
         </a>
-        <!-- Desktop Nav -->
         <div class="hidden md:flex space-x-gutter items-center font-label-caps text-label-caps">
             <a class="text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#services">Services</a>
             <a class="text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#portfolio">Portfolio</a>
@@ -195,18 +186,15 @@
             <a class="text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#testimonials">Testimonials</a>
             <a class="bg-secondary text-primary-container px-6 py-2 rounded font-label-caps text-label-caps hover:bg-secondary-fixed transition-colors" href="#contact">Inquire</a>
         </div>
-        <!-- Mobile Nav Toggle -->
         <button id="menu-btn" class="md:hidden text-on-surface focus:outline-none">
             <span class="material-symbols-outlined text-3xl">menu</span>
         </button>
     </div>
 </nav>
 
-<!-- Mobile Navigation Drawer -->
 <div id="mobile-drawer" class="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-between">
     <div class="flex justify-between items-center px-margin-mobile py-base border-b border-white/10">
         <a class="flex items-center gap-2" href="#">
-            <img alt="DocuReady Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida/AP1WRLthSMzyHADQ8xPutzDQVt0TwQvQrHrOw4m9JYUeXjkzFuuYTFWqhPVzKOTl6eHJK6wzSVJkNDJEQXa-N_W4tCtTGixaa_9l1-RbLxXqbxB8th3NK0zm-VR2-sxbYFLoC30eceVGOnpRktvV_8CPITuNsD8DqOXej8Mfsy1h6yCaU8gIR-9owETVojmT__NEj3-Mz4QZ0I8z43CsB4ffp1FRC0hSlrbS7majYJIOWXaLLHtimLqKB9kMZaY2"/>
             <span class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">DocuReady</span>
         </a>
         <button id="close-drawer" class="text-on-surface focus:outline-none">
@@ -226,7 +214,6 @@
 </div>
 
 <main>
-    <!-- 1. Hero Section -->
     <section class="relative min-h-screen flex items-center pt-24 pb-section-gap overflow-hidden bg-surface" id="hero">
         <div class="absolute inset-0 z-0">
             <div id="hero-bg" class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-overlay transition-all duration-700"></div>
@@ -235,12 +222,8 @@
         </div>
         <div class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-4 md:grid-cols-12 gap-gutter">
             <div class="col-span-4 md:col-span-8 flex flex-col justify-center">
-                <h1 id="hero-title" class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6 leading-tight">
-                    <!-- Title injected dynamically -->
-                </h1>
-                <p id="hero-subtitle" class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12">
-                    <!-- Subtitle injected dynamically -->
-                </p>
+                <h1 id="hero-title" class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6 leading-tight"></h1>
+                <p id="hero-subtitle" class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12"></p>
                 <div class="flex gap-6">
                     <a class="bg-secondary text-primary-container px-8 py-4 rounded font-label-caps text-label-caps hover:bg-secondary-fixed transition-colors inline-block" href="#services">SERVICES</a>
                     <a class="border border-outline text-on-surface px-8 py-4 rounded font-label-caps text-label-caps hover:border-secondary hover:text-secondary transition-colors inline-block" href="#contact">INQUIRE</a>
@@ -249,35 +232,22 @@
         </div>
     </section>
 
-    <!-- 2. Services Section -->
     <section class="py-section-gap relative bg-surface border-t border-b border-white/5" id="services">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center tracking-tight">Expertise</h2>
-            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-                <!-- Services injected dynamically -->
-            </div>
+            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-3 gap-gutter"></div>
         </div>
     </section>
 
-    <!-- 3. Portfolio Section -->
     <section class="py-section-gap relative bg-surface-container-lowest" id="portfolio">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-6 text-center tracking-tight">Selected Projects</h2>
             <p class="text-center text-on-surface-variant max-w-xl mx-auto mb-12">A gallery of premium digital products, visual assets, and brand elements.</p>
-            
-            <!-- Category Filter Tabs -->
-            <div id="portfolio-categories" class="flex flex-wrap justify-center gap-3 mb-12 font-label-caps text-[10px]">
-                <!-- Injected dynamically -->
-            </div>
-
-            <!-- Portfolio Grid -->
-            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-gutter transition-all duration-300">
-                <!-- Injected dynamically -->
-            </div>
+            <div id="portfolio-categories" class="flex flex-wrap justify-center gap-3 mb-12 font-label-caps text-[10px]"></div>
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-gutter transition-all duration-300"></div>
         </div>
     </section>
 
-    <!-- 4. About Section -->
     <section class="py-section-gap relative overflow-hidden" id="about">
         <div class="absolute inset-0 z-0">
             <div id="about-bg" class="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay transition-all duration-700"></div>
@@ -285,32 +255,23 @@
         </div>
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center">
             <div class="max-w-3xl mx-auto">
-                <h2 id="about-title" class="font-headline-lg text-headline-lg md:text-6xl text-on-surface mb-8 tracking-tight">
-                    <!-- Dynamic about title -->
-                </h2>
-                <div id="about-content" class="space-y-6 font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-                    <!-- Dynamic about paragraphs -->
-                </div>
+                <h2 id="about-title" class="font-headline-lg text-headline-lg md:text-6xl text-on-surface mb-8 tracking-tight"></h2>
+                <div id="about-content" class="space-y-6 font-body-lg text-body-lg text-on-surface-variant leading-relaxed"></div>
             </div>
         </div>
     </section>
 
-    <!-- 5. Testimonials Section -->
     <section class="py-section-gap bg-surface border-t border-b border-white/5" id="testimonials">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center tracking-tight">Client Acclaim</h2>
-            <div id="testimonials-grid" class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-                <!-- Testimonials injected dynamically -->
-            </div>
+            <div id="testimonials-grid" class="grid grid-cols-1 md:grid-cols-3 gap-gutter"></div>
         </div>
     </section>
 
-    <!-- 6. Inquire / Contact Section -->
     <section class="py-section-gap bg-surface-container-lowest relative border-b border-white/5" id="contact">
         <div class="max-w-xl mx-auto px-margin-mobile">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4 text-center tracking-tight">Begin the Conversation</h2>
             <p class="text-center text-on-surface-variant mb-12">Submit your details below, and let's explore how we can bring your premium vision to life.</p>
-            
             <form id="contact-form" class="space-y-6 bg-surface-container-low border border-white/10 p-8 rounded">
                 <div>
                     <label for="contact-name" class="block font-label-caps text-xs text-on-surface-variant mb-2">FULL NAME</label>
@@ -341,7 +302,6 @@
     </section>
 </main>
 
-<!-- Footer -->
 <footer class="bg-surface border-t border-white/10 w-full">
     <div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-6 gap-4 w-full max-w-container-max mx-auto text-on-surface-variant font-label-caps text-xs">
         <div class="flex items-center gap-4">
@@ -356,7 +316,6 @@
     </div>
 </footer>
 
-<!-- 7. Admin Login Modal -->
 <div id="login-modal" class="hidden fixed inset-0 z-[70] bg-background/80 backdrop-blur-md flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-sm w-full p-8 rounded shadow-2xl relative">
         <button onclick="hideLoginModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface">
@@ -379,10 +338,8 @@
     </div>
 </div>
 
-<!-- 8. Admin Control Panel (CMS Dashboard) Modal -->
 <div id="admin-panel" class="hidden fixed inset-0 z-[80] bg-background/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8">
     <div class="bg-surface-container border border-white/10 w-full max-w-5xl h-[85vh] rounded shadow-2xl flex flex-col overflow-hidden">
-        <!-- Dashboard Header -->
         <div class="flex justify-between items-center px-6 py-4 bg-surface border-b border-white/10">
             <div class="flex items-center gap-3">
                 <span class="material-symbols-outlined text-2xl text-secondary">admin_panel_settings</span>
@@ -393,13 +350,10 @@
             </button>
         </div>
 
-        <!-- Dashboard Body -->
         <div class="flex flex-1 overflow-hidden">
-            <!-- Sidebar Navigation -->
             <div class="w-48 bg-surface-container-low border-r border-white/5 flex flex-col justify-between p-4 font-label-caps text-xs tracking-wider">
                 <div class="space-y-1">
-                    <button onclick="switchTab('tab-hero')" id="btn-tab-hero" class="tab-btn w-full text-left py-3 px-4 rounded text-secondary bg-white/5 font-semibold transition-all">HERO SECTION</button>
-                    <button onclick="switchTab('tab-branding')" id="btn-tab-branding" class="tab-btn w-full text-left py-3 px-4 rounded text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all">BRANDING & THEME</button>
+                    <button onclick="switchTab('tab-hero')" id="btn-tab-hero" class="tab-btn w-full text-left py-3 px-4 rounded text-secondary bg-white/5 font-semibold transition-all">HERO BANNER</button>
                     <button onclick="switchTab('tab-services')" id="btn-tab-services" class="tab-btn w-full text-left py-3 px-4 rounded text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all">SERVICES</button>
                     <button onclick="switchTab('tab-portfolio')" id="btn-tab-portfolio" class="tab-btn w-full text-left py-3 px-4 rounded text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all">PORTFOLIO</button>
                     <button onclick="switchTab('tab-about')" id="btn-tab-about" class="tab-btn w-full text-left py-3 px-4 rounded text-on-surface-variant hover:text-on-surface hover:bg-white/5 transition-all">ABOUT ME</button>
@@ -415,12 +369,10 @@
                 </div>
             </div>
 
-            <!-- Editor Workspace -->
             <div id="cms-editor-container" class="flex-1 p-6 overflow-y-auto bg-surface-container-lowest text-sm">
                 
-                <!-- TAB: Hero Section Editor -->
                 <div id="tab-hero" class="cms-tab-content space-y-6">
-                    <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">Hero Section Content</h3>
+                    <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">Hero Section & Banner</h3>
                     <div class="space-y-4">
                         <div>
                             <label class="block font-label-caps text-xs text-on-surface-variant mb-2">HERO MAIN HEADLINE</label>
@@ -432,11 +384,11 @@
                             <textarea id="edit-hero-subtitle" rows="3" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all"></textarea>
                         </div>
                         <div>
-                            <label class="block font-label-caps text-xs text-on-surface-variant mb-2">HERO BACKGROUND PICTURE</label>
+                            <label class="block font-label-caps text-xs text-on-surface-variant mb-2">HERO BANNER IMAGE BACKGROUND</label>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <span class="text-[11px] text-on-surface-variant block mb-1">Option A: Paste Online Image URL</span>
-                                    <input type="text" id="edit-hero-bg-url" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface text-xs focus:border-secondary focus:ring-1 focus:ring-secondary transition-all" placeholder="https://example.com/image.jpg">
+                                    <input type="text" id="edit-hero-bg-url" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface text-xs focus:border-secondary focus:ring-1 focus:ring-secondary transition-all" placeholder="https://example.com/banner.jpg">
                                 </div>
                                 <div>
                                     <span class="text-[11px] text-on-surface-variant block mb-1">Option B: Upload Local Image File</span>
@@ -444,49 +396,18 @@
                                 </div>
                             </div>
                             <div class="mt-4">
-                                <span class="text-[11px] text-on-surface-variant block mb-1">Current Background Preview:</span>
+                                <span class="text-[11px] text-on-surface-variant block mb-1">Current Banner Preview:</span>
                                 <div id="hero-preview" class="h-32 w-full rounded bg-cover bg-center border border-white/10"></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- TAB: Branding & Themes Editor -->
-                <div id="tab-branding" class="cms-tab-content hidden space-y-6">
-                    <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">Website Branding & Themes</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block font-label-caps text-xs text-on-surface-variant mb-2">SELECT ELEGANT THEME</label>
-                            <select id="edit-theme-selector" onchange="handleThemeSelectionChange(this.value)" class="w-full bg-surface border border-white/10 rounded px-4 py-3 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
-                                <!-- Injected dynamically in JS -->
-                            </select>
-                            <p class="text-xs text-on-surface-variant mt-2">Selecting a theme will instantly preview the new color scheme on the website background. Click 'Save & Publish' to save changes globally, or 'Discard' to undo.</p>
-                        </div>
-                        
-                        <div>
-                            <label class="block font-label-caps text-xs text-on-surface-variant mb-2">THEME COLOR PALETTE PREVIEW</label>
-                            <div class="p-4 border border-white/5 bg-white/5 rounded flex items-center gap-3">
-                                <div id="theme-swatch-bg" class="w-10 h-10 rounded border border-white/10 animate-fade-in" title="Background Color"></div>
-                                <div id="theme-swatch-low" class="w-10 h-10 rounded border border-white/10 animate-fade-in" title="Card Surface Color"></div>
-                                <div id="theme-swatch-sec" class="w-10 h-10 rounded border border-white/10 animate-fade-in" title="Secondary Theme Highlight"></div>
-                                <div class="text-xs text-on-surface-variant">
-                                    <div class="font-bold text-on-surface" id="theme-swatch-name">Midnight Gold</div>
-                                    <div class="text-[10px]">Active color swatch visualization</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TAB: Services Editor -->
                 <div id="tab-services" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">Expertise / Services</h3>
-                    <div id="cms-services-list" class="space-y-6">
-                        <!-- Services dynamically created in js -->
-                    </div>
+                    <div id="cms-services-list" class="space-y-6"></div>
                 </div>
 
-                <!-- TAB: Portfolio Manager -->
                 <div id="tab-portfolio" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Portfolio Categories & Items</h3>
@@ -495,17 +416,12 @@
                             <button onclick="openPortfolioItemModal()" class="bg-secondary text-primary-container text-xs px-3 py-1.5 rounded font-label-caps font-bold hover:bg-secondary-fixed transition-all flex items-center gap-1"><span class="material-symbols-outlined text-sm font-bold">add</span> ADD PORTFOLIO ITEM</button>
                         </div>
                     </div>
-
-                    <!-- Portfolio Grid List -->
                     <div class="space-y-4">
                         <label class="block font-label-caps text-xs text-on-surface-variant mb-2">CURRENT PORTFOLIO ITEMS</label>
-                        <div id="cms-portfolio-table" class="border border-white/10 rounded overflow-hidden">
-                            <!-- JS will inject dynamic item rows -->
-                        </div>
+                        <div id="cms-portfolio-table" class="border border-white/10 rounded overflow-hidden"></div>
                     </div>
                 </div>
 
-                <!-- TAB: About Me Editor -->
                 <div id="tab-about" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">About Section Content</h3>
                     <div class="space-y-4">
@@ -515,9 +431,7 @@
                         </div>
                         <div>
                             <label class="block font-label-caps text-xs text-on-surface-variant mb-2">ABOUT PARAGRAPHS</label>
-                            <div id="about-paragraphs-editor" class="space-y-3">
-                                <!-- JS will inject inputs -->
-                            </div>
+                            <div id="about-paragraphs-editor" class="space-y-3"></div>
                             <button onclick="addAboutParagraphField('')" class="mt-3 text-xs text-secondary flex items-center gap-1 hover:underline"><span class="material-symbols-outlined text-sm">add</span> Add Paragraph</button>
                         </div>
                         <div>
@@ -540,29 +454,22 @@
                     </div>
                 </div>
 
-                <!-- TAB: Testimonials Editor -->
                 <div id="tab-testimonials" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Client Testimonials</h3>
                         <button onclick="openTestimonialModal()" class="bg-secondary text-primary-container text-xs px-3 py-1.5 rounded font-label-caps font-bold hover:bg-secondary-fixed transition-all flex items-center gap-1"><span class="material-symbols-outlined text-sm font-bold">add</span> ADD TESTIMONIAL</button>
                     </div>
-                    <div id="cms-testimonials-list" class="space-y-4">
-                        <!-- JS injected list -->
-                    </div>
+                    <div id="cms-testimonials-list" class="space-y-4"></div>
                 </div>
 
-                <!-- TAB: Leads / Inquiries Viewer -->
                 <div id="tab-leads" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Submitted Leads / Inquiries</h3>
                         <button onclick="clearAllLeads()" class="text-red-400 text-xs hover:underline flex items-center gap-1"><span class="material-symbols-outlined text-sm">delete_sweep</span> Clear All Leads</button>
                     </div>
-                    <div id="cms-leads-table" class="border border-white/10 rounded overflow-hidden">
-                        <!-- JS injected leads -->
-                    </div>
+                    <div id="cms-leads-table" class="border border-white/10 rounded overflow-hidden"></div>
                 </div>
 
-                <!-- TAB: Backup & Reset -->
                 <div id="tab-backup" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">CMS System Utilities</h3>
                     <div class="space-y-6">
@@ -578,16 +485,14 @@
                         </div>
                         <div class="p-4 border border-red-900/30 rounded bg-red-950/10">
                             <h4 class="font-bold text-red-400 mb-2">Reset System</h4>
-                            <p class="text-xs text-on-surface-variant mb-4">WARNING: This will wipe out all changes and restore the website content back to the default DocuReady layout. Leads will be retained.</p>
+                            <p class="text-xs text-on-surface-variant mb-4">WARNING: This will wipe out all changes and restore the website content back to the default layout. Leads will be retained.</p>
                             <button onclick="resetSiteData()" class="bg-red-600 text-white px-4 py-2 rounded font-label-caps text-xs font-bold hover:bg-red-700 transition-all">RESET SITE CONFIGURATION</button>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <!-- Dashboard Footer -->
         <div class="px-6 py-4 bg-surface border-t border-white/10 flex justify-between items-center">
             <span class="text-xs text-on-surface-variant">Remember to "Save & Publish" to update the live website views.</span>
             <div class="flex gap-3">
@@ -598,35 +503,22 @@
     </div>
 </div>
 
-<!-- Modal: Category Management Inner Modal -->
 <div id="category-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-md w-full p-6 rounded relative">
-        <button onclick="closeCategoryModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface">
-            <span class="material-symbols-outlined">close</span>
-        </button>
+        <button onclick="closeCategoryModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
         <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Manage Categories</h3>
-        
-        <!-- Add Category Form -->
         <div class="flex gap-2 mb-4">
             <input type="text" id="new-category-name" class="flex-1 bg-surface border border-white/10 rounded px-3 py-1.5 text-xs text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all" placeholder="New Category Name">
             <button onclick="addPortfolioCategory()" class="bg-secondary text-primary-container text-xs px-4 py-1.5 rounded font-label-caps font-bold hover:bg-secondary-fixed transition-all">ADD</button>
         </div>
-
-        <label class="block font-label-caps text-xs text-on-surface-variant mb-2">EXISTING CATEGORIES</label>
-        <div id="categories-list-container" class="space-y-2 max-h-48 overflow-y-auto border border-white/5 p-3 rounded">
-            <!-- List injected via JS -->
-        </div>
+        <div id="categories-list-container" class="space-y-2 max-h-48 overflow-y-auto border border-white/5 p-3 rounded"></div>
     </div>
 </div>
 
-<!-- Modal: Add/Edit Portfolio Item Inner Modal -->
 <div id="portfolio-item-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-lg w-full p-6 rounded relative overflow-y-auto max-h-[90vh]">
-        <button onclick="closePortfolioItemModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface">
-            <span class="material-symbols-outlined">close</span>
-        </button>
+        <button onclick="closePortfolioItemModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
         <h3 id="portfolio-modal-title" class="font-headline-md text-headline-md text-on-surface mb-4">Portfolio Item</h3>
-        
         <form id="portfolio-item-form" class="space-y-4 text-xs">
             <input type="hidden" id="edit-portfolio-id">
             <div>
@@ -635,9 +527,7 @@
             </div>
             <div>
                 <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">CATEGORY</label>
-                <select id="portfolio-item-category" class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all">
-                    <!-- Dynamic categories dropdown -->
-                </select>
+                <select id="portfolio-item-category" class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all"></select>
             </div>
             <div>
                 <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">IMAGE SOURCE</label>
@@ -656,21 +546,15 @@
                 <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">DESCRIPTION</label>
                 <textarea id="portfolio-item-desc" rows="3" required class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all"></textarea>
             </div>
-            <button type="submit" class="w-full bg-secondary text-primary-container py-3 rounded font-label-caps text-xs font-bold hover:bg-secondary-fixed transition-colors">
-                SAVE ITEM
-            </button>
+            <button type="submit" class="w-full bg-secondary text-primary-container py-3 rounded font-label-caps text-xs font-bold hover:bg-secondary-fixed transition-colors">SAVE ITEM</button>
         </form>
     </div>
 </div>
 
-<!-- Modal: Add/Edit Testimonial Inner Modal -->
 <div id="testimonial-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-md w-full p-6 rounded relative">
-        <button onclick="closeTestimonialModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface">
-            <span class="material-symbols-outlined">close</span>
-        </button>
+        <button onclick="closeTestimonialModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
         <h3 id="testimonial-modal-title" class="font-headline-md text-headline-md text-on-surface mb-4">Client Testimonial</h3>
-        
         <form id="testimonial-form" class="space-y-4 text-xs">
             <input type="hidden" id="edit-testimonial-id">
             <div>
@@ -685,59 +569,24 @@
                 <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">CLIENT QUOTE</label>
                 <textarea id="testimonial-quote" rows="4" required class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all" placeholder="Quote goes here..."></textarea>
             </div>
-            <button type="submit" class="w-full bg-secondary text-primary-container py-3 rounded font-label-caps text-xs font-bold hover:bg-secondary-fixed transition-colors">
-                SAVE TESTIMONIAL
-            </button>
+            <button type="submit" class="w-full bg-secondary text-primary-container py-3 rounded font-label-caps text-xs font-bold hover:bg-secondary-fixed transition-colors">SAVE TESTIMONIAL</button>
         </form>
     </div>
 </div>
 
-<!-- Dynamic Notification Toast Container -->
 <div id="toast-container" class="fixed bottom-5 right-5 z-[100] space-y-3"></div>
 
-<!-- JavaScript Logic -->
 <script>
-    // ====================================================
-    // FIREBASE CLOUD CONFIGURATION
-    // ====================================================
-    const FIREBASE_CONFIG = {
-      apiKey: "AIzaSyA1e-2IChImUa-0W8_SqfUcEkE-F82P6zs",
-      authDomain: "ag-portfolio-5d786.firebaseapp.com",
-      projectId: "ag-portfolio-5d786",
-      storageBucket: "ag-portfolio-5d786.firebasestorage.app",
-      messagingSenderId: "586731732866",
-      appId: "1:586731732866:web:404c29a4342cb41412599b"
-    };
-    // ====================================================
-
-    // ----------------------------------------------------
-    // SYSTEM DEFAULT STATE DATA
-    // ----------------------------------------------------
     const DEFAULT_SITE_DATA = {
         hero: {
             title: "Your Vision, <br/>Documented & Developed",
             subtitle: "Premium Graphical, Content Writing, and App Building Services.",
-            bg_image: "assets/hero_bg.jpg"
+            bg_image: "assets/Banner01.jpg"
         },
         services: [
-            {
-                id: 1,
-                icon: "brush",
-                title: "Graphical Design",
-                description: "Visual identity & branding crafted to leave a lasting premium impression."
-            },
-            {
-                id: 2,
-                icon: "draw",
-                title: "Content Writing",
-                description: "Strategic copy & storytelling that perfectly articulates your vision and connects with your audience."
-            },
-            {
-                id: 3,
-                icon: "developer_mode",
-                title: "App Building",
-                description: "Full-stack development & UI/UX, translating designs into robust, elegant applications."
-            }
+            { id: 1, icon: "brush", title: "Graphical Design", description: "Visual identity & branding crafted to leave a lasting premium impression." },
+            { id: 2, icon: "draw", title: "Content Writing", description: "Strategic copy & storytelling that perfectly articulates your vision and connects with your audience." },
+            { id: 3, icon: "developer_mode", title: "App Building", description: "Full-stack development & UI/UX, translating designs into robust, elegant applications." }
         ],
         about: {
             title: "Relentless Pursuit of Quality",
@@ -746,317 +595,59 @@
                 "With a background rooted in both structural engineering and fine arts, I approach digital products as modern architecture: they must be built on solid foundations, yet evoke an emotional response through their form and interactions.",
                 "My methodology strips away the superfluous, focusing intensely on typography, spacing, motion, and performance. I believe that true luxury in the digital space is characterized by speed, clarity, and intentionality."
             ],
-            bg_image: "assets/hero_bg.jpg"
+            bg_image: "assets/Banner01.jpg"
         },
         portfolio_categories: ["All", "Design", "Writing", "Apps"],
         portfolio_items: [
-            {
-                id: 1,
-                title: "Aura Brand Identity",
-                category: "Design",
-                image: "assets/portfolio_design.jpg",
-                description: "Complete visual branding, logo suite, typography, and premium assets for Aurelia."
-            },
-            {
-                id: 2,
-                title: "Digital Manifesto",
-                category: "Writing",
-                image: "assets/portfolio_writing.jpg",
-                description: "Strategic copywriting and brand story articulation for high-end digital agencies."
-            },
-            {
-                id: 3,
-                title: "Nexa Finance Platform",
-                category: "Apps",
-                image: "assets/portfolio_app.jpg",
-                description: "Full-stack client portal dashboard utilizing dark-mode premium UX design."
-            }
+            { id: 1, title: "Aura Brand Identity", category: "Design", image: "assets/portfolio_design.jpg", description: "Complete visual branding, logo suite, typography, and premium assets for Aurelia." },
+            { id: 2, title: "Digital Manifesto", category: "Writing", image: "assets/portfolio_writing.jpg", description: "Strategic copywriting and brand story articulation for high-end digital agencies." },
+            { id: 3, title: "Nexa Finance Platform", category: "Apps", image: "assets/portfolio_app.jpg", description: "Full-stack client portal dashboard utilizing dark-mode premium UX design." }
         ],
         testimonials: [
-            {
-                id: 1,
-                quote: "\"DocuReady transformed our entire digital presence. Their graphical design work is breathtaking, and the app runs flawlessly.\"",
-                author: "Elena R.",
-                title: "CEO, NexaCorp"
-            },
-            {
-                id: 2,
-                quote: "\"The content they crafted was exactly what we needed to elevate our brand narrative. Pure strategic brilliance.\"",
-                author: "Marcus T.",
-                title: "Founder, Aurelia"
-            },
-            {
-                id: 3,
-                quote: "\"From the initial branding to the final app build, the attention to detail and high-end aesthetic was maintained perfectly.\"",
-                author: "Sarah J.",
-                title: "Creative Director"
-            }
+            { id: 1, quote: "DocuReady transformed our entire digital presence. Their graphical design work is breathtaking, and the app runs flawlessly.", author: "Elena R.", title: "CEO, NexaCorp" },
+            { id: 2, quote: "The content they crafted was exactly what we needed to elevate our brand narrative. Pure strategic brilliance.", author: "Marcus T.", title: "Founder, Aurelia" },
+            { id: 3, quote: "From the initial branding to the final app build, the attention to detail and high-end aesthetic was maintained perfectly.", author: "Sarah J.", title: "Creative Director" }
         ],
-        theme: "Midnight Gold"
+        theme: "Monochrome Slate"
     };
 
-    // ----------------------------------------------------
-    // THEME PALETTE DATA (10 ELEGANT VARIATIONS)
-    // ----------------------------------------------------
     const THEMES = {
-        "Midnight Gold": {
-            background: "#051424",
-            surface: "#051424",
-            lowest: "#010f1f",
-            low: "#0d1c2d",
-            primaryContainer: "#121417",
-            secondary: "#e9c349",
-            secondaryFixed: "#ffe088",
-            primary: "#c6c6ca",
-            onSurface: "#d4e4fa",
-            onSurfaceVariant: "#c6c6ca"
-        },
-        "Emerald Luxe": {
-            background: "#031711",
-            surface: "#031711",
-            lowest: "#010f0b",
-            low: "#0a221b",
-            primaryContainer: "#050e0b",
-            secondary: "#50e3c2",
-            secondaryFixed: "#7ef7db",
-            primary: "#b8d7cd",
-            onSurface: "#e1f5f0",
-            onSurfaceVariant: "#a9c8bf"
-        },
-        "Royal Obsidian": {
-            background: "#0b0518",
-            surface: "#0b0518",
-            lowest: "#04010b",
-            low: "#140d25",
-            primaryContainer: "#07020e",
-            secondary: "#bb86fc",
-            secondaryFixed: "#d7b7fd",
-            primary: "#cfc5e3",
-            onSurface: "#f1ebfa",
-            onSurfaceVariant: "#c1b5d6"
-        },
-        "Champagne Noir": {
-            background: "#141210",
-            surface: "#141210",
-            lowest: "#0d0c0a",
-            low: "#1e1b19",
-            primaryContainer: "#0d0c0a",
-            secondary: "#e5cca4",
-            secondaryFixed: "#eedebb",
-            primary: "#d8d2cc",
-            onSurface: "#fcf9f5",
-            onSurfaceVariant: "#cfc7bf"
-        },
-        "Nordic Frost": {
-            background: "#0e1115",
-            surface: "#0e1115",
-            lowest: "#080a0c",
-            low: "#161b22",
-            primaryContainer: "#0b0d10",
-            secondary: "#58a6ff",
-            secondaryFixed: "#8bc2ff",
-            primary: "#c9d1d9",
-            onSurface: "#f0f6fc",
-            onSurfaceVariant: "#8b949e"
-        },
-        "Rosewood Elegance": {
-            background: "#1c0d11",
-            surface: "#1c0d11",
-            lowest: "#0f0709",
-            low: "#271419",
-            primaryContainer: "#0d0507",
-            secondary: "#e0a899",
-            secondaryFixed: "#e8c2b7",
-            primary: "#e5ccd0",
-            onSurface: "#fdf6f7",
-            onSurfaceVariant: "#cfb3b7"
-        },
         "Monochrome Slate": {
-            background: "#000000",
-            surface: "#000000",
-            lowest: "#080808",
-            low: "#111111",
-            primaryContainer: "#090909",
-            secondary: "#ffffff",
-            secondaryFixed: "#cccccc",
-            primary: "#ffffff",
-            onSurface: "#f5f5f5",
-            onSurfaceVariant: "#aaaaaa"
-        },
-        "Desert Dunes": {
-            background: "#18110b",
-            surface: "#18110b",
-            lowest: "#0f0b07",
-            low: "#231c15",
-            primaryContainer: "#0d0905",
-            secondary: "#f4a261",
-            secondaryFixed: "#f7be8f",
-            primary: "#e7dec9",
-            onSurface: "#fefcf7",
-            onSurfaceVariant: "#d8cbb5"
-        },
-        "Plum Satin": {
-            background: "#15081a",
-            surface: "#15081a",
-            lowest: "#0d0411",
-            low: "#211027",
-            primaryContainer: "#0c0310",
-            secondary: "#e9c46a",
-            secondaryFixed: "#eed79b",
-            primary: "#decce5",
-            onSurface: "#fbf6fd",
-            onSurfaceVariant: "#cbb3d6"
-        },
-        "Oceanic Abyss": {
-            background: "#020d1a",
-            surface: "#020d1a",
-            lowest: "#01070e",
-            low: "#06172d",
-            primaryContainer: "#01060d",
-            secondary: "#00f0ff",
-            secondaryFixed: "#70f7ff",
-            primary: "#cce3fd",
-            onSurface: "#f0f7ff",
-            onSurfaceVariant: "#99c5fd"
+            background: "#000000", surface: "#000000", lowest: "#080808", low: "#111111", primaryContainer: "#090909", secondary: "#ffffff", secondaryFixed: "#cccccc", primary: "#ffffff", onSurface: "#f5f5f5", onSurfaceVariant: "#aaaaaa"
         }
     };
 
-    // Global variables
     let siteData = {};
     let leadsList = [];
     let currentCategoryFilter = "All";
-    let db = null;
-    let isCloudEnabled = false;
-    let selectedPreviewTheme = "";
-
-    // Check if Firebase is properly configured by the user
-    function isFirebaseConfigured() {
-        return FIREBASE_CONFIG && 
-               FIREBASE_CONFIG.projectId && 
-               FIREBASE_CONFIG.projectId !== "YOUR_PROJECT_ID" &&
-               FIREBASE_CONFIG.apiKey && 
-               FIREBASE_CONFIG.apiKey !== "YOUR_API_KEY";
-    }
 
     function validateAndRepairSiteData() {
-        if (!siteData || typeof siteData !== "object") {
-            siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
-            return;
-        }
-        
-        // Ensure all top-level keys exist and have proper shapes
-        if (!siteData.hero || typeof siteData.hero !== "object" || !siteData.hero.title) {
-            siteData.hero = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.hero));
-        }
-        if (!siteData.services || !Array.isArray(siteData.services) || siteData.services.length === 0) {
-            siteData.services = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.services));
-        }
-        if (!siteData.about || typeof siteData.about !== "object" || !siteData.about.paragraphs) {
-            siteData.about = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.about));
-        }
-        if (!siteData.portfolio_categories || !Array.isArray(siteData.portfolio_categories)) {
-            siteData.portfolio_categories = [...DEFAULT_SITE_DATA.portfolio_categories];
-        }
-        if (!siteData.portfolio_items || !Array.isArray(siteData.portfolio_items)) {
-            siteData.portfolio_items = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.portfolio_items));
-        }
-        if (!siteData.testimonials || !Array.isArray(siteData.testimonials)) {
-            siteData.testimonials = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.testimonials));
-        }
-        if (!siteData.theme) {
-            siteData.theme = DEFAULT_SITE_DATA.theme;
-        }
+        if (!siteData || typeof siteData !== "object") { siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA)); return; }
+        if (!siteData.hero) siteData.hero = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.hero));
+        if (!siteData.services) siteData.services = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.services));
+        if (!siteData.about) siteData.about = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.about));
+        if (!siteData.portfolio_categories) siteData.portfolio_categories = [...DEFAULT_SITE_DATA.portfolio_categories];
+        if (!siteData.portfolio_items) siteData.portfolio_items = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.portfolio_items));
+        if (!siteData.testimonials) siteData.testimonials = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.testimonials));
+        siteData.theme = "Monochrome Slate";
     }
 
-    // ----------------------------------------------------
-    // INITIALIZATION & DATA LOADING
-    // ----------------------------------------------------
-    window.addEventListener("DOMContentLoaded", async () => {
-        // Initialize Firebase
-        if (isFirebaseConfigured()) {
-            try {
-                firebase.initializeApp(FIREBASE_CONFIG);
-                db = firebase.firestore();
-                isCloudEnabled = true;
-                console.log("Firebase initialized successfully.");
-            } catch (err) {
-                console.error("Firebase connection error. Falling back to local storage.", err);
-                isCloudEnabled = false;
-            }
-        } else {
-            console.log("Firebase is not configured. Running in LocalStorage mode.");
-        }
-
-        // Load database & sync
-        await loadDatabase();
-        
-        // Check admin session
+    window.addEventListener("DOMContentLoaded", () => {
+        const localLeads = localStorage.getItem("docuready_leads");
+        leadsList = localLeads ? JSON.parse(localLeads) : [];
+        const localData = localStorage.getItem("docuready_site_data");
+        if (localData) {
+            try { siteData = JSON.parse(localData); } catch (e) { siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA)); }
+        } else { siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA)); }
+        validateAndRepairSiteData();
+        previewTheme("Monochrome Slate");
+        renderWebsite();
         checkAdminSession();
-
-        // Bind events
         initEvents();
     });
 
-    async function loadDatabase() {
-        // 1. Load Local Leads cache
-        const localLeads = localStorage.getItem("docuready_leads");
-        leadsList = localLeads ? JSON.parse(localLeads) : [];
-
-        // 2. Load Local Config cache
-        const localData = localStorage.getItem("docuready_site_data");
-        if (localData) {
-            try {
-                siteData = JSON.parse(localData);
-            } catch (e) {
-                siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
-            }
-        } else {
-            siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
-        }
-
-        // 3. Connect to cloud Firestore if enabled
-        if (isCloudEnabled && db) {
-            try {
-                // Fetch Site Config
-                const doc = await db.collection("site_content").doc("current").get();
-                if (doc.exists) {
-                    siteData = doc.data();
-                    localStorage.setItem("docuready_site_data", JSON.stringify(siteData));
-                } else {
-                    // Initialize cloud with current data
-                    await db.collection("site_content").doc("current").set(siteData);
-                }
-
-                // Fetch Leads
-                const snapshot = await db.collection("leads").orderBy("id", "desc").get();
-                const cloudLeads = [];
-                snapshot.forEach(doc => {
-                    cloudLeads.push(doc.data());
-                });
-                if (cloudLeads.length > 0) {
-                    leadsList = cloudLeads;
-                    localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
-                }
-                console.log("Synced with cloud database.");
-            } catch (err) {
-                console.warn("Cloud read failed. Using cached LocalStorage content.", err);
-            }
-        }
-
-        // Validate and repair site data (protects against blank pages due to partial database structures)
-        validateAndRepairSiteData();
-        
-        // Apply active theme colors instantly
-        previewTheme(siteData.theme);
-
-        // Render live views
-        renderWebsite();
-    }
-
     function previewTheme(themeName) {
-        const theme = THEMES[themeName];
-        if (!theme) return;
-        
+        const theme = THEMES["Monochrome Slate"];
         const root = document.documentElement;
         root.style.setProperty('--color-background', theme.background);
         root.style.setProperty('--color-surface', theme.surface);
@@ -1068,49 +659,16 @@
         root.style.setProperty('--color-primary', theme.primary);
         root.style.setProperty('--color-on-surface', theme.onSurface);
         root.style.setProperty('--color-on-surface-variant', theme.onSurfaceVariant);
-
-        selectedPreviewTheme = themeName;
     }
-
     window.previewTheme = previewTheme;
 
-    function handleThemeSelectionChange(themeName) {
-        previewTheme(themeName);
-        
-        // Update dashboard swatches
-        const theme = THEMES[themeName];
-        if (theme) {
-            document.getElementById("theme-swatch-bg").style.backgroundColor = theme.background;
-            document.getElementById("theme-swatch-low").style.backgroundColor = theme.low;
-            document.getElementById("theme-swatch-sec").style.backgroundColor = theme.secondary;
-            document.getElementById("theme-swatch-name").textContent = themeName;
-        }
-    }
-
-    window.handleThemeSelectionChange = handleThemeSelectionChange;
-
-    async function saveDatabase() {
-        // Write to local cache
+    function saveDatabase() {
+        siteData.theme = "Monochrome Slate";
         localStorage.setItem("docuready_site_data", JSON.stringify(siteData));
         localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
-
-        // Write to Firebase if enabled
-        if (isCloudEnabled && db) {
-            try {
-                await db.collection("site_content").doc("current").set(siteData);
-                console.log("Site config saved to cloud Firestore.");
-            } catch (err) {
-                console.error("Cloud write failed: ", err);
-                showToast("Error saving changes to the cloud database.", "error");
-            }
-        }
     }
 
-    // ----------------------------------------------------
-    // RENDERING PUBLIC SECTIONS
-    // ----------------------------------------------------
     function renderWebsite() {
-        // 1. Hero Section
         const heroBg = document.getElementById("hero-bg");
         const heroTitle = document.getElementById("hero-title");
         const heroSubtitle = document.getElementById("hero-subtitle");
@@ -1118,7 +676,6 @@
         if (heroTitle) heroTitle.innerHTML = siteData.hero.title;
         if (heroSubtitle) heroSubtitle.textContent = siteData.hero.subtitle;
 
-        // 2. Services Section
         const servicesGrid = document.getElementById("services-grid");
         if (servicesGrid) {
             servicesGrid.innerHTML = "";
@@ -1134,42 +691,25 @@
             });
         }
 
-        // 3. Portfolio Categories Filter
         const portfolioCats = document.getElementById("portfolio-categories");
         if (portfolioCats) {
             portfolioCats.innerHTML = "";
             siteData.portfolio_categories.forEach(cat => {
                 const isActive = cat === currentCategoryFilter;
                 const tab = document.createElement("button");
-                tab.onclick = () => {
-                    currentCategoryFilter = cat;
-                    renderWebsite();
-                };
-                tab.className = `px-5 py-2 rounded-full border transition-all duration-300 ${
-                    isActive 
-                        ? "bg-secondary border-secondary text-primary-container font-semibold" 
-                        : "border-white/10 text-on-surface-variant hover:border-white/30 hover:text-on-surface"
-                }`;
+                tab.onclick = () => { currentCategoryFilter = cat; renderWebsite(); };
+                tab.className = `px-5 py-2 rounded-full border transition-all duration-300 ${isActive ? "bg-secondary border-secondary text-primary-container font-semibold" : "border-white/10 text-on-surface-variant hover:border-white/30 hover:text-on-surface"}`;
                 tab.textContent = cat.toUpperCase();
                 portfolioCats.appendChild(tab);
             });
         }
 
-        // 4. Portfolio Grid
         const portfolioGrid = document.getElementById("portfolio-grid");
         if (portfolioGrid) {
             portfolioGrid.innerHTML = "";
-            const filteredItems = currentCategoryFilter === "All" 
-                ? siteData.portfolio_items 
-                : siteData.portfolio_items.filter(item => item.category === currentCategoryFilter);
-
+            const filteredItems = currentCategoryFilter === "All" ? siteData.portfolio_items : siteData.portfolio_items.filter(item => item.category === currentCategoryFilter);
             if (filteredItems.length === 0) {
-                portfolioGrid.innerHTML = `
-                    <div class="col-span-1 md:col-span-3 text-center py-12 text-on-surface-variant">
-                        <span class="material-symbols-outlined text-4xl block mb-2 opacity-50">photo_library</span>
-                        No projects available under this category.
-                    </div>
-                `;
+                portfolioGrid.innerHTML = `<div class="col-span-1 md:col-span-3 text-center py-12 text-on-surface-variant"><span class="material-symbols-outlined text-4xl block mb-2 opacity-50">photo_library</span>No projects available under this category.</div>`;
             } else {
                 filteredItems.forEach(item => {
                     const card = document.createElement("div");
@@ -1177,9 +717,7 @@
                     card.innerHTML = `
                         <div class="h-64 overflow-hidden relative bg-black/20">
                             <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                            <div class="absolute top-4 left-4 bg-surface-container-high/90 backdrop-blur-sm border border-white/10 text-secondary text-[10px] font-label-caps px-3 py-1 rounded">
-                                ${item.category.toUpperCase()}
-                            </div>
+                            <div class="absolute top-4 left-4 bg-surface-container-high/90 backdrop-blur-sm border border-white/10 text-secondary text-[10px] font-label-caps px-3 py-1 rounded">${item.category.toUpperCase()}</div>
                         </div>
                         <div class="p-6 flex-1 flex flex-col justify-between">
                             <div>
@@ -1193,7 +731,6 @@
             }
         }
 
-        // 5. About Section
         const aboutBg = document.getElementById("about-bg");
         const aboutTitle = document.getElementById("about-title");
         const aboutContent = document.getElementById("about-content");
@@ -1202,13 +739,10 @@
         if (aboutContent) {
             aboutContent.innerHTML = "";
             siteData.about.paragraphs.forEach(p => {
-                const para = document.createElement("p");
-                para.textContent = p;
-                aboutContent.appendChild(para);
+                const para = document.createElement("p"); para.textContent = p; aboutContent.appendChild(para);
             });
         }
 
-        // 6. Testimonials Section
         const testimonialsGrid = document.getElementById("testimonials-grid");
         if (testimonialsGrid) {
             testimonialsGrid.innerHTML = "";
@@ -1218,52 +752,28 @@
                 card.innerHTML = `
                     <div>
                         <span class="material-symbols-outlined text-6xl text-secondary/10 absolute top-4 left-4 select-none">format_quote</span>
-                        <p class="font-body-lg text-body-lg text-on-surface-variant italic mb-6 relative z-10 select-none">${tst.quote}</p>
+                        <p class="font-body-lg text-body-lg text-on-surface-variant italic mb-6 relative z-10 select-none">"${tst.quote}"</p>
                     </div>
-                    <div class="font-label-caps text-label-caps text-secondary text-xs mt-auto">
-                        - ${tst.author}, ${tst.title}
-                    </div>
+                    <div class="font-label-caps text-label-caps text-secondary text-xs mt-auto">- ${tst.author}, ${tst.title}</div>
                 `;
                 testimonialsGrid.appendChild(card);
             });
         }
     }
 
-    // ----------------------------------------------------
-    // EVENTS & HANDLERS
-    // ----------------------------------------------------
     function initEvents() {
         const menuBtn = document.getElementById("menu-btn");
         const closeDrawer = document.getElementById("close-drawer");
         if (menuBtn) menuBtn.addEventListener("click", () => toggleDrawer(true));
         if (closeDrawer) closeDrawer.addEventListener("click", () => toggleDrawer(false));
-
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") {
-                toggleDrawer(false);
-                hideLoginModal();
-            }
-        });
-
-        const contactForm = document.getElementById("contact-form");
-        if (contactForm) {
-            contactForm.addEventListener("submit", handleLeadSubmission);
-        }
-
-        const loginForm = document.getElementById("login-form");
-        if (loginForm) {
-            loginForm.addEventListener("submit", handleAdminLogin);
-        }
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape") { toggleDrawer(false); hideLoginModal(); } });
+        document.getElementById("contact-form").addEventListener("submit", handleLeadSubmission);
+        document.getElementById("login-form").addEventListener("submit", handleAdminLogin);
 
         window.addEventListener("scroll", () => {
             const nav = document.getElementById("navbar");
-            if (window.scrollY > 20) {
-                nav.classList.add("shadow-lg", "bg-surface/95");
-                nav.classList.remove("bg-surface/80");
-            } else {
-                nav.classList.remove("shadow-lg", "bg-surface/95");
-                nav.classList.add("bg-surface/80");
-            }
+            if (window.scrollY > 20) { nav.classList.add("shadow-lg", "bg-surface/95"); nav.classList.remove("bg-surface/80"); }
+            else { nav.classList.remove("shadow-lg", "bg-surface/95"); nav.classList.add("bg-surface/80"); }
         });
 
         setupImageUploadListener("edit-hero-bg-file", (base64) => {
@@ -1274,169 +784,62 @@
             document.getElementById("edit-about-bg-url").value = base64;
             document.getElementById("about-preview").style.backgroundImage = `url('${base64}')`;
         });
-        setupImageUploadListener("portfolio-item-img-file", (base64) => {
-            document.getElementById("portfolio-item-img-url").value = base64;
-        });
+        setupImageUploadListener("portfolio-item-img-file", (base64) => { document.getElementById("portfolio-item-img-url").value = base64; });
 
-        const importInput = document.getElementById("import-config-file");
-        if (importInput) {
-            importInput.addEventListener("change", (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    try {
-                        const parsed = JSON.parse(event.target.result);
-                        if (parsed.hero && parsed.services && parsed.portfolio_items) {
-                            siteData = parsed;
-                            saveDatabase();
-                            renderWebsite();
-                            populateCMSInputs();
-                            showToast("Configuration backup restored successfully!");
-                        } else {
-                            showToast("Error: JSON file structure is invalid.");
-                        }
-                    } catch (err) {
-                        showToast("Error parsing backup JSON file.");
-                    }
-                };
-                reader.readAsText(file);
-            });
-        }
+        document.getElementById("import-config-file").addEventListener("change", (e) => {
+            const file = e.target.files[0]; if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    const parsed = JSON.parse(event.target.result);
+                    if (parsed.hero && parsed.services && parsed.portfolio_items) {
+                        siteData = parsed; siteData.theme = "Monochrome Slate"; saveDatabase(); renderWebsite(); populateCMSInputs(); showToast("Configuration backup restored successfully!");
+                    } else { showToast("Error: JSON file structure is invalid."); }
+                } catch (err) { showToast("Error parsing backup JSON file."); }
+            };
+            reader.readAsText(file);
+        });
     }
 
     function toggleDrawer(open) {
         const drawer = document.getElementById("mobile-drawer");
-        if (drawer) {
-            if (open) {
-                drawer.classList.remove("translate-x-full");
-            } else {
-                drawer.classList.add("translate-x-full");
-            }
-        }
+        if (drawer) { if (open) drawer.classList.remove("translate-x-full"); else drawer.classList.add("translate-x-full"); }
     }
-
     window.toggleDrawer = toggleDrawer;
 
-    // ----------------------------------------------------
-    // TOAST NOTIFICATIONS
-    // ----------------------------------------------------
     function showToast(message, type = "success") {
-        const container = document.getElementById("toast-container");
-        if (!container) return;
-
+        const container = document.getElementById("toast-container"); if (!container) return;
         const toast = document.createElement("div");
-        toast.className = `px-6 py-4 rounded shadow-2xl text-xs font-label-caps tracking-wider border text-on-surface transform translate-y-2 opacity-0 transition-all duration-300 flex items-center gap-3 ${
-            type === "success" 
-                ? "bg-surface-container-high border-secondary text-secondary" 
-                : "bg-surface-container-high border-red-500 text-red-400"
-        }`;
-        toast.innerHTML = `
-            <span class="material-symbols-outlined text-lg">${type === "success" ? "check_circle" : "error"}</span>
-            <span>${message}</span>
-        `;
+        toast.className = `px-6 py-4 rounded shadow-2xl text-xs font-label-caps tracking-wider border text-on-surface transform translate-y-2 opacity-0 transition-all duration-300 flex items-center gap-3 ${type === "success" ? "bg-surface-container-high border-secondary text-secondary" : "bg-surface-container-high border-red-500 text-red-400"}`;
+        toast.innerHTML = `<span class="material-symbols-outlined text-lg">${type === "success" ? "check_circle" : "error"}</span><span>${message}</span>`;
         container.appendChild(toast);
-
-        setTimeout(() => {
-            toast.classList.remove("translate-y-2", "opacity-0");
-        }, 10);
-
-        setTimeout(() => {
-            toast.classList.add("translate-y-2", "opacity-0");
-            setTimeout(() => {
-                toast.remove();
-            }, 300);
-        }, 4000);
+        setTimeout(() => toast.classList.remove("translate-y-2", "opacity-0"), 10);
+        setTimeout(() => { toast.classList.add("translate-y-2", "opacity-0"); setTimeout(() => toast.remove(), 300); }, 4000);
     }
 
-    // ----------------------------------------------------
-    // CONTACT LEAD SUBMISSION
-    // ----------------------------------------------------
     async function handleLeadSubmission(e) {
         e.preventDefault();
-        const nameVal = document.getElementById("contact-name").value;
-        const emailVal = document.getElementById("contact-email").value;
-        const projectVal = document.getElementById("contact-project").value;
-        const msgVal = document.getElementById("contact-message").value;
         const submitBtn = document.getElementById("submit-btn");
-
         submitBtn.disabled = true;
-        submitBtn.innerHTML = `
-            <span class="material-symbols-outlined animate-spin text-lg">sync</span>
-            <span>SENDING INQUIRY...</span>
-        `;
-
-        const newLead = {
-            id: Date.now(),
-            name: nameVal,
-            email: emailVal,
-            project: projectVal,
-            message: msgVal,
-            date: new Date().toLocaleString(),
-            read: false
-        };
-
-        leadsList.unshift(newLead);
-        
-        // Write locally
-        localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
-
-        // Write to Firestore if enabled
-        if (isCloudEnabled && db) {
-            try {
-                await db.collection("leads").doc(newLead.id.toString()).set(newLead);
-                console.log("Lead saved to Firestore.");
-            } catch (err) {
-                console.error("Cloud lead save failed: ", err);
-            }
-        }
-
-        setTimeout(() => {
-            showToast("Inquiry submitted successfully!");
-            document.getElementById("contact-form").reset();
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = `<span>SEND INQUIRY</span>`;
-            updateUnreadBadge();
-        }, 1200);
+        submitBtn.innerHTML = `<span class="material-symbols-outlined animate-spin text-lg">sync</span><span>SENDING INQUIRY...</span>`;
+        const newLead = { id: Date.now(), name: document.getElementById("contact-name").value, email: document.getElementById("contact-email").value, project: document.getElementById("contact-project").value, message: document.getElementById("contact-message").value, date: new Date().toLocaleString(), read: false };
+        leadsList.unshift(newLead); localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
+        setTimeout(() => { showToast("Inquiry submitted successfully!"); document.getElementById("contact-form").reset(); submitBtn.disabled = false; submitBtn.innerHTML = `<span>SEND INQUIRY</span>`; updateUnreadBadge(); }, 1200);
     }
 
-    function setupImageUploadListener(inputId, callback) {
-        const input = document.getElementById(inputId);
-        if (!input) return;
-
+    setupImageUploadListener = function(inputId, callback) {
+        const input = document.getElementById(inputId); if (!input) return;
         input.addEventListener("change", (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-
+            const file = e.target.files[0]; if (!file) return;
             const reader = new FileReader();
             reader.onload = (event) => {
                 const img = new Image();
                 img.onload = () => {
-                    const MAX_WIDTH = 900;
-                    const MAX_HEIGHT = 900;
-                    let width = img.width;
-                    let height = img.height;
-
-                    if (width > height) {
-                        if (width > MAX_WIDTH) {
-                            height *= MAX_WIDTH / width;
-                            width = MAX_WIDTH;
-                        }
-                    } else {
-                        if (height > MAX_HEIGHT) {
-                            width *= MAX_HEIGHT / height;
-                            height = MAX_HEIGHT;
-                        }
-                    }
-
-                    const canvas = document.createElement("canvas");
-                    canvas.width = width;
-                    canvas.height = height;
-                    const ctx = canvas.getContext("2d");
-                    ctx.drawImage(img, 0, 0, width, height);
-
-                    const compressedDataUrl = canvas.toDataURL("image/jpeg", 0.75);
-                    callback(compressedDataUrl);
+                    const canvas = document.createElement("canvas"); const ctx = canvas.getContext("2d");
+                    let width = img.width; let height = img.height;
+                    if (width > height) { if (width > 900) { height *= 900 / width; width = 900; } } else { if (height > 900) { width *= 900 / height; height = 900; } }
+                    canvas.width = width; canvas.height = height; ctx.drawImage(img, 0, 0, width, height);
+                    callback(canvas.toDataURL("image/jpeg", 0.75));
                 };
                 img.src = event.target.result;
             };
@@ -1444,113 +847,38 @@
         });
     }
 
-    // ----------------------------------------------------
-    // ADMIN AUTHENTICATION
-    // ----------------------------------------------------
-    function showLoginModal() {
-        document.getElementById("login-modal").classList.remove("hidden");
-        document.getElementById("admin-password").focus();
-    }
-
+    function showLoginModal() { document.getElementById("login-modal").classList.remove("hidden"); document.getElementById("admin-password").focus(); }
     window.showLoginModal = showLoginModal;
-
-    function hideLoginModal() {
-        document.getElementById("login-modal").classList.add("hidden");
-        document.getElementById("login-form").reset();
-        document.getElementById("login-error").classList.add("hidden");
-    }
-
+    function hideLoginModal() { document.getElementById("login-modal").classList.add("hidden"); document.getElementById("login-form").reset(); document.getElementById("login-error").classList.add("hidden"); }
     window.hideLoginModal = hideLoginModal;
 
     function handleAdminLogin(e) {
         e.preventDefault();
-        const pwd = document.getElementById("admin-password").value;
-        
-        if (pwd === "Ashley@$#051995") {
-            sessionStorage.setItem("docuready_admin_token", "active");
-            hideLoginModal();
-            checkAdminSession();
-            showToast("Welcome back, administrator.");
-        } else {
-            document.getElementById("login-error").classList.remove("hidden");
-            document.getElementById("admin-password").focus();
-        }
+        if (document.getElementById("admin-password").value === "Ashley@$#051995") { sessionStorage.setItem("docuready_admin_token", "active"); hideLoginModal(); checkAdminSession(); showToast("Welcome back, administrator."); }
+        else { document.getElementById("login-error").classList.remove("hidden"); document.getElementById("admin-password").focus(); }
     }
 
     function checkAdminSession() {
-        const token = sessionStorage.getItem("docuready_admin_token");
         const banner = document.getElementById("admin-banner");
-        if (token === "active") {
-            banner.classList.remove("hidden");
-            document.body.classList.add("pt-10");
-            updateUnreadBadge();
-        } else {
-            banner.classList.add("hidden");
-            document.body.classList.remove("pt-10");
-        }
+        if (sessionStorage.getItem("docuready_admin_token") === "active") { banner.classList.remove("hidden"); document.body.classList.add("pt-10"); updateUnreadBadge(); }
+        else { banner.classList.add("hidden"); document.body.classList.remove("pt-10"); }
     }
 
-    function logoutAdmin() {
-        sessionStorage.removeItem("docuready_admin_token");
-        closeAdminPanel();
-        checkAdminSession();
-        showToast("Logged out successfully.");
-    }
-
+    function logoutAdmin() { sessionStorage.removeItem("docuready_admin_token"); closeAdminPanel(); checkAdminSession(); showToast("Logged out successfully."); }
     window.logoutAdmin = logoutAdmin;
+    function updateUnreadBadge() { const unreadCount = leadsList.filter(l => !l.read).length; const badge = document.getElementById("unread-count"); if (badge) { if (unreadCount > 0) { badge.textContent = unreadCount; badge.classList.remove("hidden"); } else badge.classList.add("hidden"); } }
 
-    function updateUnreadBadge() {
-        const unreadCount = leadsList.filter(l => !l.read).length;
-        const badge = document.getElementById("unread-count");
-        if (badge) {
-            if (unreadCount > 0) {
-                badge.textContent = unreadCount;
-                badge.classList.remove("hidden");
-            } else {
-                badge.classList.add("hidden");
-            }
-        }
-    }
-
-    // ----------------------------------------------------
-    // CMS DASHBOARD MANAGEMENT
-    // ----------------------------------------------------
-    let currentActiveTab = "tab-hero";
-
-    function openAdminPanel() {
-        document.getElementById("admin-panel").classList.remove("hidden");
-        populateCMSInputs();
-        switchTab("tab-hero");
-    }
-
+    function openAdminPanel() { document.getElementById("admin-panel").classList.remove("hidden"); populateCMSInputs(); switchTab("tab-hero"); }
     window.openAdminPanel = openAdminPanel;
-
-    function closeAdminPanel() {
-        document.getElementById("admin-panel").classList.add("hidden");
-        if (siteData.theme) {
-            previewTheme(siteData.theme);
-        }
-    }
-
+    function closeAdminPanel() { document.getElementById("admin-panel").classList.add("hidden"); previewTheme("Monochrome Slate"); }
     window.closeAdminPanel = closeAdminPanel;
 
     function switchTab(tabId) {
         document.querySelectorAll(".cms-tab-content").forEach(el => el.classList.add("hidden"));
-        document.querySelectorAll(".tab-btn").forEach(btn => {
-            btn.classList.remove("text-secondary", "bg-white/5", "font-semibold");
-            btn.classList.add("text-on-surface-variant");
-        });
-
-        document.getElementById(tabId).classList.remove("hidden");
-        const activeBtn = document.getElementById(`btn-${tabId}`);
-        if (activeBtn) {
-            activeBtn.classList.remove("text-on-surface-variant");
-            activeBtn.classList.add("text-secondary", "bg-white/5", "font-semibold");
-        }
-
+        document.querySelectorAll(".tab-btn").forEach(btn => { btn.classList.remove("text-secondary", "bg-white/5", "font-semibold"); btn.classList.add("text-on-surface-variant"); });
+        document.getElementById(tabId).classList.remove("hidden"); const activeBtn = document.getElementById(`btn-${tabId}`); if (activeBtn) { activeBtn.classList.remove("text-on-surface-variant"); activeBtn.classList.add("text-secondary", "bg-white/5", "font-semibold"); }
         currentActiveTab = tabId;
     }
-
     window.switchTab = switchTab;
 
     function populateCMSInputs() {
@@ -1559,540 +887,171 @@
         document.getElementById("edit-hero-bg-url").value = siteData.hero.bg_image;
         document.getElementById("hero-preview").style.backgroundImage = `url('${siteData.hero.bg_image}')`;
 
-        const cmsServices = document.getElementById("cms-services-list");
-        cmsServices.innerHTML = "";
+        const cmsServices = document.getElementById("cms-services-list"); cmsServices.innerHTML = "";
         siteData.services.forEach((srv, idx) => {
-            const div = document.createElement("div");
-            div.className = "p-4 border border-white/5 bg-white/5 rounded space-y-3";
-            div.innerHTML = `
-                <div class="font-bold text-xs text-secondary mb-1">SERVICE CARD #${idx + 1}</div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs text-on-surface-variant mb-1">MATERIAL ICON NAME</label>
-                        <input type="text" id="edit-service-icon-${srv.id}" value="${srv.icon}" class="w-full bg-surface border border-white/10 rounded px-3 py-1.5 text-xs text-on-surface focus:border-secondary transition-all">
-                    </div>
-                    <div>
-                        <label class="block text-xs text-on-surface-variant mb-1">SERVICE TITLE</label>
-                        <input type="text" id="edit-service-title-${srv.id}" value="${srv.title}" class="w-full bg-surface border border-white/10 rounded px-3 py-1.5 text-xs text-on-surface focus:border-secondary transition-all">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs text-on-surface-variant mb-1">DESCRIPTION</label>
-                    <textarea id="edit-service-desc-${srv.id}" rows="2" class="w-full bg-surface border border-white/10 rounded px-3 py-1.5 text-xs text-on-surface focus:border-secondary transition-all">${srv.description}</textarea>
-                </div>
-            `;
+            const div = document.createElement("div"); div.className = "p-4 border border-white/5 bg-white/5 rounded space-y-3";
+            div.innerHTML = `<div class="font-bold text-xs text-secondary mb-1">SERVICE CARD #${idx + 1}</div><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><div><label class="block text-xs text-on-surface-variant mb-1">MATERIAL ICON NAME</label><input type="text" id="edit-service-icon-${srv.id}" value="${srv.icon}" class="w-full bg-surface border border-white/10 rounded px-3 py-1.5 text-xs text-on-surface focus:border-secondary transition-all"></div><div><label class="block text-xs text-on-surface-variant mb-1">SERVICE TITLE</label><input type="text" id="edit-service-title-${srv.id}" value="${srv.title}" class="w-full bg-surface border border-white/10 rounded px-3 py-1.5 text-xs text-on-surface focus:border-secondary transition-all"></div></div><div><label class="block text-xs text-on-surface-variant mb-1">DESCRIPTION</label><textarea id="edit-service-desc-${srv.id}" rows="2" class="w-full bg-surface border border-white/10 rounded px-3 py-1.5 text-xs text-on-surface focus:border-secondary transition-all">${srv.description}</textarea></div>`;
             cmsServices.appendChild(div);
         });
 
         renderCMSPortfolioTable();
-
         document.getElementById("edit-about-title").value = siteData.about.title;
         document.getElementById("edit-about-bg-url").value = siteData.about.bg_image;
         document.getElementById("about-preview").style.backgroundImage = `url('${siteData.about.bg_image}')`;
-        
-        const paragraphsEditor = document.getElementById("about-paragraphs-editor");
-        paragraphsEditor.innerHTML = "";
-        siteData.about.paragraphs.forEach(p => {
-            addAboutParagraphField(p);
-        });
-
-        renderCMSTestimonials();
-        renderCMSLeads();
-
-        // Populate Theme Selector dropdown
-        const themeSelector = document.getElementById("edit-theme-selector");
-        if (themeSelector) {
-            themeSelector.innerHTML = "";
-            Object.keys(THEMES).forEach(themeName => {
-                const opt = document.createElement("option");
-                opt.value = themeName;
-                opt.textContent = themeName;
-                if (themeName === siteData.theme) {
-                    opt.selected = true;
-                }
-                themeSelector.appendChild(opt);
-            });
-            // Initial Swatch update
-            handleThemeSelectionChange(siteData.theme);
-        }
+        const paragraphsEditor = document.getElementById("about-paragraphs-editor"); paragraphsEditor.innerHTML = "";
+        siteData.about.paragraphs.forEach(p => addAboutParagraphField(p));
+        renderCMSTestimonials(); renderCMSLeads();
     }
 
     function addAboutParagraphField(text = "") {
-        const container = document.getElementById("about-paragraphs-editor");
-        const div = document.createElement("div");
-        div.className = "flex gap-2 items-start class-about-p-row";
-        div.innerHTML = `
-            <textarea rows="2" class="flex-1 bg-surface border border-white/10 rounded px-3 py-1.5 text-xs text-on-surface focus:border-secondary transition-all" placeholder="Enter paragraph content...">${text}</textarea>
-            <button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-300 p-1.5"><span class="material-symbols-outlined text-lg">delete</span></button>
-        `;
+        const container = document.getElementById("about-paragraphs-editor"); const div = document.createElement("div"); div.className = "flex gap-2 items-start class-about-p-row";
+        div.innerHTML = `<textarea rows="2" class="flex-1 bg-surface border border-white/10 rounded px-3 py-1.5 text-xs text-on-surface focus:border-secondary transition-all" placeholder="Enter paragraph content...">${text}</textarea><button onclick="this.parentElement.remove()" class="text-red-400 hover:text-red-300 p-1.5"><span class="material-symbols-outlined text-lg">delete</span></button>`;
         container.appendChild(div);
     }
-
     window.addAboutParagraphField = addAboutParagraphField;
 
     function renderCMSTestimonials() {
-        const container = document.getElementById("cms-testimonials-list");
-        container.innerHTML = "";
-        
-        if (siteData.testimonials.length === 0) {
-            container.innerHTML = `<div class="text-center py-4 text-xs text-on-surface-variant opacity-60">No testimonials configured.</div>`;
-            return;
-        }
-
+        const container = document.getElementById("cms-testimonials-list"); container.innerHTML = "";
+        if (siteData.testimonials.length === 0) { container.innerHTML = `<div class="text-center py-4 text-xs text-on-surface-variant opacity-60">No testimonials configured.</div>`; return; }
         siteData.testimonials.forEach(tst => {
-            const div = document.createElement("div");
-            div.className = "flex justify-between items-center p-3 bg-white/5 border border-white/5 rounded text-xs";
-            div.innerHTML = `
-                <div class="flex-1">
-                    <p class="italic text-on-surface-variant line-clamp-1 mb-1">"${tst.quote}"</p>
-                    <span class="font-bold text-secondary">${tst.author}</span> — <span class="text-on-surface-variant text-[10px]">${tst.title}</span>
-                </div>
-                <div class="flex gap-2 ml-4">
-                    <button onclick="openTestimonialModal(${tst.id})" class="text-secondary hover:underline"><span class="material-symbols-outlined text-lg">edit</span></button>
-                    <button onclick="deleteTestimonial(${tst.id})" class="text-red-400 hover:underline"><span class="material-symbols-outlined text-lg">delete</span></button>
-                </div>
-            `;
+            const div = document.createElement("div"); div.className = "flex justify-between items-center p-3 bg-white/5 border border-white/5 rounded text-xs";
+            div.innerHTML = `<div class="flex-1"><p class="italic text-on-surface-variant line-clamp-1 mb-1">"${tst.quote}"</p><span class="font-bold text-secondary">${tst.author}</span> — <span class="text-on-surface-variant text-[10px]">${tst.title}</span></div><div class="flex gap-2 ml-4"><button onclick="openTestimonialModal(${tst.id})" class="text-secondary hover:underline"><span class="material-symbols-outlined text-lg">edit</span></button><button onclick="deleteTestimonial(${tst.id})" class="text-red-400 hover:underline"><span class="material-symbols-outlined text-lg">delete</span></button></div>`;
             container.appendChild(div);
         });
     }
 
     function renderCMSPortfolioTable() {
-        const table = document.getElementById("cms-portfolio-table");
-        table.innerHTML = "";
-        
-        if (siteData.portfolio_items.length === 0) {
-            table.innerHTML = `<div class="text-center py-6 text-xs text-on-surface-variant opacity-60">No portfolio items added yet. Click "Add Portfolio Item" to start.</div>`;
-            return;
-        }
-
-        const header = document.createElement("div");
-        header.className = "grid grid-cols-12 gap-2 bg-surface font-label-caps text-[10px] text-on-surface-variant border-b border-white/10 p-3";
-        header.innerHTML = `
-            <div class="col-span-2">PREVIEW</div>
-            <div class="col-span-3">PROJECT TITLE</div>
-            <div class="col-span-2">CATEGORY</div>
-            <div class="col-span-3">DESCRIPTION</div>
-            <div class="col-span-2 text-right">ACTIONS</div>
-        `;
+        const table = document.getElementById("cms-portfolio-table"); table.innerHTML = "";
+        if (siteData.portfolio_items.length === 0) { table.innerHTML = `<div class="text-center py-6 text-xs text-on-surface-variant opacity-60">No portfolio items added yet. Click "Add Portfolio Item" to start.</div>`; return; }
+        const header = document.createElement("div"); header.className = "grid grid-cols-12 gap-2 bg-surface font-label-caps text-[10px] text-on-surface-variant border-b border-white/10 p-3";
+        header.innerHTML = `<div class="col-span-2">PREVIEW</div><div class="col-span-3">PROJECT TITLE</div><div class="col-span-2">CATEGORY</div><div class="col-span-3">DESCRIPTION</div><div class="col-span-2 text-right">ACTIONS</div>`;
         table.appendChild(header);
-
         siteData.portfolio_items.forEach(item => {
-            const row = document.createElement("div");
-            row.className = "grid grid-cols-12 gap-2 border-b border-white/5 p-3 items-center text-xs text-on-surface-variant hover:bg-white/5";
-            row.innerHTML = `
-                <div class="col-span-2 h-10 w-16 overflow-hidden rounded bg-black/10">
-                    <img src="${item.image}" class="w-full h-full object-cover">
-                </div>
-                <div class="col-span-3 text-on-surface font-semibold">${item.title}</div>
-                <div class="col-span-2"><span class="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[10px]">${item.category}</span></div>
-                <div class="col-span-3 truncate">${item.description}</div>
-                <div class="col-span-2 text-right flex justify-end gap-2">
-                    <button onclick="openPortfolioItemModal(${item.id})" class="text-secondary hover:underline"><span class="material-symbols-outlined text-lg">edit</span></button>
-                    <button onclick="deletePortfolioItem(${item.id})" class="text-red-400 hover:underline"><span class="material-symbols-outlined text-lg">delete</span></button>
-                </div>
-            `;
+            const row = document.createElement("div"); row.className = "grid grid-cols-12 gap-2 border-b border-white/5 p-3 items-center text-xs text-on-surface-variant hover:bg-white/5";
+            row.innerHTML = `<div class="col-span-2 h-10 w-16 overflow-hidden rounded bg-black/10"><img src="${item.image}" class="w-full h-full object-cover"></div><div class="col-span-3 text-on-surface font-semibold">${item.title}</div><div class="col-span-2"><span class="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[10px]">${item.category}</span></div><div class="col-span-3 truncate">${item.description}</div><div class="col-span-2 text-right flex justify-end gap-2"><button onclick="openPortfolioItemModal(${item.id})" class="text-secondary hover:underline"><span class="material-symbols-outlined text-lg">edit</span></button><button onclick="deletePortfolioItem(${item.id})" class="text-red-400 hover:underline"><span class="material-symbols-outlined text-lg">delete</span></button></div>`;
             table.appendChild(row);
         });
     }
 
     function renderCMSLeads() {
-        const container = document.getElementById("cms-leads-table");
-        container.innerHTML = "";
-
-        if (leadsList.length === 0) {
-            container.innerHTML = `<div class="text-center py-8 text-xs text-on-surface-variant opacity-60">No contact submissions received yet.</div>`;
-            return;
-        }
-
-        const header = document.createElement("div");
-        header.className = "grid grid-cols-12 gap-2 bg-surface font-label-caps text-[10px] text-on-surface-variant border-b border-white/10 p-3";
-        header.innerHTML = `
-            <div class="col-span-3">CLIENT INFO</div>
-            <div class="col-span-2">SERVICE TYPE</div>
-            <div class="col-span-4">MESSAGE DESCRIPTION</div>
-            <div class="col-span-2">DATE SUBMITTED</div>
-            <div class="col-span-1 text-right">ACTION</div>
-        `;
+        const container = document.getElementById("cms-leads-table"); container.innerHTML = "";
+        if (leadsList.length === 0) { container.innerHTML = `<div class="text-center py-8 text-xs text-on-surface-variant opacity-60">No contact submissions received yet.</div>`; return; }
+        const header = document.createElement("div"); header.className = "grid grid-cols-12 gap-2 bg-surface font-label-caps text-[10px] text-on-surface-variant border-b border-white/10 p-3";
+        header.innerHTML = `<div class="col-span-3">CLIENT INFO</div><div class="col-span-2">SERVICE TYPE</div><div class="col-span-4">MESSAGE DESCRIPTION</div><div class="col-span-2">DATE SUBMITTED</div><div class="col-span-1 text-right">ACTION</div>`;
         container.appendChild(header);
-
         leadsList.forEach(lead => {
-            const isUnread = !lead.read;
-            const row = document.createElement("div");
-            row.className = `grid grid-cols-12 gap-2 border-b border-white/5 p-3 items-center text-xs hover:bg-white/5 ${
-                isUnread ? "bg-secondary/5 font-semibold text-on-surface" : "text-on-surface-variant"
-            }`;
-            row.innerHTML = `
-                <div class="col-span-3">
-                    <div class="flex items-center gap-1.5">
-                        ${isUnread ? '<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>' : ''}
-                        <span class="font-bold text-on-surface truncate">${lead.name}</span>
-                    </div>
-                    <div class="text-[10px] opacity-70 truncate">${lead.email}</div>
-                </div>
-                <div class="col-span-2"><span class="bg-secondary/10 border border-secondary/20 text-secondary px-2 py-0.5 rounded text-[10px]">${lead.project}</span></div>
-                <div class="col-span-4 max-h-16 overflow-y-auto pr-2 break-words leading-relaxed text-[11px]">${lead.message}</div>
-                <div class="col-span-2 text-[10px]">${lead.date}</div>
-                <div class="col-span-1 text-right flex justify-end gap-2">
-                    ${isUnread 
-                        ? `<button onclick="markLeadRead(${lead.id}, true)" title="Mark as Read" class="text-secondary hover:underline"><span class="material-symbols-outlined text-lg">mail</span></button>` 
-                        : `<button onclick="markLeadRead(${lead.id}, false)" title="Mark as Unread" class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-lg">drafts</span></button>`
-                    }
-                    <button onclick="deleteLead(${lead.id})" title="Delete Inquiry" class="text-red-400 hover:text-red-300"><span class="material-symbols-outlined text-lg">delete</span></button>
-                </div>
-            `;
+            const isUnread = !lead.read; const row = document.createElement("div"); row.className = `grid grid-cols-12 gap-2 border-b border-white/5 p-3 items-center text-xs hover:bg-white/5 ${isUnread ? "bg-secondary/5 font-semibold text-on-surface" : "text-on-surface-variant"}`;
+            row.innerHTML = `<div class="col-span-3"><div class="flex items-center gap-1.5">${isUnread ? '<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>' : ''}<span class="font-bold text-on-surface truncate">${lead.name}</span></div><div class="text-[10px] opacity-70 truncate">${lead.email}</div></div><div class="col-span-2"><span class="bg-secondary/10 border border-secondary/20 text-secondary px-2 py-0.5 rounded text-[10px]">${lead.project}</span></div><div class="col-span-4 max-h-16 overflow-y-auto pr-2 break-words leading-relaxed text-[11px]">${lead.message}</div><div class="col-span-2 text-[10px]">${lead.date}</div><div class="col-span-1 text-right flex justify-end gap-2">${isUnread ? `<button onclick="markLeadRead(${lead.id}, true)" title="Mark as Read" class="text-secondary hover:underline"><span class="material-symbols-outlined text-lg">mail</span></button>` : `<button onclick="markLeadRead(${lead.id}, false)" title="Mark as Unread" class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-lg">drafts</span></button>`}<button onclick="deleteLead(${lead.id})" title="Delete Inquiry" class="text-red-400 hover:text-red-300"><span class="material-symbols-outlined text-lg">delete</span></button></div>`;
             container.appendChild(row);
         });
     }
 
-    async function markLeadRead(id, isRead) {
-        const lead = leadsList.find(l => l.id === id);
-        if (lead) {
-            lead.read = isRead;
-            
-            // Local save
-            localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
-            renderCMSLeads();
-            updateUnreadBadge();
-
-            // Cloud sync
-            if (isCloudEnabled && db) {
-                try {
-                    await db.collection("leads").doc(id.toString()).update({ read: isRead });
-                } catch (err) {
-                    console.error("Cloud status update failed: ", err);
-                }
-            }
-        }
-    }
-
+    async function markLeadRead(id, isRead) { const lead = leadsList.find(l => l.id === id); if (lead) { lead.read = isRead; localStorage.setItem("docuready_leads", JSON.stringify(leadsList)); renderCMSLeads(); updateUnreadBadge(); } }
     window.markLeadRead = markLeadRead;
-
-    async function deleteLead(id) {
-        leadsList = leadsList.filter(l => l.id !== id);
-        
-        // Local save
-        localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
-        renderCMSLeads();
-        updateUnreadBadge();
-        showToast("Lead inquiry deleted.");
-
-        // Cloud sync
-        if (isCloudEnabled && db) {
-            try {
-                await db.collection("leads").doc(id.toString()).delete();
-            } catch (err) {
-                console.error("Cloud lead delete failed: ", err);
-            }
-        }
-    }
-
+    async function deleteLead(id) { leadsList = leadsList.filter(l => l.id !== id); localStorage.setItem("docuready_leads", JSON.stringify(leadsList)); renderCMSLeads(); updateUnreadBadge(); showToast("Lead inquiry deleted."); }
     window.deleteLead = deleteLead;
-
-    async function clearAllLeads() {
-        if (confirm("Are you sure you want to permanently clear all leads?")) {
-            leadsList = [];
-            localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
-            renderCMSLeads();
-            updateUnreadBadge();
-            showToast("All leads cleared.");
-
-            if (isCloudEnabled && db) {
-                try {
-                    const snapshot = await db.collection("leads").get();
-                    const batch = db.batch();
-                    snapshot.forEach(doc => {
-                        batch.delete(doc.ref);
-                    });
-                    await batch.commit();
-                } catch (err) {
-                    console.error("Cloud leads clear failed: ", err);
-                }
-            }
-        }
-    }
-
+    async function clearAllLeads() { if (confirm("Are you sure you want to permanently clear all leads?")) { leadsList = []; localStorage.setItem("docuready_leads", JSON.stringify(leadsList)); renderCMSLeads(); updateUnreadBadge(); showToast("All leads cleared."); } }
     window.clearAllLeads = clearAllLeads;
 
     function openTestimonialModal(id = null) {
-        const modal = document.getElementById("testimonial-modal");
-        const form = document.getElementById("testimonial-form");
-        const titleEl = document.getElementById("testimonial-modal-title");
-        form.reset();
-
+        const modal = document.getElementById("testimonial-modal"); const form = document.getElementById("testimonial-form"); const titleEl = document.getElementById("testimonial-modal-title"); form.reset();
         if (id) {
-            titleEl.textContent = "Edit Testimonial";
-            const tst = siteData.testimonials.find(t => t.id === id);
-            if (tst) {
-                document.getElementById("edit-testimonial-id").value = tst.id;
-                document.getElementById("testimonial-author").value = tst.author;
-                document.getElementById("testimonial-role").value = tst.title;
-                document.getElementById("testimonial-quote").value = tst.quote;
-            }
-        } else {
-            titleEl.textContent = "Add Client Testimonial";
-            document.getElementById("edit-testimonial-id").value = "";
-        }
+            titleEl.textContent = "Edit Testimonial"; const tst = siteData.testimonials.find(t => t.id === id);
+            if (tst) { document.getElementById("edit-testimonial-id").value = tst.id; document.getElementById("testimonial-author").value = tst.author; document.getElementById("testimonial-role").value = tst.title; document.getElementById("testimonial-quote").value = tst.quote; }
+        } else { titleEl.textContent = "Add Client Testimonial"; document.getElementById("edit-testimonial-id").value = ""; }
         modal.classList.remove("hidden");
     }
-
     window.openTestimonialModal = openTestimonialModal;
-
-    function closeTestimonialModal() {
-        document.getElementById("testimonial-modal").classList.add("hidden");
-    }
-
+    function closeTestimonialModal() { document.getElementById("testimonial-modal").classList.add("hidden"); }
     window.closeTestimonialModal = closeTestimonialModal;
 
     document.getElementById("testimonial-form").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const idVal = document.getElementById("edit-testimonial-id").value;
-        const author = document.getElementById("testimonial-author").value;
-        const role = document.getElementById("testimonial-role").value;
-        const quote = document.getElementById("testimonial-quote").value;
-
-        if (idVal) {
-            const tst = siteData.testimonials.find(t => t.id == idVal);
-            if (tst) {
-                tst.author = author;
-                tst.title = role;
-                tst.quote = quote;
-            }
-        } else {
-            siteData.testimonials.push({
-                id: Date.now(),
-                author,
-                title: role,
-                quote
-            });
-        }
-        closeTestimonialModal();
-        renderCMSTestimonials();
-        showToast("Testimonial updated temporary.");
+        e.preventDefault(); const idVal = document.getElementById("edit-testimonial-id").value; const author = document.getElementById("testimonial-author").value; const role = document.getElementById("testimonial-role").value; const quote = document.getElementById("testimonial-quote").value;
+        if (idVal) { const tst = siteData.testimonials.find(t => t.id == idVal); if (tst) { tst.author = author; tst.title = role; tst.quote = quote; } }
+        else { siteData.testimonials.push({ id: Date.now(), author, title: role, quote }); }
+        closeTestimonialModal(); renderCMSTestimonials(); showToast("Testimonial updated temporary.");
     });
 
-    function deleteTestimonial(id) {
-        siteData.testimonials = siteData.testimonials.filter(t => t.id !== id);
-        renderCMSTestimonials();
-        showToast("Testimonial deleted temporary.");
-    }
-
+    function deleteTestimonial(id) { siteData.testimonials = siteData.testimonials.filter(t => t.id !== id); renderCMSTestimonials(); showToast("Testimonial deleted temporary."); }
     window.deleteTestimonial = deleteTestimonial;
 
-    function openCategoryModal() {
-        document.getElementById("category-modal").classList.remove("hidden");
-        renderCMSCategoriesList();
-    }
-
+    function openCategoryModal() { document.getElementById("category-modal").classList.remove("hidden"); renderCMSCategoriesList(); }
     window.openCategoryModal = openCategoryModal;
-
-    function closeCategoryModal() {
-        document.getElementById("category-modal").classList.add("hidden");
-        populatePortfolioItemCategoryDropdown();
-    }
-
+    function closeCategoryModal() { document.getElementById("category-modal").classList.add("hidden"); populatePortfolioItemCategoryDropdown(); }
     window.closeCategoryModal = closeCategoryModal;
 
     function renderCMSCategoriesList() {
-        const container = document.getElementById("categories-list-container");
-        container.innerHTML = "";
+        const container = document.getElementById("categories-list-container"); container.innerHTML = "";
         siteData.portfolio_categories.forEach(cat => {
-            const isAll = cat === "All";
-            const row = document.createElement("div");
-            row.className = "flex justify-between items-center text-xs py-1.5 border-b border-white/5";
-            row.innerHTML = `
-                <span class="${isAll ? "font-bold text-secondary" : "text-on-surface"}">${cat}</span>
-                ${isAll ? '' : `<button onclick="deletePortfolioCategory('${cat}')" class="text-red-400 hover:text-red-300"><span class="material-symbols-outlined text-sm">delete</span></button>`}
-            `;
+            const isAll = cat === "All"; const row = document.createElement("div"); row.className = "flex justify-between items-center text-xs py-1.5 border-b border-white/5";
+            row.innerHTML = `<span class="${isAll ? "font-bold text-secondary" : "text-on-surface"}">${cat}</span>${isAll ? '' : `<button onclick="deletePortfolioCategory('${cat}')" class="text-red-400 hover:text-red-300"><span class="material-symbols-outlined text-sm">delete</span></button>`}`;
             container.appendChild(row);
         });
     }
 
     function addPortfolioCategory() {
-        const input = document.getElementById("new-category-name");
-        const name = input.value.trim();
-        if (!name) return;
-
-        if (siteData.portfolio_categories.some(c => c.toLowerCase() === name.toLowerCase())) {
-            alert("Category already exists.");
-            return;
-        }
-
-        const capitalized = name.charAt(0).toUpperCase() + name.slice(1);
-        siteData.portfolio_categories.push(capitalized);
-        input.value = "";
-        renderCMSCategoriesList();
-        showToast("Category added temporary.");
+        const input = document.getElementById("new-category-name"); const name = input.value.trim(); if (!name) return;
+        if (siteData.portfolio_categories.some(c => c.toLowerCase() === name.toLowerCase())) { alert("Category already exists."); return; }
+        siteData.portfolio_categories.push(name.charAt(0).toUpperCase() + name.slice(1)); input.value = ""; renderCMSCategoriesList(); showToast("Category added temporary.");
     }
-
     window.addPortfolioCategory = addPortfolioCategory;
 
     function deletePortfolioCategory(catName) {
-        if (confirm(`Are you sure you want to delete category "${catName}"? Associated portfolio items will be reassigned to "All".`)) {
-            siteData.portfolio_categories = siteData.portfolio_categories.filter(c => c !== catName);
-            
-            siteData.portfolio_items.forEach(item => {
-                if (item.category === catName) {
-                    item.category = "All";
-                }
-            });
-
-            if (currentCategoryFilter === catName) {
-                currentCategoryFilter = "All";
-            }
-
-            renderCMSCategoriesList();
-            renderCMSPortfolioTable();
-            showToast("Category deleted temporary.");
+        if (confirm(`Are you sure you want to delete category "${catName}"?`)) {
+            siteData.portfolio_categories = siteData.portfolio_categories.filter(c => c !== catName); siteData.portfolio_items.forEach(item => { if (item.category === catName) item.category = "All"; });
+            if (currentCategoryFilter === catName) currentCategoryFilter = "All";
+            renderCMSCategoriesList(); renderCMSPortfolioTable(); showToast("Category deleted temporary.");
         }
     }
-
     window.deletePortfolioCategory = deletePortfolioCategory;
 
     function openPortfolioItemModal(id = null) {
-        const modal = document.getElementById("portfolio-item-modal");
-        const form = document.getElementById("portfolio-item-form");
-        const titleEl = document.getElementById("portfolio-modal-title");
-        form.reset();
-
-        populatePortfolioItemCategoryDropdown();
-
+        const modal = document.getElementById("portfolio-item-modal"); const form = document.getElementById("portfolio-item-form"); const titleEl = document.getElementById("portfolio-modal-title"); form.reset(); populatePortfolioItemCategoryDropdown();
         if (id) {
-            titleEl.textContent = "Edit Portfolio Project";
-            const item = siteData.portfolio_items.find(i => i.id === id);
-            if (item) {
-                document.getElementById("edit-portfolio-id").value = item.id;
-                document.getElementById("portfolio-item-title").value = item.title;
-                document.getElementById("portfolio-item-category").value = item.category;
-                document.getElementById("portfolio-item-img-url").value = item.image;
-                document.getElementById("portfolio-item-desc").value = item.description;
-            }
-        } else {
-            titleEl.textContent = "Add Portfolio Project";
-            document.getElementById("edit-portfolio-id").value = "";
-        }
+            titleEl.textContent = "Edit Portfolio Project"; const item = siteData.portfolio_items.find(i => i.id === id);
+            if (item) { document.getElementById("edit-portfolio-id").value = item.id; document.getElementById("portfolio-item-title").value = item.title; document.getElementById("portfolio-item-category").value = item.category; document.getElementById("portfolio-item-img-url").value = item.image; document.getElementById("portfolio-item-desc").value = item.description; }
+        } else { titleEl.textContent = "Add Portfolio Project"; document.getElementById("edit-portfolio-id").value = ""; }
         modal.classList.remove("hidden");
     }
-
     window.openPortfolioItemModal = openPortfolioItemModal;
-
-    function closePortfolioItemModal() {
-        document.getElementById("portfolio-item-modal").classList.add("hidden");
-    }
-
+    function closePortfolioItemModal() { document.getElementById("portfolio-item-modal").classList.add("hidden"); }
     window.closePortfolioItemModal = closePortfolioItemModal;
 
-    function populatePortfolioItemCategoryDropdown() {
-        const dropdown = document.getElementById("portfolio-item-category");
-        dropdown.innerHTML = "";
-        siteData.portfolio_categories.forEach(cat => {
-            const opt = document.createElement("option");
-            opt.value = cat;
-            opt.textContent = cat;
-            dropdown.appendChild(opt);
-        });
-    }
+    function populatePortfolioItemCategoryDropdown() { const dropdown = document.getElementById("portfolio-item-category"); dropdown.innerHTML = ""; siteData.portfolio_categories.forEach(cat => { const opt = document.createElement("option"); opt.value = cat; opt.textContent = cat; dropdown.appendChild(opt); }); }
 
     document.getElementById("portfolio-item-form").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const idVal = document.getElementById("edit-portfolio-id").value;
-        const title = document.getElementById("portfolio-item-title").value;
-        const category = document.getElementById("portfolio-item-category").value;
-        const imgUrl = document.getElementById("portfolio-item-img-url").value || "assets/portfolio_design.jpg";
-        const desc = document.getElementById("portfolio-item-desc").value;
-
-        if (idVal) {
-            const item = siteData.portfolio_items.find(i => i.id == idVal);
-            if (item) {
-                item.title = title;
-                item.category = category;
-                item.image = imgUrl;
-                item.description = desc;
-            }
-        } else {
-            siteData.portfolio_items.push({
-                id: Date.now(),
-                title,
-                category,
-                image: imgUrl,
-                description: desc
-            });
-        }
-        closePortfolioItemModal();
-        renderCMSPortfolioTable();
-        showToast("Portfolio item updated temporary.");
+        e.preventDefault(); const idVal = document.getElementById("edit-portfolio-id").value; const title = document.getElementById("portfolio-item-title").value; const category = document.getElementById("portfolio-item-category").value; const imgUrl = document.getElementById("portfolio-item-img-url").value || "assets/portfolio_design.jpg"; const desc = document.getElementById("portfolio-item-desc").value;
+        if (idVal) { const item = siteData.portfolio_items.find(i => i.id == idVal); if (item) { item.title = title; item.category = category; item.image = imgUrl; item.description = desc; } }
+        else { siteData.portfolio_items.push({ id: Date.now(), title, category, image: imgUrl, description: desc }); }
+        closePortfolioItemModal(); renderCMSPortfolioTable(); showToast("Portfolio item updated temporary.");
     });
 
-    function deletePortfolioItem(id) {
-        siteData.portfolio_items = siteData.portfolio_items.filter(i => i.id !== id);
-        renderCMSPortfolioTable();
-        showToast("Portfolio project deleted temporary.");
-    }
-
+    function deletePortfolioItem(id) { siteData.portfolio_items = siteData.portfolio_items.filter(i => i.id !== id); renderCMSPortfolioTable(); showToast("Portfolio project deleted temporary."); }
     window.deletePortfolioItem = deletePortfolioItem;
 
     async function saveCMSChanges() {
         siteData.hero.title = document.getElementById("edit-hero-title").value;
         siteData.hero.subtitle = document.getElementById("edit-hero-subtitle").value;
         siteData.hero.bg_image = document.getElementById("edit-hero-bg-url").value;
-
-        siteData.services.forEach(srv => {
-            srv.icon = document.getElementById(`edit-service-icon-${srv.id}`).value;
-            srv.title = document.getElementById(`edit-service-title-${srv.id}`).value;
-            srv.description = document.getElementById(`edit-service-desc-${srv.id}`).value;
-        });
-
+        siteData.services.forEach(srv => { srv.icon = document.getElementById(`edit-service-icon-${srv.id}`).value; srv.title = document.getElementById(`edit-service-title-${srv.id}`).value; srv.description = document.getElementById(`edit-service-desc-${srv.id}`).value; });
         siteData.about.title = document.getElementById("edit-about-title").value;
         siteData.about.bg_image = document.getElementById("edit-about-bg-url").value;
-        
-        const paras = [];
-        const rows = document.querySelectorAll("#about-paragraphs-editor textarea");
-        rows.forEach(area => {
-            const val = area.value.trim();
-            if (val) paras.push(val);
-        });
-        siteData.about.paragraphs = paras;
-
-        // Save selected theme
-        if (selectedPreviewTheme) {
-            siteData.theme = selectedPreviewTheme;
-        }
-
-        await saveDatabase();
-        renderWebsite();
-        closeAdminPanel();
-        showToast("All changes published to the live site successfully!");
+        const paras = []; document.querySelectorAll("#about-paragraphs-editor textarea").forEach(area => { const val = area.value.trim(); if (val) paras.push(val); });
+        siteData.about.paragraphs = paras; siteData.theme = "Monochrome Slate";
+        saveDatabase(); renderWebsite(); closeAdminPanel(); showToast("All changes published to the live site successfully!");
     }
-
     window.saveCMSChanges = saveCMSChanges;
 
     function exportSiteConfig() {
-        const configStr = JSON.stringify(siteData, null, 2);
-        const blob = new Blob([configStr], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `docuready_backup_${Date.now()}.json`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        showToast("Backup JSON file exported successfully!");
+        const configStr = JSON.stringify(siteData, null, 2); const blob = new Blob([configStr], { type: "application/json" }); const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href = url; a.download = `docuready_backup_${Date.now()}.json`; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url); showToast("Backup JSON file exported successfully!");
     }
-
     window.exportSiteConfig = exportSiteConfig;
 
     async function resetSiteData() {
-        if (confirm("CRITICAL WARNING: This will permanently wipe out all current site layout changes, custom pictures, categories, testimonials, and resets everything to default. Leads will NOT be deleted. Do you want to proceed?")) {
-            siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA));
-            await saveDatabase();
-            previewTheme(siteData.theme);
-            renderWebsite();
-            populateCMSInputs();
-            closeAdminPanel();
-            showToast("System configurations reset to factory defaults.", "success");
+        if (confirm("Are you sure you want to reset everything back to default layout specifications?")) {
+            siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA)); saveDatabase(); previewTheme("Monochrome Slate"); renderWebsite(); populateCMSInputs(); closeAdminPanel(); showToast("System configurations reset to factory defaults.", "success");
         }
     }
-
     window.resetSiteData = resetSiteData;
 </script>
 </body>
