@@ -137,6 +137,13 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--color-secondary);
         }
+
+        /* Forces clean, un-blurred image processing for pixel-perfect assets */
+        #hero-bg, #about-bg, #hero-preview, #about-preview {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: pixelated;
+        }
     </style>
 </head>
 <body class="antialiased font-body-lg text-body-lg bg-surface text-on-surface">
@@ -220,7 +227,7 @@
     <!-- 1. Hero Section -->
     <section class="relative min-h-screen flex items-center pt-24 pb-section-gap overflow-hidden bg-surface" id="hero">
         <div class="absolute inset-0 z-0">
-            <div id="hero-bg" class="absolute inset-0 bg-center opacity-40 mix-blend-overlay transition-all duration-700"></div>
+            <div id="hero-bg" class="absolute inset-0 bg-center opacity-40 mix-blend-overlay transition-all duration-700 bg-no-repeat"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-transparent"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
         </div>
@@ -257,7 +264,7 @@
     <!-- 4. About Section -->
     <section class="py-section-gap relative overflow-hidden" id="about">
         <div class="absolute inset-0 z-0">
-            <div id="about-bg" class="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay transition-all duration-700"></div>
+            <div id="about-bg" class="absolute inset-0 bg-center opacity-30 mix-blend-overlay transition-all duration-700 bg-no-repeat"></div>
             <div class="absolute inset-0 bg-surface/90"></div>
         </div>
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center">
@@ -397,12 +404,12 @@
                             <textarea id="edit-hero-subtitle" rows="3" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all"></textarea>
                         </div>
                         <div>
-                            <label class="block font-label-caps text-xs text-on-surface-variant mb-2">BANNER DISPLAY STYLE (VIEW SIZE)</label>
-                            <select id="edit-hero-bg-size" onchange="handleLiveBgSizePreview(this.value)" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
+                            <label class="block font-label-caps text-xs text-on-surface-variant mb-2">HERO BANNER MODE (DISPLAY STYLE)</label>
+                            <select id="edit-hero-bg-size" onchange="handleLiveBgSizePreview('hero', this.value)" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
+                                <option value="auto">Original Size (Pixel Perfect - Crisp)</option>
                                 <option value="cover">Fill Layout (Cover)</option>
-                                <option value="contain">Fit Image (Contain)</option>
-                                <option value="100% 100%">Stretch Aspect</option>
-                                <option value="auto">Original File Size (Auto)</option>
+                                <option value="contain">Fit Image Bounds (Contain)</option>
+                                <option value="100% 100%">Stretch Aspect Ratio</option>
                             </select>
                         </div>
                         <div>
@@ -460,6 +467,15 @@
                             <button onclick="addAboutParagraphField('')" class="mt-3 text-xs text-secondary flex items-center gap-1 hover:underline"><span class="material-symbols-outlined text-sm">add</span> Add Paragraph</button>
                         </div>
                         <div>
+                            <label class="block font-label-caps text-xs text-on-surface-variant mb-2">ABOUT BACKGROUND DISPLAY STYLE</label>
+                            <select id="edit-about-bg-size" onchange="handleLiveBgSizePreview('about', this.value)" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
+                                <option value="auto">Original Size (Pixel Perfect - Crisp)</option>
+                                <option value="cover">Fill Layout (Cover)</option>
+                                <option value="contain">Fit Image Bounds (Contain)</option>
+                                <option value="100% 100%">Stretch Aspect Ratio</option>
+                            </select>
+                        </div>
+                        <div>
                             <label class="block font-label-caps text-xs text-on-surface-variant mb-2">ABOUT BACKGROUND PICTURE</label>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
@@ -473,7 +489,7 @@
                             </div>
                             <div class="mt-4">
                                 <span class="text-[11px] text-on-surface-variant block mb-1">Current Background Preview:</span>
-                                <div id="about-preview" class="h-32 w-full rounded bg-cover bg-center border border-white/10"></div>
+                                <div id="about-preview" class="h-32 w-full rounded bg-center border border-white/10 bg-no-repeat transition-all duration-200"></div>
                             </div>
                         </div>
                     </div>
@@ -531,7 +547,7 @@
     </div>
 </div>
 
-<!-- Modal: Category Management Inner Modal -->
+<!-- Inner Component Modals -->
 <div id="category-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-md w-full p-6 rounded relative">
         <button onclick="closeCategoryModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
@@ -544,7 +560,6 @@
     </div>
 </div>
 
-<!-- Modal: Add/Edit Portfolio Item Inner Modal -->
 <div id="portfolio-item-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-lg w-full p-6 rounded relative overflow-y-auto max-h-[90vh]">
         <button onclick="closePortfolioItemModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
@@ -581,7 +596,6 @@
     </div>
 </div>
 
-<!-- Modal: Add/Edit Testimonial Inner Modal -->
 <div id="testimonial-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-md w-full p-6 rounded relative">
         <button onclick="closeTestimonialModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
@@ -607,14 +621,14 @@
 
 <div id="toast-container" class="fixed bottom-5 right-5 z-[100] space-y-3"></div>
 
-<!-- JavaScript System Management Engine -->
+<!-- JavaScript Engine -->
 <script>
     const DEFAULT_SITE_DATA = {
         hero: {
             title: "Your Vision, <br/>Documented & Developed",
             subtitle: "Premium Graphical, Content Writing, and App Building Services.",
             bg_image: "https://raw.githubusercontent.com/ashleyghose64-cmd/AG-Portfolio/main/assets/Banner01.png",
-            bg_size: "cover"
+            bg_size: "auto" // Defaults to original size for un-distorted quality
         },
         services: [
             { id: 1, icon: "brush", title: "Graphical Design", description: "Visual identity & branding crafted to leave a lasting premium impression." },
@@ -628,7 +642,8 @@
                 "With a background rooted in both structural engineering and fine arts, I approach digital products as modern architecture: they must be built on solid foundations, yet evoke an emotional response through their form and interactions.",
                 "My methodology strips away the superfluous, focusing intensely on typography, spacing, motion, and performance. I believe that true luxury in the digital space is characterized by speed, clarity, and intentionality."
             ],
-            bg_image: "https://raw.githubusercontent.com/ashleyghose64-cmd/AG-Portfolio/main/assets/Banner01.png"
+            bg_image: "https://raw.githubusercontent.com/ashleyghose64-cmd/AG-Portfolio/main/assets/Banner01.png",
+            bg_size: "auto"
         },
         portfolio_categories: ["All", "Design", "Writing", "Apps"],
         portfolio_items: [
@@ -657,9 +672,10 @@
     function validateAndRepairSiteData() {
         if (!siteData || typeof siteData !== "object") { siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA)); return; }
         if (!siteData.hero) siteData.hero = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.hero));
-        if (!siteData.hero.bg_size) siteData.hero.bg_size = "cover";
-        if (!siteData.services) siteData.services = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.services));
+        if (!siteData.hero.bg_size) siteData.hero.bg_size = "auto";
         if (!siteData.about) siteData.about = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.about));
+        if (!siteData.about.bg_size) siteData.about.bg_size = "auto";
+        if (!siteData.services) siteData.services = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.services));
         if (!siteData.portfolio_categories) siteData.portfolio_categories = [...DEFAULT_SITE_DATA.portfolio_categories];
         if (!siteData.portfolio_items) siteData.portfolio_items = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.portfolio_items));
         if (!siteData.testimonials) siteData.testimonials = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.testimonials));
@@ -695,15 +711,12 @@
         root.style.setProperty('--color-on-surface-variant', theme.onSurfaceVariant);
     }
 
-    function handleLiveBgSizePreview(sizeValue) {
-        const previewBox = document.getElementById("hero-preview");
-        if (previewBox) {
-            previewBox.style.backgroundSize = sizeValue;
-        }
-        const liveHeroBg = document.getElementById("hero-bg");
-        if (liveHeroBg) {
-            liveHeroBg.style.backgroundSize = sizeValue;
-        }
+    function handleLiveBgSizePreview(section, sizeValue) {
+        const previewBox = document.getElementById(`${section}-preview`);
+        if (previewBox) previewBox.style.backgroundSize = sizeValue;
+        
+        const liveBg = document.getElementById(`${section}-bg`);
+        if (liveBg) liveBg.style.backgroundSize = sizeValue;
     }
 
     function saveDatabase() {
@@ -718,7 +731,7 @@
         const heroSubtitle = document.getElementById("hero-subtitle");
         if (heroBg) {
             heroBg.style.backgroundImage = `url('${siteData.hero.bg_image}')`;
-            heroBg.style.backgroundSize = siteData.hero.bg_size || "cover";
+            heroBg.style.backgroundSize = siteData.hero.bg_size || "auto";
         }
         if (heroTitle) heroTitle.innerHTML = siteData.hero.title;
         if (heroSubtitle) heroSubtitle.textContent = siteData.hero.subtitle;
@@ -781,7 +794,10 @@
         const aboutBg = document.getElementById("about-bg");
         const aboutTitle = document.getElementById("about-title");
         const aboutContent = document.getElementById("about-content");
-        if (aboutBg) aboutBg.style.backgroundImage = `url('${siteData.about.bg_image}')`;
+        if (aboutBg) {
+            aboutBg.style.backgroundImage = `url('${siteData.about.bg_image}')`;
+            aboutBg.style.backgroundSize = siteData.about.bg_size || "auto";
+        }
         if (aboutTitle) aboutTitle.textContent = siteData.about.title;
         if (aboutContent) {
             aboutContent.innerHTML = "";
@@ -934,12 +950,12 @@
         document.getElementById("edit-hero-title").value = siteData.hero.title;
         document.getElementById("edit-hero-subtitle").value = siteData.hero.subtitle;
         document.getElementById("edit-hero-bg-url").value = siteData.hero.bg_image;
-        document.getElementById("edit-hero-bg-size").value = siteData.hero.bg_size || "cover";
+        document.getElementById("edit-hero-bg-size").value = siteData.hero.bg_size || "auto";
         
         const previewBox = document.getElementById("hero-preview");
         if (previewBox) {
             previewBox.style.backgroundImage = `url('${siteData.hero.bg_image}')`;
-            previewBox.style.backgroundSize = siteData.hero.bg_size || "cover";
+            previewBox.style.backgroundSize = siteData.hero.bg_size || "auto";
         }
 
         const cmsServices = document.getElementById("cms-services-list"); cmsServices.innerHTML = "";
@@ -952,7 +968,14 @@
         renderCMSPortfolioTable();
         document.getElementById("edit-about-title").value = siteData.about.title;
         document.getElementById("edit-about-bg-url").value = siteData.about.bg_image;
-        document.getElementById("about-preview").style.backgroundImage = `url('${siteData.about.bg_image}')`;
+        document.getElementById("edit-about-bg-size").value = siteData.about.bg_size || "auto";
+        
+        const aboutPreviewBox = document.getElementById("about-preview");
+        if (aboutPreviewBox) {
+            aboutPreviewBox.style.backgroundImage = `url('${siteData.about.bg_image}')`;
+            aboutPreviewBox.style.backgroundSize = siteData.about.bg_size || "auto";
+        }
+
         const paragraphsEditor = document.getElementById("about-paragraphs-editor"); paragraphsEditor.innerHTML = "";
         siteData.about.paragraphs.forEach(p => addAboutParagraphField(p));
         renderCMSTestimonials(); renderCMSLeads();
@@ -1001,33 +1024,76 @@
         });
     }
 
-    async function markLeadRead(id, isRead) { const lead = leadsList.find(l => l.id === id); if (lead) { lead.read = isRead; localStorage.setItem("docuready_leads", JSON.stringify(leadsList)); renderCMSLeads(); updateUnreadBadge(); } }
+    async function markLeadRead(id, isRead) {
+        const lead = leadsList.find(l => l.id === id);
+        if (lead) {
+            lead.read = isRead;
+            localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
+            renderCMSLeads(); updateUnreadBadge();
+        }
+    }
     window.markLeadRead = markLeadRead;
-    async function deleteLead(id) { leadsList = leadsList.filter(l => l.id !== id); localStorage.setItem("docuready_leads", JSON.stringify(leadsList)); renderCMSLeads(); updateUnreadBadge(); showToast("Lead inquiry deleted."); }
+
+    async function deleteLead(id) {
+        leadsList = leadsList.filter(l => l.id !== id);
+        localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
+        renderCMSLeads(); updateUnreadBadge();
+        showToast("Lead inquiry deleted.");
+    }
     window.deleteLead = deleteLead;
-    async function clearAllLeads() { if (confirm("Are you sure you want to permanently clear all leads?")) { leadsList = []; localStorage.setItem("docuready_leads", JSON.stringify(leadsList)); renderCMSLeads(); updateUnreadBadge(); showToast("All leads cleared."); } }
+
+    async function clearAllLeads() {
+        if (confirm("Are you sure you want to permanently clear all leads?")) {
+            leadsList = []; localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
+            renderCMSLeads(); updateUnreadBadge(); showToast("All leads cleared.");
+        }
+    }
     window.clearAllLeads = clearAllLeads;
 
     function openTestimonialModal(id = null) {
-        const modal = document.getElementById("testimonial-modal"); const form = document.getElementById("testimonial-form"); const titleEl = document.getElementById("testimonial-modal-title"); form.reset();
+        const modal = document.getElementById("testimonial-modal");
+        const form = document.getElementById("testimonial-form");
+        const titleEl = document.getElementById("testimonial-modal-title");
+        form.reset();
         if (id) {
-            titleEl.textContent = "Edit Testimonial"; const tst = siteData.testimonials.find(t => t.id === id);
-            if (tst) { document.getElementById("edit-testimonial-id").value = tst.id; document.getElementById("testimonial-author").value = tst.author; document.getElementById("testimonial-role").value = tst.title; document.getElementById("testimonial-quote").value = tst.quote; }
-        } else { titleEl.textContent = "Add Client Testimonial"; document.getElementById("edit-testimonial-id").value = ""; }
+            titleEl.textContent = "Edit Testimonial";
+            const tst = siteData.testimonials.find(t => t.id === id);
+            if (tst) {
+                document.getElementById("edit-testimonial-id").value = tst.id;
+                document.getElementById("testimonial-author").value = tst.author;
+                document.getElementById("testimonial-role").value = tst.title;
+                document.getElementById("testimonial-quote").value = tst.quote;
+            }
+        } else {
+            titleEl.textContent = "Add Client Testimonial";
+            document.getElementById("edit-testimonial-id").value = "";
+        }
         modal.classList.remove("hidden");
     }
     window.openTestimonialModal = openTestimonialModal;
+
     function closeTestimonialModal() { document.getElementById("testimonial-modal").classList.add("hidden"); }
     window.closeTestimonialModal = closeTestimonialModal;
 
     document.getElementById("testimonial-form").addEventListener("submit", (e) => {
-        e.preventDefault(); const idVal = document.getElementById("edit-testimonial-id").value; const author = document.getElementById("testimonial-author").value; const role = document.getElementById("testimonial-role").value; const quote = document.getElementById("testimonial-quote").value;
-        if (idVal) { const tst = siteData.testimonials.find(t => t.id == idVal); if (tst) { tst.author = author; tst.title = role; tst.quote = quote; } }
-        else { siteData.testimonials.push({ id: Date.now(), author, title: role, quote }); }
+        e.preventDefault();
+        const idVal = document.getElementById("edit-testimonial-id").value;
+        const author = document.getElementById("testimonial-author").value;
+        const role = document.getElementById("testimonial-role").value;
+        const quote = document.getElementById("testimonial-quote").value;
+        if (idVal) {
+            const tst = siteData.testimonials.find(t => t.id == idVal);
+            if (tst) { tst.author = author; tst.title = role; tst.quote = quote; }
+        } else {
+            siteData.testimonials.push({ id: Date.now(), author, title: role, quote });
+        }
         closeTestimonialModal(); renderCMSTestimonials(); showToast("Testimonial updated temporary.");
     });
 
-    function deleteTestimonial(id) { siteData.testimonials = siteData.testimonials.filter(t => t.id !== id); renderCMSTestimonials(); showToast("Testimonial deleted temporary."); }
+    function deleteTestimonial(id) {
+        siteData.testimonials = siteData.testimonials.filter(t => t.id !== id);
+        renderCMSTestimonials(); showToast("Testimonial deleted temporary.");
+    }
     window.deleteTestimonial = deleteTestimonial;
 
     function openCategoryModal() { document.getElementById("category-modal").classList.remove("hidden"); renderCMSCategoriesList(); }
@@ -1093,6 +1159,8 @@
         siteData.services.forEach(srv => { srv.icon = document.getElementById(`edit-service-icon-${srv.id}`).value; srv.title = document.getElementById(`edit-service-title-${srv.id}`).value; srv.description = document.getElementById(`edit-service-desc-${srv.id}`).value; });
         siteData.about.title = document.getElementById("edit-about-title").value;
         siteData.about.bg_image = document.getElementById("edit-about-bg-url").value;
+        siteData.about.bg_size = document.getElementById("edit-about-bg-size").value;
+
         const paras = []; document.querySelectorAll("#about-paragraphs-editor textarea").forEach(area => { const val = area.value.trim(); if (val) paras.push(val); });
         siteData.about.paragraphs = paras; siteData.theme = "Monochrome Slate";
         saveDatabase(); renderWebsite(); closeAdminPanel(); showToast("All changes published to the live site successfully!");
