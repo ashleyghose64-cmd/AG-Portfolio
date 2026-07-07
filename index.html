@@ -138,16 +138,24 @@
             background: var(--color-secondary);
         }
 
-        #hero-bg, #about-bg, #hero-preview, #about-preview {
+        #hero-bg, #hero-preview {
             image-rendering: -webkit-optimize-contrast;
             image-rendering: high-quality;
             background-repeat: no-repeat;
             background-position: center center;
         }
+
+        /* Crisp blueprint micro-dot canvas architectural pattern style background */
+        .crisp-grid-pattern {
+            background-color: #000000;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
     </style>
 </head>
 <body class="antialiased font-body-lg text-body-lg bg-surface text-on-surface">
 
+<!-- Admin Mode Active Sticky Banner -->
 <div id="admin-banner" class="hidden fixed top-0 left-0 w-full z-[60] bg-secondary text-primary-container px-4 py-2 flex justify-between items-center text-xs font-label-caps tracking-wider shadow-lg">
     <div class="flex items-center gap-2">
         <span class="material-symbols-outlined text-sm animate-pulse">admin_panel_settings</span>
@@ -159,10 +167,11 @@
     </div>
 </div>
 
+<!-- TopNavBar (Typographic Logo swapped with direct direct-view Google Drive layout optimized at 100px) -->
 <nav id="navbar" class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-white/10 transition-all duration-200">
     <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-container-max mx-auto">
-        <a class="flex items-center gap-2" href="#">
-            <span class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">DocuReady</span>
+        <a class="flex items-center" href="#">
+            <img id="nav-logo" alt="DocuReady Brand Logo" class="h-auto w-[100px] object-contain block" src="https://docs.google.com/uc?export=view&id=1t9nd21wOp0g7CyJlsWA2sVX0ZAKXw7Lx"/>
         </a>
         <div class="hidden md:flex space-x-gutter items-center font-label-caps text-label-caps">
             <a class="text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#services">Services</a>
@@ -177,10 +186,11 @@
     </div>
 </nav>
 
+<!-- Mobile Navigation Drawer -->
 <div id="mobile-drawer" class="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-between">
     <div class="flex justify-between items-center px-margin-mobile py-base border-b border-white/10">
-        <a class="flex items-center gap-2" href="#">
-            <span class="font-headline-md text-headline-md font-bold tracking-tight text-on-surface">DocuReady</span>
+        <a class="flex items-center" href="#">
+            <img alt="DocuReady Brand Logo" class="h-auto w-[100px] object-contain block" src="https://docs.google.com/uc?export=view&id=1t9nd21wOp0g7CyJlsWA2sVX0ZAKXw7Lx"/>
         </a>
         <button id="close-drawer" class="text-on-surface focus:outline-none">
             <span class="material-symbols-outlined text-3xl">close</span>
@@ -199,6 +209,7 @@
 </div>
 
 <main>
+    <!-- 1. Hero Section -->
     <section class="relative min-h-screen flex items-center pt-24 pb-section-gap overflow-hidden bg-surface" id="hero">
         <div class="absolute inset-0 z-0">
             <div id="hero-bg" class="absolute inset-0 opacity-40 mix-blend-overlay transition-all duration-700"></div>
@@ -217,6 +228,7 @@
         </div>
     </section>
 
+    <!-- 2. Services Section -->
     <section class="py-section-gap relative bg-surface border-t border-b border-white/5" id="services">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center tracking-tight">Expertise</h2>
@@ -224,28 +236,28 @@
         </div>
     </section>
 
+    <!-- 3. Portfolio Section -->
     <section class="py-section-gap relative bg-surface-container-lowest" id="portfolio">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-6 text-center tracking-tight">Selected Projects</h2>
-            <p class="text-center text-on-surface-variant max-w-xl mx-auto mb-12">A gallery of premium digital products, visual assets, and brand elements.</p>
+            <p class="text-center text-on-surface-variant max-w-xl mx-auto mb-12">A gallery of premium digital products, visual assets, and brand elements. Click any project card to interact with its live architecture frame view.</p>
             <div id="portfolio-categories" class="flex flex-wrap justify-center gap-3 mb-12 font-label-caps text-[10px]"></div>
             <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-gutter transition-all duration-300"></div>
         </div>
     </section>
 
-    <section class="py-section-gap relative overflow-hidden" id="about">
-        <div class="absolute inset-0 z-0">
-            <div id="about-bg" class="absolute inset-0 opacity-30 mix-blend-overlay transition-all duration-700"></div>
-            <div class="absolute inset-0 bg-surface/90"></div>
-        </div>
-        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center">
-            <div class="max-w-3xl mx-auto">
-                <h2 id="about-title" class="font-headline-lg text-headline-lg md:text-6xl text-on-surface mb-8 tracking-tight"></h2>
-                <div id="about-content" class="space-y-6 font-body-lg text-body-lg text-on-surface-variant leading-relaxed"></div>
+    <!-- 4. About Section (Restructured Grid Pattern & Left Aligned Text Alignment) -->
+    <section class="py-section-gap relative overflow-hidden bg-surface border-t border-b border-white/5 crisp-grid-pattern" id="about">
+        <div class="absolute inset-0 z-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none"></div>
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-left">
+            <div class="max-w-3xl text-left">
+                <h2 id="about-title" class="font-headline-lg text-headline-lg md:text-6xl text-on-surface mb-8 tracking-tight text-left"></h2>
+                <div id="about-content" class="space-y-6 font-body-lg text-body-lg text-on-surface-variant leading-relaxed text-left"></div>
             </div>
         </div>
     </section>
 
+    <!-- 5. Testimonials Section -->
     <section class="py-section-gap bg-surface border-t border-b border-white/5" id="testimonials">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center tracking-tight">Client Acclaim</h2>
@@ -253,6 +265,7 @@
         </div>
     </section>
 
+    <!-- 6. Contact Section -->
     <section class="py-section-gap bg-surface-container-lowest relative border-b border-white/5" id="contact">
         <div class="max-w-xl mx-auto px-margin-mobile">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4 text-center tracking-tight">Begin the Conversation</h2>
@@ -301,6 +314,40 @@
     </div>
 </footer>
 
+<!-- Interactive Webview Portfolio Simulated Canvas HUD Frame Modal -->
+<div id="webview-hud-modal" class="hidden fixed inset-0 z-[110] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-300">
+    <div id="hud-frame-window" class="bg-surface-container border border-white/10 w-full max-w-5xl h-[80vh] rounded shadow-2xl flex flex-col overflow-hidden relative transition-all duration-300">
+        <!-- Window HUD Bar Controller -->
+        <div class="flex justify-between items-center px-4 py-3 bg-surface-container-low border-b border-white/10 select-none">
+            <div class="flex items-center gap-2">
+                <div onclick="closeWebviewHUD()" class="w-3 h-3 rounded-full bg-red-500/80 hover:bg-red-500 cursor-pointer transition-colors" title="Close Frame"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500/40"></div>
+                <div onclick="toggleHUDExpandedFullscreen()" class="w-3 h-3 rounded-full bg-green-500/80 hover:bg-green-500 cursor-pointer transition-colors" title="Toggle Fullscreen Canvas Layout"></div>
+                <span id="hud-title-display" class="ml-2 text-[11px] font-label-caps text-on-surface-variant tracking-wider font-semibold">Sandbox View Environment</span>
+            </div>
+            <div class="flex items-center gap-3 text-on-surface-variant">
+                <button onclick="toggleHUDExpandedFullscreen()" class="hover:text-on-surface flex items-center gap-1 text-xs font-label-caps tracking-wider transition-colors">
+                    <span id="fullscreen-hud-icon" class="material-symbols-outlined text-base">fullscreen</span>
+                    <span id="fullscreen-hud-text">FULLSCREEN</span>
+                </button>
+                <button onclick="closeWebviewHUD()" class="hover:text-on-surface transition-colors flex items-center">
+                    <span class="material-symbols-outlined text-lg">close</span>
+                </button>
+            </div>
+        </div>
+        <!-- Target Active Webview Visual Frame Node Container -->
+        <div class="flex-1 w-full h-full bg-black relative overflow-auto flex items-center justify-center p-6">
+            <img id="hud-embedded-image" alt="Embedded Architecture Node Asset" class="max-w-full max-h-full h-auto w-auto object-contain block select-none border border-white/5 shadow-2xl transition-all duration-300" src=""/>
+            <!-- Dynamic Metadata Box Overlay Layer -->
+            <div class="absolute bottom-4 left-4 right-4 p-4 rounded bg-surface-container-high/90 backdrop-blur border border-white/10 text-xs text-on-surface-variant max-w-xl shadow-2xl">
+                <div class="font-bold text-on-surface font-label-caps text-[10px] tracking-widest text-secondary uppercase mb-1" id="hud-overlay-cat">ENVIRONMENT VIEW</div>
+                <p id="hud-overlay-desc" class="leading-relaxed text-[11px]"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Admin Login Modal -->
 <div id="login-modal" class="hidden fixed inset-0 z-[70] bg-background/80 backdrop-blur-md flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-sm w-full p-8 rounded shadow-2xl relative">
         <button onclick="hideLoginModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface">
@@ -323,6 +370,7 @@
     </div>
 </div>
 
+<!-- Admin Control Panel Modal -->
 <div id="admin-panel" class="hidden fixed inset-0 z-[80] bg-background/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8">
     <div class="bg-surface-container border border-white/10 w-full max-w-5xl h-[85vh] rounded shadow-2xl flex flex-col overflow-hidden">
         <div class="flex justify-between items-center px-6 py-4 bg-surface border-b border-white/10">
@@ -355,14 +403,13 @@
             </div>
 
             <div id="cms-editor-container" class="flex-1 p-6 overflow-y-auto bg-surface-container-lowest text-sm">
-                
+                <!-- TAB: Hero Section Banner Editor -->
                 <div id="tab-hero" class="cms-tab-content space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">Hero Section & Banner</h3>
                     <div class="space-y-4">
                         <div>
                             <label class="block font-label-caps text-xs text-on-surface-variant mb-2">HERO MAIN HEADLINE</label>
                             <input type="text" id="edit-hero-title" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
-                            <span class="text-[10px] text-on-surface-variant">Tip: Use <code>&lt;br/&gt;</code> to create line breaks.</span>
                         </div>
                         <div>
                             <label class="block font-label-caps text-xs text-on-surface-variant mb-2">HERO SUBHEADING</label>
@@ -371,7 +418,7 @@
                         <div>
                             <label class="block font-label-caps text-xs text-on-surface-variant mb-2">HERO BANNER MODE (DISPLAY STYLE)</label>
                             <select id="edit-hero-bg-size" onchange="handleLiveBgSizePreview('hero', this.value)" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
-                                <option value="auto">Original Size (Pixel Perfect - Clean Quality)</option>
+                                <option value="auto">Original Size (Pixel Perfect)</option>
                                 <option value="cover">Fill Layout (Cover)</option>
                                 <option value="contain">Fit Image Bounds (Contain)</option>
                                 <option value="100% 100%">Stretch Aspect Ratio</option>
@@ -397,11 +444,13 @@
                     </div>
                 </div>
 
+                <!-- TAB: Services Editor -->
                 <div id="tab-services" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">Expertise / Services</h3>
                     <div id="cms-services-list" class="space-y-6"></div>
                 </div>
 
+                <!-- TAB: Portfolio Manager -->
                 <div id="tab-portfolio" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Portfolio Categories & Items</h3>
@@ -416,6 +465,7 @@
                     </div>
                 </div>
 
+                <!-- TAB: About Me Editor -->
                 <div id="tab-about" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">About Section Content</h3>
                     <div class="space-y-4">
@@ -428,35 +478,10 @@
                             <div id="about-paragraphs-editor" class="space-y-3"></div>
                             <button onclick="addAboutParagraphField('')" class="mt-3 text-xs text-secondary flex items-center gap-1 hover:underline"><span class="material-symbols-outlined text-sm">add</span> Add Paragraph</button>
                         </div>
-                        <div>
-                            <label class="block font-label-caps text-xs text-on-surface-variant mb-2">ABOUT BACKGROUND DISPLAY STYLE</label>
-                            <select id="edit-about-bg-size" onchange="handleLiveBgSizePreview('about', this.value)" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
-                                <option value="auto">Original Size (Pixel Perfect - Clean Quality)</option>
-                                <option value="cover">Fill Layout (Cover)</option>
-                                <option value="contain">Fit Image Bounds (Contain)</option>
-                                <option value="100% 100%">Stretch Aspect Ratio</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block font-label-caps text-xs text-on-surface-variant mb-2">ABOUT BACKGROUND PICTURE</label>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <span class="text-[11px] text-on-surface-variant block mb-1">Option A: Paste Online Image URL</span>
-                                    <input type="text" id="edit-about-bg-url" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface text-xs focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
-                                </div>
-                                <div>
-                                    <span class="text-[11px] text-on-surface-variant block mb-1">Option B: Upload Local Image File</span>
-                                    <input type="file" id="edit-about-bg-file" accept="image/*" class="w-full text-xs text-on-surface-variant file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-white/10 file:text-on-surface hover:file:bg-white/20 cursor-pointer">
-                                </div>
-                            </div>
-                            <div class="mt-4">
-                                <span class="text-[11px] text-on-surface-variant block mb-1">Current Background Preview:</span>
-                                <div id="about-preview" class="h-32 w-full rounded bg-center border border-white/10 bg-no-repeat transition-all duration-200"></div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
+                <!-- TAB: Testimonials Editor -->
                 <div id="tab-testimonials" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Client Testimonials</h3>
@@ -465,6 +490,7 @@
                     <div id="cms-testimonials-list" class="space-y-4"></div>
                 </div>
 
+                <!-- TAB: Leads Viewer -->
                 <div id="tab-leads" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Submitted Leads / Inquiries</h3>
@@ -473,12 +499,13 @@
                     <div id="cms-leads-table" class="border border-white/10 rounded overflow-hidden"></div>
                 </div>
 
+                <!-- TAB: Utilities -->
                 <div id="tab-backup" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">CMS System Utilities</h3>
                     <div class="space-y-6">
                         <div class="p-4 border border-white/10 rounded bg-white/5">
                             <h4 class="font-bold text-on-surface mb-2">Export Data / Config Backup</h4>
-                            <p class="text-xs text-on-surface-variant mb-4">Download a local JSON backup file containing all the website configurations, custom images, categories, and submitted leads.</p>
+                            <p class="text-xs text-on-surface-variant mb-4">Download a local JSON backup file containing all website configurations and leads.</p>
                             <button onclick="exportSiteConfig()" class="bg-secondary text-primary-container px-4 py-2 rounded font-label-caps text-xs font-bold hover:bg-secondary-fixed transition-all">DOWNLOAD BACKUP JSON</button>
                         </div>
                         <div class="p-4 border border-white/10 rounded bg-white/5">
@@ -488,7 +515,7 @@
                         </div>
                         <div class="p-4 border border-red-900/30 rounded bg-red-950/10">
                             <h4 class="font-bold text-red-400 mb-2">Reset System</h4>
-                            <p class="text-xs text-on-surface-variant mb-4">WARNING: This will wipe out all changes and restore the website content back to the default layout. Leads will be retained.</p>
+                            <p class="text-xs text-on-surface-variant mb-4">WARNING: This will wipe out all changes and restore the layout default properties.</p>
                             <button onclick="resetSiteData()" class="bg-red-600 text-white px-4 py-2 rounded font-label-caps text-xs font-bold hover:bg-red-700 transition-all">RESET SITE CONFIGURATION</button>
                         </div>
                     </div>
@@ -506,79 +533,9 @@
     </div>
 </div>
 
-<div id="category-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
-    <div class="bg-surface-container border border-white/10 max-w-md w-full p-6 rounded relative">
-        <button onclick="closeCategoryModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
-        <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Manage Categories</h3>
-        <div class="flex gap-2 mb-4">
-            <input type="text" id="new-category-name" class="flex-1 bg-surface border border-white/10 rounded px-3 py-1.5 text-xs text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all" placeholder="New Category Name">
-            <button onclick="addPortfolioCategory()" class="bg-secondary text-primary-container text-xs px-4 py-1.5 rounded font-label-caps font-bold hover:bg-secondary-fixed transition-all">ADD</button>
-        </div>
-        <div id="categories-list-container" class="space-y-2 max-h-48 overflow-y-auto border border-white/5 p-3 rounded"></div>
-    </div>
-</div>
-
-<div id="portfolio-item-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
-    <div class="bg-surface-container border border-white/10 max-w-lg w-full p-6 rounded relative overflow-y-auto max-h-[90vh]">
-        <button onclick="closePortfolioItemModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
-        <h3 id="portfolio-modal-title" class="font-headline-md text-headline-md text-on-surface mb-4">Portfolio Item</h3>
-        <form id="portfolio-item-form" class="space-y-4 text-xs">
-            <input type="hidden" id="edit-portfolio-id">
-            <div>
-                <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">PROJECT TITLE</label>
-                <input type="text" id="portfolio-item-title" required class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all">
-            </div>
-            <div>
-                <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">CATEGORY</label>
-                <select id="portfolio-item-category" class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all"></select>
-            </div>
-            <div>
-                <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">IMAGE SOURCE</label>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2">
-                    <div>
-                        <span class="text-[10px] text-on-surface-variant block mb-1">Online URL</span>
-                        <input type="text" id="portfolio-item-img-url" class="w-full bg-surface border border-white/10 rounded px-3 py-1.5 text-[11px] text-on-surface focus:border-secondary transition-all">
-                    </div>
-                    <div>
-                        <span class="text-[10px] text-on-surface-variant block mb-1">Upload File</span>
-                        <input type="file" id="portfolio-item-img-file" accept="image/*" class="w-full text-[10px] file:mr-2 file:py-1 file:px-2 file:rounded file:bg-white/10 file:text-on-surface file:border-0 hover:file:bg-white/20">
-                    </div>
-                </div>
-            </div>
-            <div>
-                <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">DESCRIPTION</label>
-                <textarea id="portfolio-item-desc" rows="3" required class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all"></textarea>
-            </div>
-            <button type="submit" class="w-full bg-secondary text-primary-container py-3 rounded font-label-caps text-xs font-bold hover:bg-secondary-fixed transition-colors">SAVE ITEM</button>
-        </form>
-    </div>
-</div>
-
-<div id="testimonial-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
-    <div class="bg-surface-container border border-white/10 max-w-md w-full p-6 rounded relative">
-        <button onclick="closeTestimonialModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
-        <h3 id="testimonial-modal-title" class="font-headline-md text-headline-md text-on-surface mb-4">Client Testimonial</h3>
-        <form id="testimonial-form" class="space-y-4 text-xs">
-            <input type="hidden" id="edit-testimonial-id">
-            <div>
-                <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">AUTHOR NAME</label>
-                <input type="text" id="testimonial-author" required class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all" placeholder="Elena R.">
-            </div>
-            <div>
-                <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">AUTHOR ROLE / COMPANY</label>
-                <input type="text" id="testimonial-role" required class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all" placeholder="CEO, NexaCorp">
-            </div>
-            <div>
-                <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">CLIENT QUOTE</label>
-                <textarea id="testimonial-quote" rows="4" required class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all" placeholder="Quote goes here..."></textarea>
-            </div>
-            <button type="submit" class="w-full bg-secondary text-primary-container py-3 rounded font-label-caps text-xs font-bold hover:bg-secondary-fixed transition-colors">SAVE TESTIMONIAL</button>
-        </form>
-    </div>
-</div>
-
 <div id="toast-container" class="fixed bottom-5 right-5 z-[100] space-y-3"></div>
 
+<!-- JavaScript Engine Code Block -->
 <script>
     const DEFAULT_SITE_DATA = {
         hero: {
@@ -598,9 +555,7 @@
                 "I am an independent web developer and designer dedicated to bridging the gap between exceptional aesthetic vision and robust technical execution.",
                 "With a background rooted in both structural engineering and fine arts, I approach digital products as modern architecture: they must be built on solid foundations, yet evoke an emotional response through their form and interactions.",
                 "My methodology strips away the superfluous, focusing intensely on typography, spacing, motion, and performance. I believe that true luxury in the digital space is characterized by speed, clarity, and intentionality."
-            ],
-            bg_image: "https://raw.githubusercontent.com/ashleyghose64-cmd/AG-Portfolio/main/assets/aboutme.png",
-            bg_size: "auto"
+            ]
         },
         portfolio_categories: ["All", "Design", "Writing", "Apps"],
         portfolio_items: [
@@ -638,14 +593,12 @@
         if (!siteData.hero) siteData.hero = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.hero));
         if (!siteData.hero.bg_size) siteData.hero.bg_size = "auto";
         if (!siteData.about) siteData.about = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.about));
-        if (!siteData.about.bg_size) siteData.about.bg_size = "auto";
         if (!siteData.services) siteData.services = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.services));
         if (!siteData.portfolio_categories) siteData.portfolio_categories = [...DEFAULT_SITE_DATA.portfolio_categories];
         if (!siteData.portfolio_items) siteData.portfolio_items = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.portfolio_items));
         if (!siteData.testimonials) siteData.testimonials = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.testimonials));
         
         siteData.hero.bg_image = parseRawGitHubUrl(siteData.hero.bg_image);
-        siteData.about.bg_image = parseRawGitHubUrl(siteData.about.bg_image);
         siteData.theme = "Monochrome Slate";
     }
 
@@ -681,10 +634,57 @@
     function handleLiveBgSizePreview(section, sizeValue) {
         const previewBox = document.getElementById(`${section}-preview`);
         if (previewBox) previewBox.style.backgroundSize = sizeValue;
-        
         const liveBg = document.getElementById(`${section}-bg`);
         if (liveBg) liveBg.style.backgroundSize = sizeValue;
     }
+
+    /* Interactive Webview PIP System Hooks */
+    function openWebviewHUD(itemId) {
+        const project = siteData.portfolio_items.find(i => i.id === itemId);
+        if (!project) return;
+        
+        document.getElementById("hud-title-display").textContent = `Live Environment HUD Node: ${project.title}`;
+        document.getElementById("hud-overlay-cat").textContent = project.category.toUpperCase();
+        document.getElementById("hud-overlay-desc").textContent = project.description;
+        
+        const embeddedImg = document.getElementById("hud-embedded-image");
+        embeddedImg.src = project.image;
+        
+        const modal = document.getElementById("webview-hud-modal");
+        modal.classList.remove("hidden");
+    }
+
+    function closeWebviewHUD() {
+        document.getElementById("webview-hud-modal").classList.add("hidden");
+        // Normalize layout out of expanded full screen state variables if active on close
+        const windowFrame = document.getElementById("hud-frame-window");
+        windowFrame.classList.remove("max-w-none", "h-screen", "w-screen", "rounded-none");
+        windowFrame.classList.add("max-w-xs", "max-w-5xl", "h-[80vh]");
+        document.getElementById("fullscreen-hud-icon").textContent = "fullscreen";
+        document.getElementById("fullscreen-hud-text").textContent = "FULLSCREEN";
+    }
+
+    function toggleHUDExpandedFullscreen() {
+        const windowFrame = document.getElementById("hud-frame-window");
+        const icon = document.getElementById("fullscreen-hud-icon");
+        const txt = document.getElementById("fullscreen-hud-text");
+        
+        if (windowFrame.classList.contains("max-w-none")) {
+            windowFrame.classList.remove("max-w-none", "h-screen", "w-screen", "rounded-none");
+            windowFrame.classList.add("max-w-5xl", "h-[80vh]");
+            icon.textContent = "fullscreen";
+            txt.textContent = "FULLSCREEN";
+        } else {
+            windowFrame.classList.remove("max-w-5xl", "h-[80vh]");
+            windowFrame.classList.add("max-w-none", "h-screen", "w-screen", "rounded-none");
+            icon.textContent = "fullscreen_exit";
+            txt.textContent = "EXIT FULLSCREEN";
+        }
+    }
+
+    window.openWebviewHUD = openWebviewHUD;
+    window.closeWebviewHUD = closeWebviewHUD;
+    window.toggleHUDExpandedFullscreen = toggleHUDExpandedFullscreen;
 
     function saveDatabase() {
         siteData.theme = "Monochrome Slate";
@@ -740,11 +740,16 @@
             } else {
                 filteredItems.forEach(item => {
                     const card = document.createElement("div");
-                    card.className = "group border border-white/5 rounded overflow-hidden bg-surface-container-low hover:border-secondary/35 transition-all duration-300 flex flex-col";
+                    // Dynamic Click Handler mapping triggered directly via frame window calls
+                    card.onclick = () => openWebviewHUD(item.id);
+                    card.className = "group border border-white/5 rounded overflow-hidden bg-surface-container-low hover:border-secondary/35 transition-all duration-300 flex flex-col cursor-pointer";
                     card.innerHTML = `
                         <div class="h-64 overflow-hidden relative bg-black/20">
                             <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                             <div class="absolute top-4 left-4 bg-surface-container-high/90 backdrop-blur-sm border border-white/10 text-secondary text-[10px] font-label-caps px-3 py-1 rounded">${item.category.toUpperCase()}</div>
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="material-symbols-outlined text-white text-3xl animate-pulse">open_in_new</span>
+                            </div>
                         </div>
                         <div class="p-6 flex-1 flex flex-col justify-between">
                             <div>
@@ -758,13 +763,8 @@
             }
         }
 
-        const aboutBg = document.getElementById("about-bg");
         const aboutTitle = document.getElementById("about-title");
         const aboutContent = document.getElementById("about-content");
-        if (aboutBg) {
-            aboutBg.style.backgroundImage = `url('${siteData.about.bg_image}')`;
-            aboutBg.style.backgroundSize = siteData.about.bg_size || "auto";
-        }
         if (aboutTitle) aboutTitle.textContent = siteData.about.title;
         if (aboutContent) {
             aboutContent.innerHTML = "";
@@ -798,7 +798,13 @@
         const closeDrawer = document.getElementById("close-drawer");
         if (menuBtn) menuBtn.addEventListener("click", () => toggleDrawer(true));
         if (closeDrawer) closeDrawer.addEventListener("click", () => toggleDrawer(false));
-        document.addEventListener("keydown", (e) => { if (e.key === "Escape") { toggleDrawer(false); hideLoginModal(); } });
+        document.addEventListener("keydown", (e) => { 
+            if (e.key === "Escape") { 
+                toggleDrawer(false); 
+                hideLoginModal(); 
+                closeWebviewHUD(); 
+            } 
+        });
         document.getElementById("contact-form").addEventListener("submit", handleLeadSubmission);
         document.getElementById("login-form").addEventListener("submit", handleAdminLogin);
 
@@ -812,11 +818,6 @@
             document.getElementById("edit-hero-bg-url").value = base64;
             document.getElementById("hero-preview").style.backgroundImage = `url('${base64}')`;
         });
-        setupImageUploadListener("edit-about-bg-file", (base64) => {
-            document.getElementById("edit-about-bg-url").value = base64;
-            document.getElementById("about-preview").style.backgroundImage = `url('${base64}')`;
-        });
-        setupImageUploadListener("portfolio-item-img-file", (base64) => { document.getElementById("portfolio-item-img-url").value = base64; });
 
         document.getElementById("import-config-file").addEventListener("change", (e) => {
             const file = e.target.files[0]; if (!file) return;
@@ -935,15 +936,6 @@
 
         renderCMSPortfolioTable();
         document.getElementById("edit-about-title").value = siteData.about.title;
-        document.getElementById("edit-about-bg-url").value = siteData.about.bg_image;
-        document.getElementById("edit-about-bg-size").value = siteData.about.bg_size || "auto";
-        
-        const aboutPreviewBox = document.getElementById("about-preview");
-        if (aboutPreviewBox) {
-            aboutPreviewBox.style.backgroundImage = `url('${siteData.about.bg_image}')`;
-            aboutPreviewBox.style.backgroundSize = siteData.about.bg_size || "auto";
-        }
-
         const paragraphsEditor = document.getElementById("about-paragraphs-editor"); paragraphsEditor.innerHTML = "";
         siteData.about.paragraphs.forEach(p => addAboutParagraphField(p));
         renderCMSTestimonials(); renderCMSLeads();
@@ -1083,8 +1075,6 @@
 
         siteData.services.forEach(srv => { srv.icon = document.getElementById(`edit-service-icon-${srv.id}`).value; srv.title = document.getElementById(`edit-service-title-${srv.id}`).value; srv.description = document.getElementById(`edit-service-desc-${srv.id}`).value; });
         siteData.about.title = document.getElementById("edit-about-title").value;
-        siteData.about.bg_image = document.getElementById("edit-about-bg-url").value;
-        siteData.about.bg_size = document.getElementById("edit-about-bg-size").value;
 
         const paras = []; document.querySelectorAll("#about-paragraphs-editor textarea").forEach(area => { const val = area.value.trim(); if (val) paras.push(val); });
         siteData.about.paragraphs = paras; siteData.theme = "Monochrome Slate";
