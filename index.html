@@ -163,6 +163,7 @@
     });
 </script>
 
+<!-- Admin Mode Active Sticky Banner -->
 <div id="admin-banner" class="hidden fixed top-0 left-0 w-full z-[60] bg-secondary text-primary-container px-4 py-2 flex justify-between items-center text-xs font-label-caps tracking-wider shadow-lg">
     <div class="flex items-center gap-2">
         <span class="material-symbols-outlined text-sm animate-pulse">admin_panel_settings</span>
@@ -174,6 +175,7 @@
     </div>
 </div>
 
+<!-- TopNavBar -->
 <nav id="navbar" class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-white/10 transition-all duration-200">
     <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-container-max mx-auto">
         <a class="flex items-center gap-2" href="#">
@@ -192,6 +194,7 @@
     </div>
 </nav>
 
+<!-- Mobile Navigation Drawer -->
 <div id="mobile-drawer" class="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-between">
     <div class="flex justify-between items-center px-margin-mobile py-base border-b border-white/10">
         <a class="flex items-center gap-2" href="#">
@@ -214,9 +217,10 @@
 </div>
 
 <main>
+    <!-- 1. Hero Section -->
     <section class="relative min-h-screen flex items-center pt-24 pb-section-gap overflow-hidden bg-surface" id="hero">
         <div class="absolute inset-0 z-0">
-            <div id="hero-bg" class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-overlay transition-all duration-700"></div>
+            <div id="hero-bg" class="absolute inset-0 bg-center opacity-40 mix-blend-overlay transition-all duration-700"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-transparent"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
         </div>
@@ -232,6 +236,7 @@
         </div>
     </section>
 
+    <!-- 2. Services Section -->
     <section class="py-section-gap relative bg-surface border-t border-b border-white/5" id="services">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center tracking-tight">Expertise</h2>
@@ -239,6 +244,7 @@
         </div>
     </section>
 
+    <!-- 3. Portfolio Section -->
     <section class="py-section-gap relative bg-surface-container-lowest" id="portfolio">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-6 text-center tracking-tight">Selected Projects</h2>
@@ -248,6 +254,7 @@
         </div>
     </section>
 
+    <!-- 4. About Section -->
     <section class="py-section-gap relative overflow-hidden" id="about">
         <div class="absolute inset-0 z-0">
             <div id="about-bg" class="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay transition-all duration-700"></div>
@@ -261,6 +268,7 @@
         </div>
     </section>
 
+    <!-- 5. Testimonials Section -->
     <section class="py-section-gap bg-surface border-t border-b border-white/5" id="testimonials">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center tracking-tight">Client Acclaim</h2>
@@ -268,6 +276,7 @@
         </div>
     </section>
 
+    <!-- 6. Inquire / Contact Section -->
     <section class="py-section-gap bg-surface-container-lowest relative border-b border-white/5" id="contact">
         <div class="max-w-xl mx-auto px-margin-mobile">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4 text-center tracking-tight">Begin the Conversation</h2>
@@ -302,6 +311,7 @@
     </section>
 </main>
 
+<!-- Footer -->
 <footer class="bg-surface border-t border-white/10 w-full">
     <div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-6 gap-4 w-full max-w-container-max mx-auto text-on-surface-variant font-label-caps text-xs">
         <div class="flex items-center gap-4">
@@ -316,6 +326,7 @@
     </div>
 </footer>
 
+<!-- Admin Login Modal -->
 <div id="login-modal" class="hidden fixed inset-0 z-[70] bg-background/80 backdrop-blur-md flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-sm w-full p-8 rounded shadow-2xl relative">
         <button onclick="hideLoginModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface">
@@ -338,6 +349,7 @@
     </div>
 </div>
 
+<!-- Admin Control Panel (CMS Dashboard) Modal -->
 <div id="admin-panel" class="hidden fixed inset-0 z-[80] bg-background/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8">
     <div class="bg-surface-container border border-white/10 w-full max-w-5xl h-[85vh] rounded shadow-2xl flex flex-col overflow-hidden">
         <div class="flex justify-between items-center px-6 py-4 bg-surface border-b border-white/10">
@@ -371,6 +383,7 @@
 
             <div id="cms-editor-container" class="flex-1 p-6 overflow-y-auto bg-surface-container-lowest text-sm">
                 
+                <!-- TAB: Hero Section Banner Editor -->
                 <div id="tab-hero" class="cms-tab-content space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">Hero Section & Banner</h3>
                     <div class="space-y-4">
@@ -384,11 +397,20 @@
                             <textarea id="edit-hero-subtitle" rows="3" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all"></textarea>
                         </div>
                         <div>
+                            <label class="block font-label-caps text-xs text-on-surface-variant mb-2">BANNER DISPLAY STYLE (VIEW SIZE)</label>
+                            <select id="edit-hero-bg-size" onchange="handleLiveBgSizePreview(this.value)" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
+                                <option value="cover">Fill Layout (Cover)</option>
+                                <option value="contain">Fit Image (Contain)</option>
+                                <option value="100% 100%">Stretch Aspect</option>
+                                <option value="auto">Original File Size (Auto)</option>
+                            </select>
+                        </div>
+                        <div>
                             <label class="block font-label-caps text-xs text-on-surface-variant mb-2">HERO BANNER IMAGE BACKGROUND</label>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <span class="text-[11px] text-on-surface-variant block mb-1">Option A: Paste Online Image URL</span>
-                                    <input type="text" id="edit-hero-bg-url" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface text-xs focus:border-secondary focus:ring-1 focus:ring-secondary transition-all" placeholder="https://example.com/banner.jpg">
+                                    <input type="text" id="edit-hero-bg-url" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface text-xs focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
                                 </div>
                                 <div>
                                     <span class="text-[11px] text-on-surface-variant block mb-1">Option B: Upload Local Image File</span>
@@ -396,18 +418,20 @@
                                 </div>
                             </div>
                             <div class="mt-4">
-                                <span class="text-[11px] text-on-surface-variant block mb-1">Current Banner Preview:</span>
-                                <div id="hero-preview" class="h-32 w-full rounded bg-cover bg-center border border-white/10"></div>
+                                <span class="text-[11px] text-on-surface-variant block mb-1">Real-time Dashboard View Preview:</span>
+                                <div id="hero-preview" class="h-40 w-full rounded bg-center border border-white/10 bg-no-repeat transition-all duration-200"></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- TAB: Services Editor -->
                 <div id="tab-services" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">Expertise / Services</h3>
                     <div id="cms-services-list" class="space-y-6"></div>
                 </div>
 
+                <!-- TAB: Portfolio Manager -->
                 <div id="tab-portfolio" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Portfolio Categories & Items</h3>
@@ -422,6 +446,7 @@
                     </div>
                 </div>
 
+                <!-- TAB: About Me Editor -->
                 <div id="tab-about" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">About Section Content</h3>
                     <div class="space-y-4">
@@ -454,6 +479,7 @@
                     </div>
                 </div>
 
+                <!-- TAB: Testimonials Editor -->
                 <div id="tab-testimonials" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Client Testimonials</h3>
@@ -462,6 +488,7 @@
                     <div id="cms-testimonials-list" class="space-y-4"></div>
                 </div>
 
+                <!-- TAB: Leads / Inquiries Viewer -->
                 <div id="tab-leads" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Submitted Leads / Inquiries</h3>
@@ -470,6 +497,7 @@
                     <div id="cms-leads-table" class="border border-white/10 rounded overflow-hidden"></div>
                 </div>
 
+                <!-- TAB: Backup & Reset -->
                 <div id="tab-backup" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">CMS System Utilities</h3>
                     <div class="space-y-6">
@@ -503,6 +531,7 @@
     </div>
 </div>
 
+<!-- Modal: Category Management Inner Modal -->
 <div id="category-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-md w-full p-6 rounded relative">
         <button onclick="closeCategoryModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
@@ -515,6 +544,7 @@
     </div>
 </div>
 
+<!-- Modal: Add/Edit Portfolio Item Inner Modal -->
 <div id="portfolio-item-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-lg w-full p-6 rounded relative overflow-y-auto max-h-[90vh]">
         <button onclick="closePortfolioItemModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
@@ -551,6 +581,7 @@
     </div>
 </div>
 
+<!-- Modal: Add/Edit Testimonial Inner Modal -->
 <div id="testimonial-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-md w-full p-6 rounded relative">
         <button onclick="closeTestimonialModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
@@ -576,12 +607,14 @@
 
 <div id="toast-container" class="fixed bottom-5 right-5 z-[100] space-y-3"></div>
 
+<!-- JavaScript System Management Engine -->
 <script>
     const DEFAULT_SITE_DATA = {
         hero: {
             title: "Your Vision, <br/>Documented & Developed",
             subtitle: "Premium Graphical, Content Writing, and App Building Services.",
-            bg_image: "assets/Banner01.jpg"
+            bg_image: "https://raw.githubusercontent.com/ashleyghose64-cmd/AG-Portfolio/main/assets/Banner01.png",
+            bg_size: "cover"
         },
         services: [
             { id: 1, icon: "brush", title: "Graphical Design", description: "Visual identity & branding crafted to leave a lasting premium impression." },
@@ -595,7 +628,7 @@
                 "With a background rooted in both structural engineering and fine arts, I approach digital products as modern architecture: they must be built on solid foundations, yet evoke an emotional response through their form and interactions.",
                 "My methodology strips away the superfluous, focusing intensely on typography, spacing, motion, and performance. I believe that true luxury in the digital space is characterized by speed, clarity, and intentionality."
             ],
-            bg_image: "assets/Banner01.jpg"
+            bg_image: "https://raw.githubusercontent.com/ashleyghose64-cmd/AG-Portfolio/main/assets/Banner01.png"
         },
         portfolio_categories: ["All", "Design", "Writing", "Apps"],
         portfolio_items: [
@@ -624,6 +657,7 @@
     function validateAndRepairSiteData() {
         if (!siteData || typeof siteData !== "object") { siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA)); return; }
         if (!siteData.hero) siteData.hero = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.hero));
+        if (!siteData.hero.bg_size) siteData.hero.bg_size = "cover";
         if (!siteData.services) siteData.services = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.services));
         if (!siteData.about) siteData.about = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.about));
         if (!siteData.portfolio_categories) siteData.portfolio_categories = [...DEFAULT_SITE_DATA.portfolio_categories];
@@ -660,7 +694,17 @@
         root.style.setProperty('--color-on-surface', theme.onSurface);
         root.style.setProperty('--color-on-surface-variant', theme.onSurfaceVariant);
     }
-    window.previewTheme = previewTheme;
+
+    function handleLiveBgSizePreview(sizeValue) {
+        const previewBox = document.getElementById("hero-preview");
+        if (previewBox) {
+            previewBox.style.backgroundSize = sizeValue;
+        }
+        const liveHeroBg = document.getElementById("hero-bg");
+        if (liveHeroBg) {
+            liveHeroBg.style.backgroundSize = sizeValue;
+        }
+    }
 
     function saveDatabase() {
         siteData.theme = "Monochrome Slate";
@@ -672,7 +716,10 @@
         const heroBg = document.getElementById("hero-bg");
         const heroTitle = document.getElementById("hero-title");
         const heroSubtitle = document.getElementById("hero-subtitle");
-        if (heroBg) heroBg.style.backgroundImage = `url('${siteData.hero.bg_image}')`;
+        if (heroBg) {
+            heroBg.style.backgroundImage = `url('${siteData.hero.bg_image}')`;
+            heroBg.style.backgroundSize = siteData.hero.bg_size || "cover";
+        }
         if (heroTitle) heroTitle.innerHTML = siteData.hero.title;
         if (heroSubtitle) heroSubtitle.textContent = siteData.hero.subtitle;
 
@@ -748,13 +795,15 @@
             testimonialsGrid.innerHTML = "";
             siteData.testimonials.forEach(tst => {
                 const card = document.createElement("div");
-                card.className = "p-8 border border-white/5 rounded bg-primary-container relative flex flex-col justify-between";
+                card.className = "p-8 border border-white/5 rounded bg-primary-container relative flex flex-col justify-start";
                 card.innerHTML = `
-                    <div>
-                        <span class="material-symbols-outlined text-6xl text-secondary/10 absolute top-4 left-4 select-none">format_quote</span>
-                        <p class="font-body-lg text-body-lg text-on-surface-variant italic mb-6 relative z-10 select-none">"${tst.quote}"</p>
+                    <div class="mb-4 text-left">
+                        <span class="material-symbols-outlined text-4xl text-secondary opacity-20 block select-none">format_quote</span>
                     </div>
-                    <div class="font-label-caps text-label-caps text-secondary text-xs mt-auto">- ${tst.author}, ${tst.title}</div>
+                    <div class="flex-1">
+                        <p class="font-body-lg text-body-lg text-on-surface-variant italic mb-6 select-none">"${tst.quote}"</p>
+                    </div>
+                    <div class="font-label-caps text-label-caps text-secondary text-xs mt-4 pt-4 border-t border-white/5">- ${tst.author}, ${tst.title}</div>
                 `;
                 testimonialsGrid.appendChild(card);
             });
@@ -868,7 +917,7 @@
     window.logoutAdmin = logoutAdmin;
     function updateUnreadBadge() { const unreadCount = leadsList.filter(l => !l.read).length; const badge = document.getElementById("unread-count"); if (badge) { if (unreadCount > 0) { badge.textContent = unreadCount; badge.classList.remove("hidden"); } else badge.classList.add("hidden"); } }
 
-    function openAdminPanel() { document.getElementById("admin-panel").classList.remove("hidden"); populateCMSInputs(); switchTab("tab-hero"); }
+    function openAdminPanel() { document.getElementById("admin-panel").classList.remove("hidden"); populateCMSInputs(); switchTab('tab-hero'); }
     window.openAdminPanel = openAdminPanel;
     function closeAdminPanel() { document.getElementById("admin-panel").classList.add("hidden"); previewTheme("Monochrome Slate"); }
     window.closeAdminPanel = closeAdminPanel;
@@ -885,7 +934,13 @@
         document.getElementById("edit-hero-title").value = siteData.hero.title;
         document.getElementById("edit-hero-subtitle").value = siteData.hero.subtitle;
         document.getElementById("edit-hero-bg-url").value = siteData.hero.bg_image;
-        document.getElementById("hero-preview").style.backgroundImage = `url('${siteData.hero.bg_image}')`;
+        document.getElementById("edit-hero-bg-size").value = siteData.hero.bg_size || "cover";
+        
+        const previewBox = document.getElementById("hero-preview");
+        if (previewBox) {
+            previewBox.style.backgroundImage = `url('${siteData.hero.bg_image}')`;
+            previewBox.style.backgroundSize = siteData.hero.bg_size || "cover";
+        }
 
         const cmsServices = document.getElementById("cms-services-list"); cmsServices.innerHTML = "";
         siteData.services.forEach((srv, idx) => {
@@ -1033,6 +1088,8 @@
         siteData.hero.title = document.getElementById("edit-hero-title").value;
         siteData.hero.subtitle = document.getElementById("edit-hero-subtitle").value;
         siteData.hero.bg_image = document.getElementById("edit-hero-bg-url").value;
+        siteData.hero.bg_size = document.getElementById("edit-hero-bg-size").value;
+
         siteData.services.forEach(srv => { srv.icon = document.getElementById(`edit-service-icon-${srv.id}`).value; srv.title = document.getElementById(`edit-service-title-${srv.id}`).value; srv.description = document.getElementById(`edit-service-desc-${srv.id}`).value; });
         siteData.about.title = document.getElementById("edit-about-title").value;
         siteData.about.bg_image = document.getElementById("edit-about-bg-url").value;
