@@ -138,39 +138,19 @@
             background: var(--color-secondary);
         }
 
-        /* Forces clean, un-blurred image processing for pixel-perfect assets */
+        /* FIX: Removed 'pixelated' rule entirely. 
+           Using high-contrast rendering algorithms optimized for natural smoothness.
+        */
         #hero-bg, #about-bg, #hero-preview, #about-preview {
             image-rendering: -webkit-optimize-contrast;
-            image-rendering: crisp-edges;
-            image-rendering: pixelated;
+            image-rendering: high-quality;
+            background-repeat: no-repeat;
+            background-position: center center;
         }
     </style>
 </head>
 <body class="antialiased font-body-lg text-body-lg bg-surface text-on-surface">
-<script>
-    window.addEventListener('error', function(e) {
-        const errDiv = document.createElement('div');
-        errDiv.style.position = 'fixed';
-        errDiv.style.top = '10px';
-        errDiv.style.left = '10px';
-        errDiv.style.right = '10px';
-        errDiv.style.backgroundColor = '#7f1d1d';
-        errDiv.style.color = '#fecaca';
-        errDiv.style.border = '1px solid #ef4444';
-        errDiv.style.padding = '20px';
-        errDiv.style.borderRadius = '8px';
-        errDiv.style.zIndex = '10000';
-        errDiv.style.fontFamily = 'monospace';
-        errDiv.style.fontSize = '14px';
-        errDiv.innerHTML = '<h3 style="font-weight:bold;margin-bottom:8px">Javascript Error Caught:</h3>' +
-                           '<p style="margin-bottom:8px"><strong>Message:</strong> ' + e.message + '</p>' +
-                           '<p style="margin-bottom:8px"><strong>File:</strong> ' + e.filename + '</p>' +
-                           '<p><strong>Line:</strong> ' + e.lineno + ':' + e.colno + '</p>';
-        document.body.appendChild(errDiv);
-    });
-</script>
 
-<!-- Admin Mode Active Sticky Banner -->
 <div id="admin-banner" class="hidden fixed top-0 left-0 w-full z-[60] bg-secondary text-primary-container px-4 py-2 flex justify-between items-center text-xs font-label-caps tracking-wider shadow-lg">
     <div class="flex items-center gap-2">
         <span class="material-symbols-outlined text-sm animate-pulse">admin_panel_settings</span>
@@ -182,7 +162,6 @@
     </div>
 </div>
 
-<!-- TopNavBar -->
 <nav id="navbar" class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-white/10 transition-all duration-200">
     <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-container-max mx-auto">
         <a class="flex items-center gap-2" href="#">
@@ -201,7 +180,6 @@
     </div>
 </nav>
 
-<!-- Mobile Navigation Drawer -->
 <div id="mobile-drawer" class="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-between">
     <div class="flex justify-between items-center px-margin-mobile py-base border-b border-white/10">
         <a class="flex items-center gap-2" href="#">
@@ -224,10 +202,9 @@
 </div>
 
 <main>
-    <!-- 1. Hero Section -->
     <section class="relative min-h-screen flex items-center pt-24 pb-section-gap overflow-hidden bg-surface" id="hero">
         <div class="absolute inset-0 z-0">
-            <div id="hero-bg" class="absolute inset-0 bg-center opacity-40 mix-blend-overlay transition-all duration-700 bg-no-repeat"></div>
+            <div id="hero-bg" class="absolute inset-0 opacity-40 mix-blend-overlay transition-all duration-700"></div>
             <div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-transparent"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
         </div>
@@ -243,7 +220,6 @@
         </div>
     </section>
 
-    <!-- 2. Services Section -->
     <section class="py-section-gap relative bg-surface border-t border-b border-white/5" id="services">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center tracking-tight">Expertise</h2>
@@ -251,7 +227,6 @@
         </div>
     </section>
 
-    <!-- 3. Portfolio Section -->
     <section class="py-section-gap relative bg-surface-container-lowest" id="portfolio">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-6 text-center tracking-tight">Selected Projects</h2>
@@ -261,10 +236,9 @@
         </div>
     </section>
 
-    <!-- 4. About Section -->
     <section class="py-section-gap relative overflow-hidden" id="about">
         <div class="absolute inset-0 z-0">
-            <div id="about-bg" class="absolute inset-0 bg-center opacity-30 mix-blend-overlay transition-all duration-700 bg-no-repeat"></div>
+            <div id="about-bg" class="absolute inset-0 opacity-30 mix-blend-overlay transition-all duration-700"></div>
             <div class="absolute inset-0 bg-surface/90"></div>
         </div>
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center">
@@ -275,7 +249,6 @@
         </div>
     </section>
 
-    <!-- 5. Testimonials Section -->
     <section class="py-section-gap bg-surface border-t border-b border-white/5" id="testimonials">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center tracking-tight">Client Acclaim</h2>
@@ -283,7 +256,6 @@
         </div>
     </section>
 
-    <!-- 6. Inquire / Contact Section -->
     <section class="py-section-gap bg-surface-container-lowest relative border-b border-white/5" id="contact">
         <div class="max-w-xl mx-auto px-margin-mobile">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4 text-center tracking-tight">Begin the Conversation</h2>
@@ -318,7 +290,6 @@
     </section>
 </main>
 
-<!-- Footer -->
 <footer class="bg-surface border-t border-white/10 w-full">
     <div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-6 gap-4 w-full max-w-container-max mx-auto text-on-surface-variant font-label-caps text-xs">
         <div class="flex items-center gap-4">
@@ -333,7 +304,6 @@
     </div>
 </footer>
 
-<!-- Admin Login Modal -->
 <div id="login-modal" class="hidden fixed inset-0 z-[70] bg-background/80 backdrop-blur-md flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-sm w-full p-8 rounded shadow-2xl relative">
         <button onclick="hideLoginModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface">
@@ -356,7 +326,6 @@
     </div>
 </div>
 
-<!-- Admin Control Panel (CMS Dashboard) Modal -->
 <div id="admin-panel" class="hidden fixed inset-0 z-[80] bg-background/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8">
     <div class="bg-surface-container border border-white/10 w-full max-w-5xl h-[85vh] rounded shadow-2xl flex flex-col overflow-hidden">
         <div class="flex justify-between items-center px-6 py-4 bg-surface border-b border-white/10">
@@ -390,7 +359,6 @@
 
             <div id="cms-editor-container" class="flex-1 p-6 overflow-y-auto bg-surface-container-lowest text-sm">
                 
-                <!-- TAB: Hero Section Banner Editor -->
                 <div id="tab-hero" class="cms-tab-content space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">Hero Section & Banner</h3>
                     <div class="space-y-4">
@@ -406,7 +374,7 @@
                         <div>
                             <label class="block font-label-caps text-xs text-on-surface-variant mb-2">HERO BANNER MODE (DISPLAY STYLE)</label>
                             <select id="edit-hero-bg-size" onchange="handleLiveBgSizePreview('hero', this.value)" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
-                                <option value="auto">Original Size (Pixel Perfect - Crisp)</option>
+                                <option value="auto">Original Size (Pixel Perfect - Clean Quality)</option>
                                 <option value="cover">Fill Layout (Cover)</option>
                                 <option value="contain">Fit Image Bounds (Contain)</option>
                                 <option value="100% 100%">Stretch Aspect Ratio</option>
@@ -432,13 +400,11 @@
                     </div>
                 </div>
 
-                <!-- TAB: Services Editor -->
                 <div id="tab-services" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">Expertise / Services</h3>
                     <div id="cms-services-list" class="space-y-6"></div>
                 </div>
 
-                <!-- TAB: Portfolio Manager -->
                 <div id="tab-portfolio" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Portfolio Categories & Items</h3>
@@ -453,7 +419,6 @@
                     </div>
                 </div>
 
-                <!-- TAB: About Me Editor -->
                 <div id="tab-about" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">About Section Content</h3>
                     <div class="space-y-4">
@@ -469,7 +434,7 @@
                         <div>
                             <label class="block font-label-caps text-xs text-on-surface-variant mb-2">ABOUT BACKGROUND DISPLAY STYLE</label>
                             <select id="edit-about-bg-size" onchange="handleLiveBgSizePreview('about', this.value)" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
-                                <option value="auto">Original Size (Pixel Perfect - Crisp)</option>
+                                <option value="auto">Original Size (Pixel Perfect - Clean Quality)</option>
                                 <option value="cover">Fill Layout (Cover)</option>
                                 <option value="contain">Fit Image Bounds (Contain)</option>
                                 <option value="100% 100%">Stretch Aspect Ratio</option>
@@ -495,7 +460,6 @@
                     </div>
                 </div>
 
-                <!-- TAB: Testimonials Editor -->
                 <div id="tab-testimonials" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Client Testimonials</h3>
@@ -504,7 +468,6 @@
                     <div id="cms-testimonials-list" class="space-y-4"></div>
                 </div>
 
-                <!-- TAB: Leads / Inquiries Viewer -->
                 <div id="tab-leads" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Submitted Leads / Inquiries</h3>
@@ -513,7 +476,6 @@
                     <div id="cms-leads-table" class="border border-white/10 rounded overflow-hidden"></div>
                 </div>
 
-                <!-- TAB: Backup & Reset -->
                 <div id="tab-backup" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">CMS System Utilities</h3>
                     <div class="space-y-6">
@@ -547,7 +509,6 @@
     </div>
 </div>
 
-<!-- Inner Component Modals -->
 <div id="category-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-md w-full p-6 rounded relative">
         <button onclick="closeCategoryModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
@@ -621,14 +582,13 @@
 
 <div id="toast-container" class="fixed bottom-5 right-5 z-[100] space-y-3"></div>
 
-<!-- JavaScript Engine -->
 <script>
     const DEFAULT_SITE_DATA = {
         hero: {
             title: "Your Vision, <br/>Documented & Developed",
             subtitle: "Premium Graphical, Content Writing, and App Building Services.",
             bg_image: "https://raw.githubusercontent.com/ashleyghose64-cmd/AG-Portfolio/main/assets/Banner01.png",
-            bg_size: "auto" // Defaults to original size for un-distorted quality
+            bg_size: "auto"
         },
         services: [
             { id: 1, icon: "brush", title: "Graphical Design", description: "Visual identity & branding crafted to leave a lasting premium impression." },
@@ -938,6 +898,7 @@
     function closeAdminPanel() { document.getElementById("admin-panel").classList.add("hidden"); previewTheme("Monochrome Slate"); }
     window.closeAdminPanel = closeAdminPanel;
 
+    type = "text/javascript";
     function switchTab(tabId) {
         document.querySelectorAll(".cms-tab-content").forEach(el => el.classList.add("hidden"));
         document.querySelectorAll(".tab-btn").forEach(btn => { btn.classList.remove("text-secondary", "bg-white/5", "font-semibold"); btn.classList.add("text-on-surface-variant"); });
@@ -1024,76 +985,33 @@
         });
     }
 
-    async function markLeadRead(id, isRead) {
-        const lead = leadsList.find(l => l.id === id);
-        if (lead) {
-            lead.read = isRead;
-            localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
-            renderCMSLeads(); updateUnreadBadge();
-        }
-    }
+    async function markLeadRead(id, isRead) { const lead = leadsList.find(l => l.id === id); if (lead) { lead.read = isRead; localStorage.setItem("docuready_leads", JSON.stringify(leadsList)); renderCMSLeads(); updateUnreadBadge(); } }
     window.markLeadRead = markLeadRead;
-
-    async function deleteLead(id) {
-        leadsList = leadsList.filter(l => l.id !== id);
-        localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
-        renderCMSLeads(); updateUnreadBadge();
-        showToast("Lead inquiry deleted.");
-    }
+    async function deleteLead(id) { leadsList = leadsList.filter(l => l.id !== id); localStorage.setItem("docuready_leads", JSON.stringify(leadsList)); renderCMSLeads(); updateUnreadBadge(); showToast("Lead inquiry deleted."); }
     window.deleteLead = deleteLead;
-
-    async function clearAllLeads() {
-        if (confirm("Are you sure you want to permanently clear all leads?")) {
-            leadsList = []; localStorage.setItem("docuready_leads", JSON.stringify(leadsList));
-            renderCMSLeads(); updateUnreadBadge(); showToast("All leads cleared.");
-        }
-    }
+    async function clearAllLeads() { if (confirm("Are you sure you want to permanently clear all leads?")) { leadsList = []; localStorage.setItem("docuready_leads", JSON.stringify(leadsList)); renderCMSLeads(); updateUnreadBadge(); showToast("All leads cleared."); } }
     window.clearAllLeads = clearAllLeads;
 
     function openTestimonialModal(id = null) {
-        const modal = document.getElementById("testimonial-modal");
-        const form = document.getElementById("testimonial-form");
-        const titleEl = document.getElementById("testimonial-modal-title");
-        form.reset();
+        const modal = document.getElementById("testimonial-modal"); const form = document.getElementById("testimonial-form"); const titleEl = document.getElementById("testimonial-modal-title"); form.reset();
         if (id) {
-            titleEl.textContent = "Edit Testimonial";
-            const tst = siteData.testimonials.find(t => t.id === id);
-            if (tst) {
-                document.getElementById("edit-testimonial-id").value = tst.id;
-                document.getElementById("testimonial-author").value = tst.author;
-                document.getElementById("testimonial-role").value = tst.title;
-                document.getElementById("testimonial-quote").value = tst.quote;
-            }
-        } else {
-            titleEl.textContent = "Add Client Testimonial";
-            document.getElementById("edit-testimonial-id").value = "";
-        }
+            titleEl.textContent = "Edit Testimonial"; const tst = siteData.testimonials.find(t => t.id === id);
+            if (tst) { document.getElementById("edit-testimonial-id").value = tst.id; document.getElementById("testimonial-author").value = tst.author; document.getElementById("testimonial-role").value = tst.title; document.getElementById("testimonial-quote").value = tst.quote; }
+        } else { titleEl.textContent = "Add Client Testimonial"; document.getElementById("edit-testimonial-id").value = ""; }
         modal.classList.remove("hidden");
     }
     window.openTestimonialModal = openTestimonialModal;
-
     function closeTestimonialModal() { document.getElementById("testimonial-modal").classList.add("hidden"); }
     window.closeTestimonialModal = closeTestimonialModal;
 
     document.getElementById("testimonial-form").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const idVal = document.getElementById("edit-testimonial-id").value;
-        const author = document.getElementById("testimonial-author").value;
-        const role = document.getElementById("testimonial-role").value;
-        const quote = document.getElementById("testimonial-quote").value;
-        if (idVal) {
-            const tst = siteData.testimonials.find(t => t.id == idVal);
-            if (tst) { tst.author = author; tst.title = role; tst.quote = quote; }
-        } else {
-            siteData.testimonials.push({ id: Date.now(), author, title: role, quote });
-        }
+        e.preventDefault(); const idVal = document.getElementById("edit-testimonial-id").value; const author = document.getElementById("testimonial-author").value; const role = document.getElementById("testimonial-role").value; const quote = document.getElementById("testimonial-quote").value;
+        if (idVal) { const tst = siteData.testimonials.find(t => t.id == idVal); if (tst) { tst.author = author; tst.title = role; tst.quote = quote; } }
+        else { siteData.testimonials.push({ id: Date.now(), author, title: role, quote }); }
         closeTestimonialModal(); renderCMSTestimonials(); showToast("Testimonial updated temporary.");
     });
 
-    function deleteTestimonial(id) {
-        siteData.testimonials = siteData.testimonials.filter(t => t.id !== id);
-        renderCMSTestimonials(); showToast("Testimonial deleted temporary.");
-    }
+    function deleteTestimonial(id) { siteData.testimonials = siteData.testimonials.filter(t => t.id !== id); renderCMSTestimonials(); showToast("Testimonial deleted temporary."); }
     window.deleteTestimonial = deleteTestimonial;
 
     function openCategoryModal() { document.getElementById("category-modal").classList.remove("hidden"); renderCMSCategoriesList(); }
