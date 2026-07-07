@@ -138,9 +138,6 @@
             background: var(--color-secondary);
         }
 
-        /* FIX: Removed 'pixelated' rule entirely. 
-           Using high-contrast rendering algorithms optimized for natural smoothness.
-        */
         #hero-bg, #about-bg, #hero-preview, #about-preview {
             image-rendering: -webkit-optimize-contrast;
             image-rendering: high-quality;
@@ -151,6 +148,7 @@
 </head>
 <body class="antialiased font-body-lg text-body-lg bg-surface text-on-surface">
 
+<!-- Admin Mode Active Sticky Banner -->
 <div id="admin-banner" class="hidden fixed top-0 left-0 w-full z-[60] bg-secondary text-primary-container px-4 py-2 flex justify-between items-center text-xs font-label-caps tracking-wider shadow-lg">
     <div class="flex items-center gap-2">
         <span class="material-symbols-outlined text-sm animate-pulse">admin_panel_settings</span>
@@ -162,6 +160,7 @@
     </div>
 </div>
 
+<!-- TopNavBar -->
 <nav id="navbar" class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-white/10 transition-all duration-200">
     <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-container-max mx-auto">
         <a class="flex items-center gap-2" href="#">
@@ -180,6 +179,7 @@
     </div>
 </nav>
 
+<!-- Mobile Navigation Drawer -->
 <div id="mobile-drawer" class="fixed inset-0 z-50 bg-background/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 md:hidden flex flex-col justify-between">
     <div class="flex justify-between items-center px-margin-mobile py-base border-b border-white/10">
         <a class="flex items-center gap-2" href="#">
@@ -202,14 +202,16 @@
 </div>
 
 <main>
+    <!-- 1. Hero Section (Grid Restructured to Right-Side Text Layout) -->
     <section class="relative min-h-screen flex items-center pt-24 pb-section-gap overflow-hidden bg-surface" id="hero">
         <div class="absolute inset-0 z-0">
             <div id="hero-bg" class="absolute inset-0 opacity-40 mix-blend-overlay transition-all duration-700"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-l from-surface via-surface/30 to-surface"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
         </div>
         <div class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-4 md:grid-cols-12 gap-gutter">
-            <div class="col-span-4 md:col-span-8 flex flex-col justify-center">
+            <!-- Pushed column initialization window to md:col-start-6 so it stays on the right half -->
+            <div class="col-span-4 md:col-span-7 md:col-start-6 flex flex-col justify-center text-left">
                 <h1 id="hero-title" class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6 leading-tight"></h1>
                 <p id="hero-subtitle" class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12"></p>
                 <div class="flex gap-6">
@@ -220,6 +222,7 @@
         </div>
     </section>
 
+    <!-- 2. Services Section -->
     <section class="py-section-gap relative bg-surface border-t border-b border-white/5" id="services">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center tracking-tight">Expertise</h2>
@@ -227,6 +230,7 @@
         </div>
     </section>
 
+    <!-- 3. Portfolio Section -->
     <section class="py-section-gap relative bg-surface-container-lowest" id="portfolio">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-6 text-center tracking-tight">Selected Projects</h2>
@@ -236,6 +240,7 @@
         </div>
     </section>
 
+    <!-- 4. About Section -->
     <section class="py-section-gap relative overflow-hidden" id="about">
         <div class="absolute inset-0 z-0">
             <div id="about-bg" class="absolute inset-0 opacity-30 mix-blend-overlay transition-all duration-700"></div>
@@ -249,6 +254,7 @@
         </div>
     </section>
 
+    <!-- 5. Testimonials Section -->
     <section class="py-section-gap bg-surface border-t border-b border-white/5" id="testimonials">
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center tracking-tight">Client Acclaim</h2>
@@ -256,6 +262,7 @@
         </div>
     </section>
 
+    <!-- 6. Inquire / Contact Section -->
     <section class="py-section-gap bg-surface-container-lowest relative border-b border-white/5" id="contact">
         <div class="max-w-xl mx-auto px-margin-mobile">
             <h2 class="font-headline-lg text-headline-lg text-on-surface mb-4 text-center tracking-tight">Begin the Conversation</h2>
@@ -290,6 +297,7 @@
     </section>
 </main>
 
+<!-- Footer -->
 <footer class="bg-surface border-t border-white/10 w-full">
     <div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop py-6 gap-4 w-full max-w-container-max mx-auto text-on-surface-variant font-label-caps text-xs">
         <div class="flex items-center gap-4">
@@ -304,6 +312,7 @@
     </div>
 </footer>
 
+<!-- Admin Login Modal -->
 <div id="login-modal" class="hidden fixed inset-0 z-[70] bg-background/80 backdrop-blur-md flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-sm w-full p-8 rounded shadow-2xl relative">
         <button onclick="hideLoginModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface">
@@ -326,6 +335,7 @@
     </div>
 </div>
 
+<!-- Admin Control Panel (CMS Dashboard) Modal -->
 <div id="admin-panel" class="hidden fixed inset-0 z-[80] bg-background/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8">
     <div class="bg-surface-container border border-white/10 w-full max-w-5xl h-[85vh] rounded shadow-2xl flex flex-col overflow-hidden">
         <div class="flex justify-between items-center px-6 py-4 bg-surface border-b border-white/10">
@@ -359,6 +369,7 @@
 
             <div id="cms-editor-container" class="flex-1 p-6 overflow-y-auto bg-surface-container-lowest text-sm">
                 
+                <!-- TAB: Hero Section Banner Editor -->
                 <div id="tab-hero" class="cms-tab-content space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">Hero Section & Banner</h3>
                     <div class="space-y-4">
@@ -400,11 +411,13 @@
                     </div>
                 </div>
 
+                <!-- TAB: Services Editor -->
                 <div id="tab-services" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">Expertise / Services</h3>
                     <div id="cms-services-list" class="space-y-6"></div>
                 </div>
 
+                <!-- TAB: Portfolio Manager -->
                 <div id="tab-portfolio" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Portfolio Categories & Items</h3>
@@ -419,6 +432,7 @@
                     </div>
                 </div>
 
+                <!-- TAB: About Me Editor -->
                 <div id="tab-about" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">About Section Content</h3>
                     <div class="space-y-4">
@@ -454,12 +468,13 @@
                             </div>
                             <div class="mt-4">
                                 <span class="text-[11px] text-on-surface-variant block mb-1">Current Background Preview:</span>
-                                <div id="about-preview" class="h-32 w-full rounded bg-center border border-white/10 bg-no-repeat transition-all duration-200"></div>
+                                <div id="about-preview" class="h-32 w-full rounded bg-cover bg-center border border-white/10 bg-no-repeat transition-all duration-200"></div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- TAB: Testimonials Editor -->
                 <div id="tab-testimonials" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Client Testimonials</h3>
@@ -468,6 +483,7 @@
                     <div id="cms-testimonials-list" class="space-y-4"></div>
                 </div>
 
+                <!-- TAB: Leads / Inquiries Viewer -->
                 <div id="tab-leads" class="cms-tab-content hidden space-y-6">
                     <div class="flex justify-between items-center border-b border-white/10 pb-2">
                         <h3 class="font-headline-md text-headline-md text-on-surface">Submitted Leads / Inquiries</h3>
@@ -476,6 +492,7 @@
                     <div id="cms-leads-table" class="border border-white/10 rounded overflow-hidden"></div>
                 </div>
 
+                <!-- TAB: Backup & Reset -->
                 <div id="tab-backup" class="cms-tab-content hidden space-y-6">
                     <h3 class="font-headline-md text-headline-md text-on-surface border-b border-white/10 pb-2">CMS System Utilities</h3>
                     <div class="space-y-6">
@@ -509,6 +526,7 @@
     </div>
 </div>
 
+<!-- Inner Component Modals -->
 <div id="category-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
     <div class="bg-surface-container border border-white/10 max-w-md w-full p-6 rounded relative">
         <button onclick="closeCategoryModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
@@ -582,6 +600,7 @@
 
 <div id="toast-container" class="fixed bottom-5 right-5 z-[100] space-y-3"></div>
 
+<!-- JavaScript Engine -->
 <script>
     const DEFAULT_SITE_DATA = {
         hero: {
