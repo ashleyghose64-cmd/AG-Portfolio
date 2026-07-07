@@ -138,9 +138,6 @@
             background: var(--color-secondary);
         }
 
-        /* FIX: Removed 'pixelated' rule entirely. 
-           Using high-contrast rendering algorithms optimized for natural smoothness.
-        */
         #hero-bg, #about-bg, #hero-preview, #about-preview {
             image-rendering: -webkit-optimize-contrast;
             image-rendering: high-quality;
@@ -205,11 +202,11 @@
     <section class="relative min-h-screen flex items-center pt-24 pb-section-gap overflow-hidden bg-surface" id="hero">
         <div class="absolute inset-0 z-0">
             <div id="hero-bg" class="absolute inset-0 opacity-40 mix-blend-overlay transition-all duration-700"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-surface via-surface/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-l from-surface via-surface/30 to-surface"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
         </div>
         <div class="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-4 md:grid-cols-12 gap-gutter">
-            <div class="col-span-4 md:col-span-8 flex flex-col justify-center">
+            <div class="col-span-4 md:col-span-7 md:col-start-6 flex flex-col justify-center text-left">
                 <h1 id="hero-title" class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6 leading-tight"></h1>
                 <p id="hero-subtitle" class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12"></p>
                 <div class="flex gap-6">
@@ -602,7 +599,7 @@
                 "With a background rooted in both structural engineering and fine arts, I approach digital products as modern architecture: they must be built on solid foundations, yet evoke an emotional response through their form and interactions.",
                 "My methodology strips away the superfluous, focusing intensely on typography, spacing, motion, and performance. I believe that true luxury in the digital space is characterized by speed, clarity, and intentionality."
             ],
-            bg_image: "https://raw.githubusercontent.com/ashleyghose64-cmd/AG-Portfolio/main/assets/Banner01.png",
+            bg_image: "https://raw.githubusercontent.com/ashleyghose64-cmd/AG-Portfolio/main/assets/aboutme.png", // Direct target path to aboutme file
             bg_size: "auto"
         },
         portfolio_categories: ["All", "Design", "Writing", "Apps"],
@@ -629,6 +626,14 @@
     let leadsList = [];
     let currentCategoryFilter = "All";
 
+    // Standardizes GitHub web URLs into direct raw payload format
+    function parseRawGitHubUrl(urlStr) {
+        if (urlStr && urlStr.includes("github.com") && urlStr.includes("/blob/")) {
+            return urlStr.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/");
+        }
+        return urlStr;
+    }
+
     function validateAndRepairSiteData() {
         if (!siteData || typeof siteData !== "object") { siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA)); return; }
         if (!siteData.hero) siteData.hero = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.hero));
@@ -639,6 +644,9 @@
         if (!siteData.portfolio_categories) siteData.portfolio_categories = [...DEFAULT_SITE_DATA.portfolio_categories];
         if (!siteData.portfolio_items) siteData.portfolio_items = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.portfolio_items));
         if (!siteData.testimonials) siteData.testimonials = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.testimonials));
+        
+        siteData.hero.bg_image = parseRawGitHubUrl(siteData.hero.bg_image);
+        siteData.about.bg_image = parseRawGitHubUrl(siteData.about.bg_image);
         siteData.theme = "Monochrome Slate";
     }
 
