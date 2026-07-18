@@ -245,7 +245,7 @@
         </div>
     </section>
 
-    <!-- 4. About Section -->
+    <!-- 4. About Section (Restructured Grid Pattern & Left Aligned Text Alignment) -->
     <section class="py-section-gap relative overflow-hidden bg-surface border-t border-b border-white/5 crisp-grid-pattern" id="about">
         <div class="absolute inset-0 z-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none"></div>
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-left">
@@ -417,7 +417,7 @@
                         <div>
                             <label class="block font-label-caps text-xs text-on-surface-variant mb-2">HERO BANNER MODE (DISPLAY STYLE)</label>
                             <select id="edit-hero-bg-size" onchange="handleLiveBgSizePreview('hero', this.value)" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
-                                <option value="auto">Original Size (Pixel Perfect - Clean Quality)</option>
+                                <option value="auto">Original Size (Pixel Perfect)</option>
                                 <option value="cover">Fill Layout (Cover)</option>
                                 <option value="contain">Fit Image Bounds (Contain)</option>
                                 <option value="100% 100%">Stretch Aspect Ratio</option>
@@ -532,9 +532,83 @@
     </div>
 </div>
 
+<!-- Modal: Category Management Inner Modal -->
+<div id="category-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
+    <div class="bg-surface-container border border-white/10 max-w-md w-full p-6 rounded relative">
+        <button onclick="closeCategoryModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
+        <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Manage Categories</h3>
+        <div class="flex gap-2 mb-4">
+            <input type="text" id="new-category-name" class="flex-1 bg-surface border border-white/10 rounded px-3 py-1.5 text-xs text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all" placeholder="New Category Name">
+            <button onclick="addPortfolioCategory()" class="bg-secondary text-primary-container text-xs px-4 py-1.5 rounded font-label-caps font-bold hover:bg-secondary-fixed transition-all">ADD</button>
+        </div>
+        <div id="categories-list-container" class="space-y-2 max-h-48 overflow-y-auto border border-white/5 p-3 rounded"></div>
+    </div>
+</div>
+
+<!-- Modal: Add/Edit Portfolio Item Inner Modal -->
+<div id="portfolio-item-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
+    <div class="bg-surface-container border border-white/10 max-w-lg w-full p-6 rounded relative overflow-y-auto max-h-[90vh]">
+        <button onclick="closePortfolioItemModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
+        <h3 id="portfolio-modal-title" class="font-headline-md text-headline-md text-on-surface mb-4">Portfolio Item</h3>
+        <form id="portfolio-item-form" class="space-y-4 text-xs">
+            <input type="hidden" id="edit-portfolio-id">
+            <div>
+                <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">PROJECT TITLE</label>
+                <input type="text" id="portfolio-item-title" required class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all">
+            </div>
+            <div>
+                <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">CATEGORY</label>
+                <select id="portfolio-item-category" class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all"></select>
+            </div>
+            <div>
+                <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">IMAGE SOURCE</label>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2">
+                    <div>
+                        <span class="text-[10px] text-on-surface-variant block mb-1">Online URL</span>
+                        <input type="text" id="portfolio-item-img-url" class="w-full bg-surface border border-white/10 rounded px-3 py-1.5 text-[11px] text-on-surface focus:border-secondary transition-all">
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-on-surface-variant block mb-1">Upload File</span>
+                        <input type="file" id="portfolio-item-img-file" accept="image/*" class="w-full text-[10px] file:mr-2 file:py-1 file:px-2 file:rounded file:bg-white/10 file:text-on-surface file:border-0 hover:file:bg-white/20">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">DESCRIPTION</label>
+                <textarea id="portfolio-item-desc" rows="3" required class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-secondary text-primary-container py-3 rounded font-label-caps text-xs font-bold hover:bg-secondary-fixed transition-colors">SAVE ITEM</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal: Add/Edit Testimonial Inner Modal -->
+<div id="testimonial-modal" class="hidden fixed inset-0 z-[90] bg-black/80 flex items-center justify-center p-4">
+    <div class="bg-surface-container border border-white/10 max-w-md w-full p-6 rounded relative">
+        <button onclick="closeTestimonialModal()" class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
+        <h3 id="testimonial-modal-title" class="font-headline-md text-headline-md text-on-surface mb-4">Client Testimonial</h3>
+        <form id="testimonial-form" class="space-y-4 text-xs">
+            <input type="hidden" id="edit-testimonial-id">
+            <div>
+                <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">AUTHOR NAME</label>
+                <input type="text" id="testimonial-author" required class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all" placeholder="Elena R.">
+            </div>
+            <div>
+                <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">AUTHOR ROLE / COMPANY</label>
+                <input type="text" id="testimonial-role" required class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all" placeholder="CEO, NexaCorp">
+            </div>
+            <div>
+                <label class="block font-label-caps text-[10px] text-on-surface-variant mb-1">CLIENT QUOTE</label>
+                <textarea id="testimonial-quote" rows="4" required class="w-full bg-surface border border-white/10 rounded px-3 py-2 text-on-surface focus:border-secondary transition-all" placeholder="Quote goes here..."></textarea>
+            </div>
+            <button type="submit" class="w-full bg-secondary text-primary-container py-3 rounded font-label-caps text-xs font-bold hover:bg-secondary-fixed transition-colors">SAVE TESTIMONIAL</button>
+        </form>
+    </div>
+</div>
+
 <div id="toast-container" class="fixed bottom-5 right-5 z-[100] space-y-3"></div>
 
-<!-- JavaScript Logic Engine -->
+<!-- JavaScript Engine Code Block -->
 <script>
     const DEFAULT_SITE_DATA = {
         hero: {
@@ -557,7 +631,7 @@
             ]
         },
         portfolio_categories: ["All", "Design", "Writing", "Apps"],
-        portfolio_items: [], // Populated asynchronously via repository external json schema database folder load hooks
+        portfolio_items: [], 
         testimonials: [
             { id: 1, quote: "DocuReady transformed our entire digital presence. Their graphical design work is breathtaking, and the app runs flawlessly.", author: "Elena R.", title: "CEO, NexaCorp" },
             { id: 2, quote: "The content they crafted was exactly what we needed to elevate our brand narrative. Pure strategic brilliance.", author: "Marcus T.", title: "Founder, Aurelia" },
@@ -597,26 +671,28 @@
         siteData.theme = "Monochrome Slate";
     }
 
-    /* Asynchronous Repository JSON Database Reading Engine Hooks */
     async function fetchExternalRepositoryDatabase() {
+        // If a local portfolio storage configuration copy exists, skip the GitHub baseline call
+        if (localStorage.getItem("docuready_site_data")) {
+            return;
+        }
         try {
-            // Hot swaps link on compile initialization runtime context matching your repository setup architecture parameters
             const response = await fetch("database/portfolio.json");
             if (response.ok) {
                 const externalItems = await response.json();
                 if (Array.isArray(externalItems)) {
                     siteData.portfolio_items = externalItems;
-                    console.log("GitHub Repository portfolio master configuration database read successful.");
+                    saveDatabase(); // Instantly write baseline to local storage
                 }
             }
         } catch (err) {
-            console.warn("Local folder sync context initialized fallback default records lookup schema.", err);
-            // Default mock assignment parameters if workspace file not deployed yet
+            console.warn("Using baseline configuration layout criteria.", err);
             siteData.portfolio_items = [
                 { id: 1, title: "Aura Brand Identity", category: "Design", image: "assets/portfolio_design.jpg", description: "Complete visual branding, logo suite, typography, and premium assets for Aurelia." },
                 { id: 2, title: "Digital Manifesto", category: "Writing", image: "assets/portfolio_writing.jpg", description: "Strategic copywriting and brand story articulation for high-end digital agencies." },
                 { id: 3, title: "Nexa Finance Platform", category: "Apps", image: "assets/portfolio_app.jpg", description: "Full-stack client portal dashboard utilizing dark-mode premium UX design." }
             ];
+            saveDatabase();
         }
     }
 
@@ -629,7 +705,7 @@
         } else { siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA)); }
         
         validateAndRepairSiteData();
-        await fetchExternalRepositoryDatabase(); // Pull fresh database contents dynamically
+        await fetchExternalRepositoryDatabase(); 
         previewTheme("Monochrome Slate");
         renderWebsite();
         checkAdminSession();
@@ -836,6 +912,9 @@
             document.getElementById("edit-hero-bg-url").value = base64;
             document.getElementById("hero-preview").style.backgroundImage = `url('${base64}')`;
         });
+        setupImageUploadListener("portfolio-item-img-file", (base64) => { 
+            document.getElementById("portfolio-item-img-url").value = base64; 
+        });
 
         document.getElementById("import-config-file").addEventListener("change", (e) => {
             const file = e.target.files[0]; if (!file) return;
@@ -979,14 +1058,25 @@
     function renderCMSPortfolioTable() {
         const table = document.getElementById("cms-portfolio-table"); table.innerHTML = "";
         if (!siteData.portfolio_items || siteData.portfolio_items.length === 0) {
-            table.innerHTML = `<div class="text-center py-6 text-xs text-on-surface-variant opacity-60">No items available. Edit your <code>database/portfolio.json</code> file on GitHub to add assets.</div>`; return;
+            table.innerHTML = `<div class="text-center py-6 text-xs text-on-surface-variant opacity-60">No items available. Click "Add Portfolio Item" to start.</div>`; return;
         }
         const header = document.createElement("div"); header.className = "grid grid-cols-12 gap-2 bg-surface font-label-caps text-[10px] text-on-surface-variant border-b border-white/10 p-3";
-        header.innerHTML = `<div class="col-span-2">PREVIEW</div><div class="col-span-3">PROJECT TITLE</div><div class="col-span-2">CATEGORY</div><div class="col-span-3">DESCRIPTION</div><div class="col-span-2 text-right">STATUS</div>`;
+        header.innerHTML = `<div class="col-span-2">PREVIEW</div><div class="col-span-3">PROJECT TITLE</div><div class="col-span-2">CATEGORY</div><div class="col-span-3">DESCRIPTION</div><div class="col-span-2 text-right">ACTIONS</div>`;
         table.appendChild(header);
         siteData.portfolio_items.forEach(item => {
-            const row = document.createElement("div"); row.className = "grid grid-cols-12 gap-2 border-b border-white/5 p-3 items-center text-xs text-on-surface-variant";
-            row.innerHTML = `<div class="col-span-2 h-10 w-16 overflow-hidden rounded bg-black/10"><img src="${item.image}" class="w-full h-full object-cover"></div><div class="col-span-3 text-on-surface font-semibold">${item.title}</div><div class="col-span-2"><span class="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[10px]">${item.category}</span></div><div class="col-span-3 truncate">${item.description}</div><div class="col-span-2 text-right text-green-400 font-label-caps text-[10px] tracking-wider font-bold">LIVE SYNCED</div>`;
+            const row = document.createElement("div"); row.className = "grid grid-cols-12 gap-2 border-b border-white/5 p-3 items-center text-xs text-on-surface-variant hover:bg-white/5";
+            row.innerHTML = `
+                <div class="col-span-2 h-10 w-16 overflow-hidden rounded bg-black/10">
+                    <img src="${item.image}" class="w-full h-full object-cover">
+                </div>
+                <div class="col-span-3 text-on-surface font-semibold">${item.title}</div>
+                <div class="col-span-2"><span class="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[10px]">${item.category}</span></div>
+                <div class="col-span-3 truncate">${item.description}</div>
+                <div class="col-span-2 text-right flex justify-end gap-2">
+                    <button onclick="openPortfolioItemModal(${item.id})" class="text-secondary hover:underline" title="Edit Item"><span class="material-symbols-outlined text-lg">edit</span></button>
+                    <button onclick="deletePortfolioItem(${item.id})" class="text-red-400 hover:text-red-300" title="Delete Item"><span class="material-symbols-outlined text-lg">delete</span></button>
+                </div>
+            `;
             table.appendChild(row);
         });
     }
@@ -1033,6 +1123,66 @@
     function deleteTestimonial(id) { siteData.testimonials = siteData.testimonials.filter(t => t.id !== id); renderCMSTestimonials(); showToast("Testimonial deleted temporary."); }
     window.deleteTestimonial = deleteTestimonial;
 
+    function openCategoryModal() { document.getElementById("category-modal").classList.remove("hidden"); renderCMSCategoriesList(); }
+    window.openCategoryModal = openCategoryModal;
+    function closeCategoryModal() { document.getElementById("category-modal").classList.add("hidden"); populatePortfolioItemCategoryDropdown(); }
+    window.closeCategoryModal = closeCategoryModal;
+
+    function renderCMSCategoriesList() {
+        const container = document.getElementById("categories-list-container"); container.innerHTML = "";
+        siteData.portfolio_categories.forEach(cat => {
+            const isAll = cat === "All"; const row = document.createElement("div"); row.className = "flex justify-between items-center text-xs py-1.5 border-b border-white/5";
+            row.innerHTML = `<span class="${isAll ? "font-bold text-secondary" : "text-on-surface"}">${cat}</span>${isAll ? '' : `<button onclick="deletePortfolioCategory('${cat}')" class="text-red-400 hover:text-red-300"><span class="material-symbols-outlined text-sm">delete</span></button>`}`;
+            container.appendChild(row);
+        });
+    }
+
+    function addPortfolioCategory() {
+        const input = document.getElementById("new-category-name"); const name = input.value.trim(); if (!name) return;
+        if (siteData.portfolio_categories.some(c => c.toLowerCase() === name.toLowerCase())) { alert("Category already exists."); return; }
+        siteData.portfolio_categories.push(name.charAt(0).toUpperCase() + name.slice(1)); input.value = ""; renderCMSCategoriesList(); showToast("Category added temporary.");
+    }
+    window.addPortfolioCategory = addPortfolioCategory;
+
+    function deletePortfolioCategory(catName) {
+        if (confirm(`Are you sure you want to delete category "${catName}"? Associated portfolio items will revert to 'All'.`)) {
+            siteData.portfolio_categories = siteData.portfolio_categories.filter(c => c !== catName); siteData.portfolio_items.forEach(item => { if (item.category === catName) item.category = "All"; });
+            if (currentCategoryFilter === catName) currentCategoryFilter = "All";
+            renderCMSCategoriesList(); renderCMSPortfolioTable(); showToast("Category deleted temporary.");
+        }
+    }
+    window.deletePortfolioCategory = deletePortfolioCategory;
+
+    function openPortfolioItemModal(id = null) {
+        const modal = document.getElementById("portfolio-item-modal"); const form = document.getElementById("portfolio-item-form"); const titleEl = document.getElementById("portfolio-modal-title"); form.reset(); populatePortfolioItemCategoryDropdown();
+        if (id) {
+            titleEl.textContent = "Edit Portfolio Project"; const item = siteData.portfolio_items.find(i => i.id === id);
+            if (item) { document.getElementById("edit-portfolio-id").value = item.id; document.getElementById("portfolio-item-title").value = item.title; document.getElementById("portfolio-item-category").value = item.category; document.getElementById("portfolio-item-img-url").value = item.image; document.getElementById("portfolio-item-desc").value = item.description; }
+        } else { titleEl.textContent = "Add Portfolio Project"; document.getElementById("edit-portfolio-id").value = ""; }
+        modal.classList.remove("hidden");
+    }
+    window.openPortfolioItemModal = openPortfolioItemModal;
+    function closePortfolioItemModal() { document.getElementById("portfolio-item-modal").classList.add("hidden"); }
+    window.closePortfolioItemModal = closePortfolioItemModal;
+
+    function populatePortfolioItemCategoryDropdown() { const dropdown = document.getElementById("portfolio-item-category"); dropdown.innerHTML = ""; siteData.portfolio_categories.forEach(cat => { const opt = document.createElement("option"); opt.value = cat; opt.textContent = cat; dropdown.appendChild(opt); }); }
+
+    document.getElementById("portfolio-item-form").addEventListener("submit", (e) => {
+        e.preventDefault(); const idVal = document.getElementById("edit-portfolio-id").value; const title = document.getElementById("portfolio-item-title").value; const category = document.getElementById("portfolio-item-category").value; const imgUrl = document.getElementById("portfolio-item-img-url").value || "assets/portfolio_design.jpg"; const desc = document.getElementById("portfolio-item-desc").value;
+        if (idVal) { const item = siteData.portfolio_items.find(i => i.id == idVal); if (item) { item.title = title; item.category = category; item.image = imgUrl; item.description = desc; } }
+        else { siteData.portfolio_items.push({ id: Date.now(), title, category, image: imgUrl, description: desc }); }
+        closePortfolioItemModal(); renderCMSPortfolioTable(); showToast("Portfolio list updated temporary.");
+    });
+
+    function deletePortfolioItem(id) { 
+        if (confirm("Are you sure you want to remove this portfolio item?")) {
+            siteData.portfolio_items = siteData.portfolio_items.filter(i => i.id !== id); 
+            renderCMSPortfolioTable(); 
+            showToast("Portfolio project deleted temporary."); 
+        }
+    }
+    window.deletePortfolioItem = deletePortfolioItem;
+
     async function saveCMSChanges() {
         siteData.hero.title = document.getElementById("edit-hero-title").value;
         siteData.hero.subtitle = document.getElementById("edit-hero-subtitle").value;
@@ -1055,7 +1205,10 @@
 
     async function resetSiteData() {
         if (confirm("Are you sure you want to reset everything back to default layout specifications?")) {
-            siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA)); saveDatabase(); previewTheme("Monochrome Slate"); renderWebsite(); populateCMSInputs(); closeAdminPanel(); showToast("System configurations reset to factory defaults.", "success");
+            localStorage.removeItem("docuready_site_data"); // Clear local layout overrides cache
+            siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA)); 
+            await fetchExternalRepositoryDatabase();
+            saveDatabase(); previewTheme("Monochrome Slate"); renderWebsite(); populateCMSInputs(); closeAdminPanel(); showToast("System configurations reset to defaults.", "success");
         }
     }
     window.resetSiteData = resetSiteData;
