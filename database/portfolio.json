@@ -1,1 +1,17 @@
 
+[
+  {
+    "id": 1,
+    "title": "Aura Brand Identity",
+    "category": "Design",
+    "image": "assets/portfolio_design.jpg",
+    "description": "Complete visual brandinglayout suite and premium vector assets."
+  },
+  {
+    "id": 2,
+    "title": "Nexa Finance Platform",
+    "category": "Apps",
+    "image": "assets/Banner01.png",
+    "description": "Full-stack client portal dashboard utilizing clean dark-mode architectural interfaces."
+  }
+]
