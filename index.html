@@ -145,7 +145,6 @@
             background-position: center center;
         }
 
-        /* Crisp blueprint micro-dot canvas architectural pattern style background */
         .crisp-grid-pattern {
             background-color: #000000;
             background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
@@ -167,7 +166,7 @@
     </div>
 </div>
 
-<!-- TopNavBar (Typographic Logo swapped with direct direct-view Google Drive layout optimized at 100px) -->
+<!-- TopNavBar -->
 <nav id="navbar" class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-white/10 transition-all duration-200">
     <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-2 max-w-container-max mx-auto">
         <a class="flex items-center" href="#">
@@ -246,7 +245,7 @@
         </div>
     </section>
 
-    <!-- 4. About Section (Restructured Grid Pattern & Left Aligned Text Alignment) -->
+    <!-- 4. About Section -->
     <section class="py-section-gap relative overflow-hidden bg-surface border-t border-b border-white/5 crisp-grid-pattern" id="about">
         <div class="absolute inset-0 z-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none"></div>
         <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-left">
@@ -418,7 +417,7 @@
                         <div>
                             <label class="block font-label-caps text-xs text-on-surface-variant mb-2">HERO BANNER MODE (DISPLAY STYLE)</label>
                             <select id="edit-hero-bg-size" onchange="handleLiveBgSizePreview('hero', this.value)" class="w-full bg-surface border border-white/10 rounded px-4 py-2 text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary transition-all">
-                                <option value="auto">Original Size (Pixel Perfect)</option>
+                                <option value="auto">Original Size (Pixel Perfect - Clean Quality)</option>
                                 <option value="cover">Fill Layout (Cover)</option>
                                 <option value="contain">Fit Image Bounds (Contain)</option>
                                 <option value="100% 100%">Stretch Aspect Ratio</option>
@@ -535,7 +534,7 @@
 
 <div id="toast-container" class="fixed bottom-5 right-5 z-[100] space-y-3"></div>
 
-<!-- JavaScript Engine Code Block -->
+<!-- JavaScript Logic Engine -->
 <script>
     const DEFAULT_SITE_DATA = {
         hero: {
@@ -558,11 +557,7 @@
             ]
         },
         portfolio_categories: ["All", "Design", "Writing", "Apps"],
-        portfolio_items: [
-            { id: 1, title: "Aura Brand Identity", category: "Design", image: "assets/portfolio_design.jpg", description: "Complete visual branding, logo suite, typography, and premium assets for Aurelia." },
-            { id: 2, title: "Digital Manifesto", category: "Writing", image: "assets/portfolio_writing.jpg", description: "Strategic copywriting and brand story articulation for high-end digital agencies." },
-            { id: 3, title: "Nexa Finance Platform", category: "Apps", image: "assets/portfolio_app.jpg", description: "Full-stack client portal dashboard utilizing dark-mode premium UX design." }
-        ],
+        portfolio_items: [], // Populated asynchronously via repository external json schema database folder load hooks
         testimonials: [
             { id: 1, quote: "DocuReady transformed our entire digital presence. Their graphical design work is breathtaking, and the app runs flawlessly.", author: "Elena R.", title: "CEO, NexaCorp" },
             { id: 2, quote: "The content they crafted was exactly what we needed to elevate our brand narrative. Pure strategic brilliance.", author: "Marcus T.", title: "Founder, Aurelia" },
@@ -595,21 +590,46 @@
         if (!siteData.about) siteData.about = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.about));
         if (!siteData.services) siteData.services = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.services));
         if (!siteData.portfolio_categories) siteData.portfolio_categories = [...DEFAULT_SITE_DATA.portfolio_categories];
-        if (!siteData.portfolio_items) siteData.portfolio_items = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.portfolio_items));
+        if (!siteData.portfolio_items) siteData.portfolio_items = [];
         if (!siteData.testimonials) siteData.testimonials = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA.testimonials));
         
         siteData.hero.bg_image = parseRawGitHubUrl(siteData.hero.bg_image);
         siteData.theme = "Monochrome Slate";
     }
 
-    window.addEventListener("DOMContentLoaded", () => {
+    /* Asynchronous Repository JSON Database Reading Engine Hooks */
+    async function fetchExternalRepositoryDatabase() {
+        try {
+            // Hot swaps link on compile initialization runtime context matching your repository setup architecture parameters
+            const response = await fetch("database/portfolio.json");
+            if (response.ok) {
+                const externalItems = await response.json();
+                if (Array.isArray(externalItems)) {
+                    siteData.portfolio_items = externalItems;
+                    console.log("GitHub Repository portfolio master configuration database read successful.");
+                }
+            }
+        } catch (err) {
+            console.warn("Local folder sync context initialized fallback default records lookup schema.", err);
+            // Default mock assignment parameters if workspace file not deployed yet
+            siteData.portfolio_items = [
+                { id: 1, title: "Aura Brand Identity", category: "Design", image: "assets/portfolio_design.jpg", description: "Complete visual branding, logo suite, typography, and premium assets for Aurelia." },
+                { id: 2, title: "Digital Manifesto", category: "Writing", image: "assets/portfolio_writing.jpg", description: "Strategic copywriting and brand story articulation for high-end digital agencies." },
+                { id: 3, title: "Nexa Finance Platform", category: "Apps", image: "assets/portfolio_app.jpg", description: "Full-stack client portal dashboard utilizing dark-mode premium UX design." }
+            ];
+        }
+    }
+
+    window.addEventListener("DOMContentLoaded", async () => {
         const localLeads = localStorage.getItem("docuready_leads");
         leadsList = localLeads ? JSON.parse(localLeads) : [];
         const localData = localStorage.getItem("docuready_site_data");
         if (localData) {
             try { siteData = JSON.parse(localData); } catch (e) { siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA)); }
         } else { siteData = JSON.parse(JSON.stringify(DEFAULT_SITE_DATA)); }
+        
         validateAndRepairSiteData();
+        await fetchExternalRepositoryDatabase(); // Pull fresh database contents dynamically
         previewTheme("Monochrome Slate");
         renderWebsite();
         checkAdminSession();
@@ -656,10 +676,9 @@
 
     function closeWebviewHUD() {
         document.getElementById("webview-hud-modal").classList.add("hidden");
-        // Normalize layout out of expanded full screen state variables if active on close
         const windowFrame = document.getElementById("hud-frame-window");
         windowFrame.classList.remove("max-w-none", "h-screen", "w-screen", "rounded-none");
-        windowFrame.classList.add("max-w-xs", "max-w-5xl", "h-[80vh]");
+        windowFrame.classList.add("max-w-5xl", "h-[80vh]");
         document.getElementById("fullscreen-hud-icon").textContent = "fullscreen";
         document.getElementById("fullscreen-hud-text").textContent = "FULLSCREEN";
     }
@@ -735,12 +754,11 @@
         if (portfolioGrid) {
             portfolioGrid.innerHTML = "";
             const filteredItems = currentCategoryFilter === "All" ? siteData.portfolio_items : siteData.portfolio_items.filter(item => item.category === currentCategoryFilter);
-            if (filteredItems.length === 0) {
+            if (!filteredItems || filteredItems.length === 0) {
                 portfolioGrid.innerHTML = `<div class="col-span-1 md:col-span-3 text-center py-12 text-on-surface-variant"><span class="material-symbols-outlined text-4xl block mb-2 opacity-50">photo_library</span>No projects available under this category.</div>`;
             } else {
                 filteredItems.forEach(item => {
                     const card = document.createElement("div");
-                    // Dynamic Click Handler mapping triggered directly via frame window calls
                     card.onclick = () => openWebviewHUD(item.id);
                     card.className = "group border border-white/5 rounded overflow-hidden bg-surface-container-low hover:border-secondary/35 transition-all duration-300 flex flex-col cursor-pointer";
                     card.innerHTML = `
@@ -960,13 +978,15 @@
 
     function renderCMSPortfolioTable() {
         const table = document.getElementById("cms-portfolio-table"); table.innerHTML = "";
-        if (siteData.portfolio_items.length === 0) { table.innerHTML = `<div class="text-center py-6 text-xs text-on-surface-variant opacity-60">No portfolio items added yet. Click "Add Portfolio Item" to start.</div>`; return; }
+        if (!siteData.portfolio_items || siteData.portfolio_items.length === 0) {
+            table.innerHTML = `<div class="text-center py-6 text-xs text-on-surface-variant opacity-60">No items available. Edit your <code>database/portfolio.json</code> file on GitHub to add assets.</div>`; return;
+        }
         const header = document.createElement("div"); header.className = "grid grid-cols-12 gap-2 bg-surface font-label-caps text-[10px] text-on-surface-variant border-b border-white/10 p-3";
-        header.innerHTML = `<div class="col-span-2">PREVIEW</div><div class="col-span-3">PROJECT TITLE</div><div class="col-span-2">CATEGORY</div><div class="col-span-3">DESCRIPTION</div><div class="col-span-2 text-right">ACTIONS</div>`;
+        header.innerHTML = `<div class="col-span-2">PREVIEW</div><div class="col-span-3">PROJECT TITLE</div><div class="col-span-2">CATEGORY</div><div class="col-span-3">DESCRIPTION</div><div class="col-span-2 text-right">STATUS</div>`;
         table.appendChild(header);
         siteData.portfolio_items.forEach(item => {
-            const row = document.createElement("div"); row.className = "grid grid-cols-12 gap-2 border-b border-white/5 p-3 items-center text-xs text-on-surface-variant hover:bg-white/5";
-            row.innerHTML = `<div class="col-span-2 h-10 w-16 overflow-hidden rounded bg-black/10"><img src="${item.image}" class="w-full h-full object-cover"></div><div class="col-span-3 text-on-surface font-semibold">${item.title}</div><div class="col-span-2"><span class="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[10px]">${item.category}</span></div><div class="col-span-3 truncate">${item.description}</div><div class="col-span-2 text-right flex justify-end gap-2"><button onclick="openPortfolioItemModal(${item.id})" class="text-secondary hover:underline"><span class="material-symbols-outlined text-lg">edit</span></button><button onclick="deletePortfolioItem(${item.id})" class="text-red-400 hover:underline"><span class="material-symbols-outlined text-lg">delete</span></button></div>`;
+            const row = document.createElement("div"); row.className = "grid grid-cols-12 gap-2 border-b border-white/5 p-3 items-center text-xs text-on-surface-variant";
+            row.innerHTML = `<div class="col-span-2 h-10 w-16 overflow-hidden rounded bg-black/10"><img src="${item.image}" class="w-full h-full object-cover"></div><div class="col-span-3 text-on-surface font-semibold">${item.title}</div><div class="col-span-2"><span class="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-[10px]">${item.category}</span></div><div class="col-span-3 truncate">${item.description}</div><div class="col-span-2 text-right text-green-400 font-label-caps text-[10px] tracking-wider font-bold">LIVE SYNCED</div>`;
             table.appendChild(row);
         });
     }
@@ -1012,60 +1032,6 @@
 
     function deleteTestimonial(id) { siteData.testimonials = siteData.testimonials.filter(t => t.id !== id); renderCMSTestimonials(); showToast("Testimonial deleted temporary."); }
     window.deleteTestimonial = deleteTestimonial;
-
-    function openCategoryModal() { document.getElementById("category-modal").classList.remove("hidden"); renderCMSCategoriesList(); }
-    window.openCategoryModal = openCategoryModal;
-    function closeCategoryModal() { document.getElementById("category-modal").classList.add("hidden"); populatePortfolioItemCategoryDropdown(); }
-    window.closeCategoryModal = closeCategoryModal;
-
-    function renderCMSCategoriesList() {
-        const container = document.getElementById("categories-list-container"); container.innerHTML = "";
-        siteData.portfolio_categories.forEach(cat => {
-            const isAll = cat === "All"; const row = document.createElement("div"); row.className = "flex justify-between items-center text-xs py-1.5 border-b border-white/5";
-            row.innerHTML = `<span class="${isAll ? "font-bold text-secondary" : "text-on-surface"}">${cat}</span>${isAll ? '' : `<button onclick="deletePortfolioCategory('${cat}')" class="text-red-400 hover:text-red-300"><span class="material-symbols-outlined text-sm">delete</span></button>`}`;
-            container.appendChild(row);
-        });
-    }
-
-    function addPortfolioCategory() {
-        const input = document.getElementById("new-category-name"); const name = input.value.trim(); if (!name) return;
-        if (siteData.portfolio_categories.some(c => c.toLowerCase() === name.toLowerCase())) { alert("Category already exists."); return; }
-        siteData.portfolio_categories.push(name.charAt(0).toUpperCase() + name.slice(1)); input.value = ""; renderCMSCategoriesList(); showToast("Category added temporary.");
-    }
-    window.addPortfolioCategory = addPortfolioCategory;
-
-    function deletePortfolioCategory(catName) {
-        if (confirm(`Are you sure you want to delete category "${catName}"?`)) {
-            siteData.portfolio_categories = siteData.portfolio_categories.filter(c => c !== catName); siteData.portfolio_items.forEach(item => { if (item.category === catName) item.category = "All"; });
-            if (currentCategoryFilter === catName) currentCategoryFilter = "All";
-            renderCMSCategoriesList(); renderCMSPortfolioTable(); showToast("Category deleted temporary.");
-        }
-    }
-    window.deletePortfolioCategory = deletePortfolioCategory;
-
-    function openPortfolioItemModal(id = null) {
-        const modal = document.getElementById("portfolio-item-modal"); const form = document.getElementById("portfolio-item-form"); const titleEl = document.getElementById("portfolio-modal-title"); form.reset(); populatePortfolioItemCategoryDropdown();
-        if (id) {
-            titleEl.textContent = "Edit Portfolio Project"; const item = siteData.portfolio_items.find(i => i.id === id);
-            if (item) { document.getElementById("edit-portfolio-id").value = item.id; document.getElementById("portfolio-item-title").value = item.title; document.getElementById("portfolio-item-category").value = item.category; document.getElementById("portfolio-item-img-url").value = item.image; document.getElementById("portfolio-item-desc").value = item.description; }
-        } else { titleEl.textContent = "Add Portfolio Project"; document.getElementById("edit-portfolio-id").value = ""; }
-        modal.classList.remove("hidden");
-    }
-    window.openPortfolioItemModal = openPortfolioItemModal;
-    function closePortfolioItemModal() { document.getElementById("portfolio-item-modal").classList.add("hidden"); }
-    window.closePortfolioItemModal = closePortfolioItemModal;
-
-    function populatePortfolioItemCategoryDropdown() { const dropdown = document.getElementById("portfolio-item-category"); dropdown.innerHTML = ""; siteData.portfolio_categories.forEach(cat => { const opt = document.createElement("option"); opt.value = cat; opt.textContent = cat; dropdown.appendChild(opt); }); }
-
-    document.getElementById("portfolio-item-form").addEventListener("submit", (e) => {
-        e.preventDefault(); const idVal = document.getElementById("edit-portfolio-id").value; const title = document.getElementById("portfolio-item-title").value; const category = document.getElementById("portfolio-item-category").value; const imgUrl = document.getElementById("portfolio-item-img-url").value || "assets/portfolio_design.jpg"; const desc = document.getElementById("portfolio-item-desc").value;
-        if (idVal) { const item = siteData.portfolio_items.find(i => i.id == idVal); if (item) { item.title = title; item.category = category; item.image = imgUrl; item.description = desc; } }
-        else { siteData.portfolio_items.push({ id: Date.now(), title, category, image: imgUrl, description: desc }); }
-        closePortfolioItemModal(); renderCMSPortfolioTable(); showToast("Portfolio item updated temporary.");
-    });
-
-    function deletePortfolioItem(id) { siteData.portfolio_items = siteData.portfolio_items.filter(i => i.id !== id); renderCMSPortfolioTable(); showToast("Portfolio project deleted temporary."); }
-    window.deletePortfolioItem = deletePortfolioItem;
 
     async function saveCMSChanges() {
         siteData.hero.title = document.getElementById("edit-hero-title").value;
